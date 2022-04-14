@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html">
+
+    <title>Discussion Board Admin Page</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/css/admin_styles.css">
+
+    <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
+    <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.minicolors.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery.minicolors.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="navbar-brand" id="page_title"> <img src="/images/admin/logo.png" width="30" height="30" class="d-inline-block align-top ml-1-auto">
+            <span> SSC Disscussion Board Admin Page</span>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="Board">
+                <a class="nav-link active" href="board.html">Board</a>
+            </li>
+            <li class="Post">
+                <a class="nav-link" href="post.html">Post</a>
+            </li>
+        </ul>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a id="signout" class="rounded" data-toggle="modal" data-target="#sign_out">Sign Out</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h4>Edit Board</h4>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Title</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#">Title
+                                <form>
+                                    <div class="form-group">
+                                      <input type="title" class="form-control" id="title" aria-describedby="title" placeholder="Enter title" value=<%= '"' + [0].title + '"' %>>
+                                    </div>
+                                </form>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Color
+                                <div class="form-group">
+                                    <input type="text" id="title-demo" class="form-control demo" data-control="titlecolor" value="#ff6161">
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Background</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">Color
+                                <div class="form-group">
+                                    <input type="text" id="background-demo" class="form-control demo" data-control="bgcolor" value="#ff6161">
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Image
+                                <input type="file" class="form-control" id="customFile" />
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Reset</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" data-toggle="modal" data-target="#savechanges" class="article">Save Changes</a>
+                </li>
+            </ul>
+
+            <div class="modal fade" id="savechanges" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Save Changes</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Changes to the board have been saved.
+                    </div>
+                    <div class="modal-footer">
+                      <a href="board.html"><button id="closeedit" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Edit Board</span>
+                    </button>
+                    <button class="btn d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                </div>
+        </div>
+    </div>
+
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+    $('#closeedit').click(function() {
+        // handle redirect here
+        window.location.href = "board.html";
+        $('#savechanges').modal('hide');
+    });
+</script>
+<script type="text/javascript">
+    $(function(){
+      var colpick = $('.demo').each( function() {
+        $(this).minicolors({
+          control: $(this).attr('data-control') || 'hue',
+          inline: $(this).attr('data-inline') === 'true',
+          letterCase: 'lowercase',
+          opacity: false,
+          change: function(hex, opacity) {
+            if(!hex) return;
+            if(opacity) hex += ', ' + opacity;
+            try {
+              console.log(hex);
+            } catch(e) {}
+            $(this).select();
+          },
+          theme: 'bootstrap'
+        });
+      });
+      
+      var $inlinehex = $('#inlinecolorhex h3 small');
+      $('#inlinecolors').minicolors({
+        inline: true,
+        theme: 'bootstrap',
+        change: function(hex) {
+          if(!hex) return;
+          $inlinehex.html(hex);
+        }
+      });
+    });
+    </script>
+
+</body>
+
+</html>

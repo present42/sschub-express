@@ -1,0 +1,145 @@
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.modal-body .post-body {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#signout{
+    margin-right: 20px;
+    padding:12px;
+    background-color: #afafaf;
+    color:#ffffff;
+    border-style:initial;
+    text-decoration: none;
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+#page_title {
+    color:rgb(85, 85, 85);
+    font-weight:lighter;
+    font-family: sans-serif;
+}
+
+@media (max-width: 768px) {
+    #page_title span {  
+      display: none;
+    }
+}
+
+.child{
+    text-align:center;
+}
+
+.vertical-center{
+    display: flex;
+    align-items:center;
+}
+
+.approve .approve-overlay {
+    background: rgba(67, 67, 67, 0.9);
+    position: absolute;
+    height: 15%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease-in-out 0s;
+    -moz-transition: all 0.4s ease-in-out 0s;
+    transition: all 0.4s ease-in-out 0s
+}
+
+.approve:hover .approve-overlay {
+    opacity: 1
+}
+
+.approve-btn {
+    outline: none;
+    border: 0px; 
+    box-sizing: none; 
+    background-color: transparent; 
+ }
+
+
+.approve {
+    position: relative;
+    width: 100%;
+    bottom:0;
+    height:91%;
+    overflow: hidden
+}
+
+.approve-details {
+    position: absolute;
+    text-align: right;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(50%, 50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s
+}
+
+.approve:hover .approve-details {
+    top: 92%;
+    opacity: 1
+}
+
+.approve-details h3 {
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5em;
+    text-transform: uppercase
+}
+
+.approve-details p {
+    color: #fff;
+    font-size: 0.8em
+}
+
+.fadeIn-bottom {
+    top: 80%
+}
