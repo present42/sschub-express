@@ -2,8 +2,17 @@ var express = require('express');
 var router = express.Router();
 var db = require('../database');
 
+router.get('/', function(req, res, next) {
+  res.redirect('/admin/board');
+});
+
 router.get('/board', function(req, res, next) {
-  res.render('admin_board', { title: 'Express' });
+  var sql = 'SELECT * FROM boards';
+  db.query(sql, req.params, function(err, data) {
+    if(err) throw err;
+    console.log("Read data (board list) is successful",  { title: 'Express', board_list: data });
+    res.render('admin_board', { board_list: Object.values(JSON.parse(JSON.stringify(data))) });
+  });
 });
 
 router.get('/board/:board_id', function(req, res, next) {
@@ -13,8 +22,13 @@ router.get('/board/:board_id', function(req, res, next) {
     if(err) throw err;
     console.log("Read data (with board id) is successful");
     console.log(data[0]);
-    res.render('admin_board_details', data);
+    res.render('admin_board_details', { board: Object.values(JSON.parse(JSON.stringify(data))) });
   });
+});
+
+router.get('/post', function (req, res, next) {
+  var sql = 'SELECT * FROM posts';
+  res.render('admin_post');
 });
 
 // router.post('/create', function(req, res, next) {

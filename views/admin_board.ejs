@@ -23,10 +23,10 @@
         </div>
         <ul class="nav nav-tabs">
             <li class="Board">
-                <a class="nav-link active" href="board.html">Board</a>
+                <a class="nav-link active" href="/admin/board">Board</a>
             </li>
             <li class="Post">
-                <a class="nav-link" href="post.html">Post</a>
+                <a class="nav-link" href="/admin/post">Post</a>
             </li>
         </ul>
         <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
@@ -40,30 +40,12 @@
 
     <div class="container pt-5">
         <div class="row">
+            <% for(var i=0; i < board_list.length; i++) { %>
             <div class="col-md-3">
-              <h4>Board 1</h4>
-              <a href = "board_sma.html"><button class="shadow p-4 mb-5 bg-white rounded"><img src="/images/admin/board_sample.png" class="img-fluid" class="rounded" alt = "board sample image"></button></a>
+              <h4 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">Board <%= board_list[i].board_id %> (<%= board_list[i].title %>)</h4>
+              <a href = "/admin/board/<%= board_list[i].board_id %>"><button class="shadow p-4 mb-5 bg-white rounded"><img src="/images/admin/board_sample.png" class="img-fluid" class="rounded" alt = "board sample image"></button></a>
             </div>
-            <div class="col-md-3">
-                <h4>Board 2</h4>
-                <a href = "board_sma.html"><button class="shadow p-4 mb-5 bg-white rounded"><img src="/images/admin/board_sample.png" class="img-fluid" alt = "board sample image"></button></a>
-            </div>
-            <div class="col-md-3">
-                <h4>Board 3</h4>
-                <a href = "board_sma.html"><button class="shadow p-4 mb-5 bg-white rounded"><img src="/images/admin/board_sample.png" class="img-fluid" class="rounded" alt = "board sample image"></button></a>
-            </div>
-            <div class="col-md-3">
-                <h4>Board 4</h4>
-                <a href = "board_sma.html"><button class="shadow p-4 mb-5 bg-white rounded"><img src="/images/admin/board_sample.png" class="img-fluid" class="rounded" alt = "board sample image"></button></a>
-            </div>
-            <div class="col-md-3">
-                <h4>Board 5</h4>
-                <a href="board_sma.html"><button class="shadow p-3 mb-5 bg-white rounded"><img src="/images/admin/board_sample.png" class="img-fluid" class="rounded" alt = "board sample image"></button></a>
-            </div>
-            <div class="col-md-3">
-                <h4>Board 6</h4>
-                <a href="board_sma.html"><button class="shadow p-3 mb-5 bg-white rounded"><img src="/images/admin/board_sample.png" class="img-fluid" class="rounded" alt = "board sample image"></button></a>
-            </div>
+            <% } %>
             <div class="col-md-3">
                 <h4>&#8203</h4>
                 <a href ="board_sma.html"><button class="shadow p-3 mb-5 bg-white rounded"><img src="/images/admin/add_board.png" class="img-fluid" class="rounded" alt = "board sample image"></button></a>
@@ -91,7 +73,6 @@
         </div>
       </div>
 </nav>
-});
 </script>
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->

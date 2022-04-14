@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="/css/admin_styles.css">
+    <link rel="stylesheet" href="/css/admin_styles.css">
 
     <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
     <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
@@ -33,10 +34,10 @@
         </div>
         <ul class="nav nav-tabs">
             <li class="Board">
-                <a class="nav-link active" href="board.html">Board</a>
+                <a class="nav-link active" href="/admin/board">Board</a>
             </li>
             <li class="Post">
-                <a class="nav-link" href="post.html">Post</a>
+                <a class="nav-link" href="/admin/post">Post</a>
             </li>
         </ul>
         <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
@@ -63,7 +64,7 @@
                             <a href="#">Title
                                 <form>
                                     <div class="form-group">
-                                      <input type="title" class="form-control" id="title" aria-describedby="title" placeholder="Enter title" value=<%= '"' + [0].title + '"' %>>
+                                      <input type="title" class="form-control" id="title" aria-describedby="title" placeholder="Enter title" value="<%= board[0].title %>">
                                     </div>
                                 </form>
                             </a>
@@ -71,7 +72,7 @@
                         <li>
                             <a href="#">Color
                                 <div class="form-group">
-                                    <input type="text" id="title-demo" class="form-control demo" data-control="titlecolor" value="#ff6161">
+                                    <input type="text" id="title-demo" class="form-control demo" data-control="titlecolor" value="# <%= board[0].title_color.toString(16) %>">
                                 </div>
                             </a>
                         </li>
@@ -83,7 +84,7 @@
                         <li>
                             <a href="#">Color
                                 <div class="form-group">
-                                    <input type="text" id="background-demo" class="form-control demo" data-control="bgcolor" value="#ff6161">
+                                    <input type="text" id="background-demo" class="form-control demo" data-control="bgcolor" value="# <%= board[0].color.toString(16) %>">
                                 </div>
                             </a>
                         </li>

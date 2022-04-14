@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var postsRouter = require('./routes/posts');
+
 var boardsRouter = require('./routes/boards');
 var adminRouter = require('./routes/admin');
 
