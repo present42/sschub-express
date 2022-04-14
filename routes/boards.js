@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var db = require('../database');
 
+// TODO (1) select which board to show to the public (incl. UI)
+
+// TODO (2) 
+
 router.post('/create', function(req, res, next) {
   const boardDetails = req.body;
   console.log(boardDetails);
