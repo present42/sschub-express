@@ -1,6 +1,22 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../database');
+const multer = require('multer');
+// const storage = multer.diskStorage({
+//   destination: function(req, res, cb) {
+//     cb(null, './tmp/my-uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//     cb(null, file.fieldname + '-' + uniqueSuffix)
+//   }
+// });
+
+const upload = multer({ dest: 'uploads/' });
+
+
+
+var db = require('../database.cjs');
+var path = require('path');
 
 router.get('/:board_id/all', function(req, res, next) {
   var sql = `SELECT * FROM posts WHERE parent_board_id=${db.escape(req.params.board_id)}`;
@@ -42,9 +58,12 @@ router.get('/:board_id/rejected', function(req, res, next) {
   });
 });
 
-router.post('/create', function(req, res, next) {
+router.post('/create', upload.single('image'), function(req, res, next) {
+  console.log("Hello");
+  req.socket.setTimeout(10 * 60 * 1000);
   const postDetails = req.body;
-  console.log(postDetails);
+  req.body.image_path = req.file.filename;
+  console.log("req.body", postDetails);
   // TODO - Allow the admin to change this value 
   postDetails.parent_board_id = 1;
   var sql = 'INSERT INTO posts SET ?';
@@ -52,7 +71,11 @@ router.post('/create', function(req, res, next) {
     if(err) throw err;
       console.log("Post data is inserted successfully");
   });
-  res.redirect('/');
+  // console.log(req.body, req.file);
+  // res.send({
+  //   success: true
+  // });
+  res.redirect('/form');
 });
 
 // TODO (1) approve the post with the given post_id

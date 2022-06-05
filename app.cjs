@@ -4,11 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var postsRouter = require('./routes/posts');
+// const multer = require('multer');
+// const upload = multer({dest: 'uploads/'});
 
-var boardsRouter = require('./routes/boards');
-var adminRouter = require('./routes/admin');
+var indexRouter = require('./routes/index.cjs');
+var postsRouter = require('./routes/posts.cjs');
+
+var boardsRouter = require('./routes/boards.cjs');
+var adminRouter = require('./routes/admin.cjs');
 
 var app = express();
 
@@ -27,6 +30,22 @@ app.use('/post', postsRouter);
 app.use('/boards', boardsRouter);
 app.use('/admin', adminRouter);
 
+// app.post('/post/create', upload.single('image'), function(req, res, next) {
+//   console.log("Hello");
+//   console.log(req.fields, req.files);
+//   const postDetails = req.body;
+//   console.log("req.body", postDetails);
+//   // TODO - Allow the admin to change this value 
+//   postDetails.parent_board_id = 1;
+//   var sql = 'INSERT INTO posts SET ?';
+//   // db.query(sql, postDetails, function (err, data) {
+//   //   if(err) throw err;
+//   //     console.log("Post data is inserted successfully");
+//   // });
+//   console.log(req.file);
+//   // res.redirect('/form');
+//   res.send('success');
+// });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

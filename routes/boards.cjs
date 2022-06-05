@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../database');
+var db = require('../database.cjs');
 
 // TODO (1) select which board to show to the public (incl. UI)
 

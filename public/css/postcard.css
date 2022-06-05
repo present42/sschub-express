@@ -1,0 +1,277 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;900&display=swap');
+
+@font-face {
+    font-family: 'AmaticBold';
+    src: url('amatic-sc.bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DosisLight';
+    src: url('Dosis-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    overflow: hidden;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-image: url('/images/neon.jpeg');
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center; 
+    padding: top 1vw;
+    margin: 0;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+.container {
+    min-height: 100%;
+    min-width: 100%;
+}
+
+/*
+.card.card-just-text .content {
+    padding: 20px 20px;
+    text-align: center;
+}
+
+.card .content {
+    padding: 20px 20px 10px 20px;
+    
+}
+*/
+.col-lg-4{
+    margin: 1vw
+}
+
+.title {
+    z-index: 500;
+    background-color: white !important;
+}
+
+.title-content {
+    font-size: 4vw;
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left:0%;
+    transform: translateY(-50%);
+}
+
+.title-description{
+    max-width: 25vw;
+    display: flex;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: 'DosisLight';
+}
+
+.logo{
+    max-width: 30vw;
+}
+.logoimg{
+    width: 6vh;
+    height: 6vh;
+    display: inline-block;
+}
+.row1.horizTranslate {
+    -webkit-transition: 3s;
+    -moz-transition: 3s;
+    -ms-transition: 3s;
+    -o-transition: 3s;
+    transition: 3s;
+    margin-left: 50% !important;
+  }
+
+.card {
+    background-color: rgba(255, 255, 255, 0.907);
+    width: 25vw;
+    height: 30vh;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    border-radius: 0.5vw;
+    top: 30%;
+    padding: 5vh;
+}
+
+.card-bg {
+    background-color: rgba(255, 255, 255, 0.856);
+    height: 30vh;
+    width: 30vw;
+    padding: 1.5vh;
+    border-radius: 0.5vw;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    animation-name: animation-md;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.card-md {
+    background-color: rgba(255, 255, 255, 0.856);
+    height: 20vh;
+    width: 20vw;
+    padding: 1.5vh;
+    border-radius: 0.5vw;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    animation-name: animation-md;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.card-sm {
+    background-color: rgba(255, 255, 255, 0.856);
+    border-radius: 0.5vw;
+    height: 25vh;
+    width: 25vw;
+    padding: 1.5vh;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    animation-name: animation-sm;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes animation-bg {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(550%);
+    }
+}
+
+@keyframes animation-md {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(650%);
+    }
+}
+
+@keyframes animation-sm {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(830%);
+    }
+}
+
+.card-img {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    object-fit: contain;
+    margin-left: 1vh;
+    margin: auto;
+    /* border: 0.1vh grey solid; */
+}
+
+.card-body {
+    font-size: 1.5vh;
+    height: 100%;
+}
+
+.card-footer {
+    height: 20%;
+    font-size: 1.5vh;
+    text-align: left;
+    background-color: transparent;
+}
+
+.upper-part {
+    height: 85%;
+}
+
+.lower-part {
+    height: 15%;
+}
+
+.card-text {
+    font-family: 'Arial';
+    height: 100%;
+    font-size: 1.5vh;
+    overflow: hidden;
+    word-wrap: break-word;
+    /* white-space: nowrap; */
+}
+
+.full-height {
+    height:100%;
+}
+.board-title {
+    font-size: 5vw; 
+    color:rgba(255, 255, 255, 0.856); 
+    font-family: 'DosisLight';
+    font-weight: 700; 
+    font-style:bold; 
+}
+.bottom {
+    position:absolute; 
+    bottom: 2vh; 
+    margin-left: auto; 
+    margin-right: auto; 
+    left: 0; 
+    right: 3vw; 
+    text-align: right; 
+    
+}
+
+h1 {
+    font-weight: 600;
+    font-size: max(4vw, 20px);
+    color: #0a0a0a;
+    font-family: 'AmaticBold', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+h2, .h2{
+    font-weight: 300; 
+    font-size: max(1.5vw,12px);
+    font-family: 'Dosis', sans-serif;
+    font-style: normal; 
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+h4,
+.h4 {
+    font-size: 1.5em;
+    font-family: 'Dosis', sans-serif;
+    font-weight: 600;
+    line-height: 1.2em;
+}
+
+h6,
+.h6 {
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+p,
+.p {
+    font-size: 1.6vh;
+}

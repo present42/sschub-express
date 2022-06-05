@@ -3,10 +3,17 @@
 /**
  * Module dependencies.
  */
+import websocket from "../websocket/index.js";
 
-var app = require('../app');
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
+import app from '../app.cjs';
 var debug = require('debug')('sschubapp:server');
-var http = require('http');
+import * as http from 'http';
+
+import multer from 'multer';
+const upload = multer({dest: 'uploads/'});
 
 /**
  * Get port from environment and store in Express.
@@ -24,10 +31,12 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-
 server.listen(port);
+server.setTimeout(60000);
 server.on('error', onError);
 server.on('listening', onListening);
+
+websocket(server);
 
 /**
  * Normalize a port into a number, string, or false.
