@@ -11,12 +11,45 @@ const multer = require('multer');
 //   }
 // });
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: 'public/images/posts' });
 
 
 
 var db = require('../database.cjs');
 var path = require('path');
+
+router.post('/approve/:post_id', function(req, res, next) {
+  console.log(req.params.post_id);
+  const post_id = req.params.post_id;
+  
+  var sql = `UPDATE posts SET status=1, approved_time=CURRENT_TIMESTAMP WHERE post_id=${db.escape(req.params.post_id)}`;
+  db.query(sql, function(err, data) {
+    if(err) throw err;
+    res.send({ success: true });
+  });
+});
+
+router.post('/reject/:post_id', function(req, res, next) {
+  console.log(req.params.post_id);
+  const post_id = req.params.post_id;
+  
+  var sql = `UPDATE posts SET status=2, approved_time=CURRENT_TIMESTAMP WHERE post_id=${db.escape(req.params.post_id)}`;
+  db.query(sql, function(err, data) {
+    if(err) throw err;
+    res.send({ success: true });
+  });
+});
+
+router.get('/:post_id', function(req, res, next) {
+  console.log(req.params.post_id);
+
+  var sql = `SELECT * FROM posts WHERE post_id=${db.escape(req.params.post_id)}`;
+  db.query(sql, function(err, data) {
+    if(err) throw err;
+    console.log("Read data (with board id) is successful");
+    res.send(data);
+  });
+});
 
 router.get('/:board_id/all', function(req, res, next) {
   var sql = `SELECT * FROM posts WHERE parent_board_id=${db.escape(req.params.board_id)}`;
@@ -64,8 +97,7 @@ router.post('/create', upload.single('image'), function(req, res, next) {
   const postDetails = req.body;
   req.body.image_path = req.file.filename;
   console.log("req.body", postDetails);
-  // TODO - Allow the admin to change this value 
-  postDetails.parent_board_id = 1;
+
   var sql = 'INSERT INTO posts SET ?';
   db.query(sql, postDetails, function (err, data) {
     if(err) throw err;
@@ -75,7 +107,7 @@ router.post('/create', upload.single('image'), function(req, res, next) {
   // res.send({
   //   success: true
   // });
-  res.redirect('/form');
+  res.redirect('/form?success');
 });
 
 // TODO (1) approve the post with the given post_id

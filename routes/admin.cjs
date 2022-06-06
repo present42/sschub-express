@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/board', function(req, res, next) {
-  var sql = 'SELECT * FROM boards';
+  var sql = 'select b.board_id, b.title, b.background_img, b.font_family, b.color, b.title_color, c.board_id as current_board_id from boards b inner join current_main_board c';
   db.query(sql, req.params, function(err, data) {
     if(err) throw err;
     console.log("Read data (board list) is successful",  { title: 'Express', board_list: data });
@@ -27,8 +27,13 @@ router.get('/board/:board_id', function(req, res, next) {
 });
 
 router.get('/post', function (req, res, next) {
-  var sql = 'SELECT * FROM posts';
-  res.render('admin_post');
+  var unapproved_sql = 'SELECT * FROM posts WHERE status = 0';
+  db.query(unapproved_sql, function(err, data) {
+    if(err) throw err;
+    console.log("Reading unapproved posts is successful");
+    console.log(data);
+    res.render('admin_post', {data: data});  
+  });
 });
 
 // router.post('/create', function(req, res, next) {

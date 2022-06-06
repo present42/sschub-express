@@ -1,6 +1,7 @@
 // import WebSocket from "ws";
 import WebSocket, { WebSocketServer } from "ws";
 import queryString from "query-string";
+import db from "../database.cjs";
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -83,9 +84,19 @@ export default (expressServer) => {
             console.log(connectionParams);
 
             websocketConnection.on("message", (message) => {
-                const parsedMessage = JSON.parse(message);
-                console.log(getRandomInt(0, dummyMessages.length - 1));
-                websocketConnection.send(JSON.stringify(dummyMessages[getRandomInt(0, dummyMessages.length - 1)]));
+                const sql = "select * from posts inner join current_main_board on posts.parent_board_id = current_main_board.board_id where status=1";
+                let messages;
+                db.query(sql, function(err, data) {
+                    if(err) throw err;
+                    console.log("test", data);
+                    messages = data;
+                    console.log(getRandomInt(0, messages.length - 1));
+                    websocketConnection.send(JSON.stringify(messages[getRandomInt(0, messages.length - 1)]));
+                });
+
+                // const parsedMessage = JSON.parse(message);
+                // console.log(getRandomInt(0, dummyMessages.length - 1));
+                // websocketConnection.send(JSON.stringify(dummyMessages[getRandomInt(0, dummyMessages.length - 1)]));
             });
         }
     );

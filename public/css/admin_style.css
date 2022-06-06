@@ -143,3 +143,83 @@ p {
 .fadeIn-bottom {
     top: 80%
 }
+
+.card {
+    background-color: rgba(255, 255, 255, 0.907);
+    width: 25vw;
+    height: 30vh;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    border-radius: 0.5vw;
+    top: 30%;
+    padding: 5vh;
+}
+
+.card-bg {
+    background-color: rgba(255, 255, 255, 0.856);
+    height: 30vh;
+    width: 30vw;
+    padding: 1.5vh;
+    border-radius: 0.5vw;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    animation-name: animation-md;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.card-md {
+    background-color: rgba(255, 255, 255, 0.856);
+    height: 20vh;
+    width: 20vw;
+    padding: 1.5vh;
+    border-radius: 0.5vw;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    animation-name: animation-md;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.card-sm {
+    background-color: rgba(255, 255, 255, 0.856);
+    border-radius: 0.5vw;
+    height: 25vh;
+    width: 25vw;
+    padding: 1.5vh;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    animation-name: animation-sm;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.card-img {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    object-fit: contain;
+    margin-left: 1vh;
+    margin: auto;
+    /* border: 0.1vh grey solid; */
+}
+
+.card-body {
+    font-size: 1.5vh;
+    height: 100%;
+}
+
+.card-footer {
+    height: 20%;
+    font-size: 1.5vh;
+    text-align: left;
+    background-color: transparent;
+}
+
+.upper-part {
+    height: 85%;
+}
+
+.lower-part {
+    height: 15%;
+}
