@@ -24,7 +24,7 @@ router.post('/:board_id/edit', upload.single('background_img'), function(req, re
   const fileDetails = req.file;
   console.log(req.body, req.file);
 
-  const sql = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', color = '${boardDetails.color}', background_img = '${fileDetails?.filename}' WHERE board_id = ${boardDetails.board_id}`
+  const sql = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', color = '${boardDetails.color}', background_img = '${fileDetails?.filename}', board_type = ${boardDetails.animationMode} WHERE board_id = ${boardDetails.board_id}`
   console.log(sql);
   db.query(sql, boardDetails, function(err, data) {
     if(err) throw err;

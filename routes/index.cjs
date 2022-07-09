@@ -9,7 +9,13 @@ router.get('/', function(req, res, next) {
     if(err) throw err;
     console.log("Read data (board list) is successful");
     console.log(data[0]);
-    res.render('mainboard', { data: data[0] } );
+    if(data[0].board_type == 0) {
+      // layout -- flying messages
+      res.render('mainboard', { data: data[0] } );
+    } else if(data[0].board_type == 1) {
+      // layout -- post-it messages
+      res.render('mainboard_postit', { data: data[0] } );
+    }
   });
 });
 
