@@ -27,5 +27,20 @@
     "@babel/core": "^7.17.9",
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11"
-  }
+  },
+  "description": "## Initial Set up 1. `git pull` <br> 2. `npm install` <br> 3. `npm start` <br>",
+  "main": "index.js",
+  "bin": {
+    "sschubapp": "bin/www.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/present42/sschub-express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/present42/sschub-express/issues"
+  },
+  "homepage": "https://github.com/present42/sschub-express#readme"
 }
