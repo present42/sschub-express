@@ -200,7 +200,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Save Changes</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -324,7 +324,15 @@
         });
     </script>
     <script src="/javascripts/admin_preview.js" type="module"></script>
-
+    <script>
+         $('.btn-primary').on('click', function () {
+            $.post(`/:board_id/edit`, function (data) {
+                if(data.success) {
+                    location.reload();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

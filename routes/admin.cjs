@@ -35,7 +35,6 @@ router.get('/post', function (req, res, next) {
     res.render('admin_post', {data: data});  
   });
 });
-
 // router.post('/create', function(req, res, next) {
 //   const postDetails = req.body;
 //   console.log(postDetails);
