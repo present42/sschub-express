@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router();
+var app = express.Router();
 var db = require('../database.cjs');
 const multer = require('multer');
 const upload = multer({ dest: 'public/images' });
@@ -8,7 +8,7 @@ const upload = multer({ dest: 'public/images' });
 
 // TODO (2) 
 
-router.post('/create', upload.single('background_img'), function(req, res, next) {
+app.post('/create', upload.single('background_img'), function(req, res, next) {
   const boardDetails = req.body;
   console.log(boardDetails);
   var sql = 'INSERT INTO boards SET ?';
@@ -19,7 +19,7 @@ router.post('/create', upload.single('background_img'), function(req, res, next)
   res.redirect('/admin');
 })
 
-router.post('/:board_id/edit', upload.single('background_img'), function(req, res, next) {
+app.post('/:board_id/edit', upload.single('background_img'), function(req, res, next) {
   const boardDetails = req.body;
   const fileDetails = req.file;
   console.log(req.body, req.file);
@@ -53,7 +53,7 @@ router.post('/:board_id/edit', upload.single('background_img'), function(req, re
   // res.redirect('/admin');
 })
 
-router.get('/list', function(req, res, next) {
+app.get('/list', function(req, res, next) {
   var sql = 'SELECT * FROM boards';
   db.query(sql, function(err, data) {
     if(err) throw err;
@@ -62,7 +62,7 @@ router.get('/list', function(req, res, next) {
   });
 });
 
-router.get('/:board_id', function (req, res, next) {
+app.get('/:board_id', function (req, res, next) {
   var sql = 'SELECT * FROM boards WHERE ?';
   console.log(req.params.board_id);
   db.query(sql, req.params, function(err, data) {
@@ -78,4 +78,4 @@ router.get('/:board_id', function (req, res, next) {
 //   res.send('respond with a resource');
 // });
 
-module.exports = router;
+module.exports = app;

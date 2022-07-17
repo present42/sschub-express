@@ -9,6 +9,7 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
 import app from '../app.cjs';
+
 var debug = require('debug')('sschubapp:server');
 import * as http from 'http';
 

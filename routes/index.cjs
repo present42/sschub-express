@@ -1,9 +1,13 @@
 var express = require('express');
-var router = express.Router();
+var app = express.Router();
 var db = require('../database.cjs');
 
+app.get('/', function(request, response) {
+  response.render('login.ejs');
+});
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
+app.get('/', function(req, res, next) {
   var sql = 'SELECT * from current_main_board inner join boards on current_main_board.board_id = boards.board_id';
   db.query(sql, function(err, data) {
     if(err) throw err;
@@ -19,7 +23,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/form', function(req, res, next) {
+app.get('/form', function(req, res, next) {
   var sql = 'SELECT * from current_main_board';
   db.query(sql, function(err, data) {
     if(err) throw err;
@@ -29,4 +33,4 @@ router.get('/form', function(req, res, next) {
   });
 });
 
-module.exports = router;
+module.exports = app;

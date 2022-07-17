@@ -1,39 +1,51 @@
 var express = require('express');
-var router = express.Router();
+var app = express.Router();
 var db = require('../database.cjs');
 
-router.get('/', function(req, res, next) {
+app.get('/', function (req, res, next) {
   res.redirect('/admin/board');
 });
 
-router.get('/board', function(req, res, next) {
-  var sql = 'select b.board_id, b.title, b.background_img, b.font_family, b.color, b.title_color, c.board_id as current_board_id from boards b inner join current_main_board c';
-  db.query(sql, req.params, function(err, data) {
-    if(err) throw err;
-    console.log("Read data (board list) is successful",  { title: 'Express', board_list: data });
-    res.render('admin_board', { board_list: Object.values(JSON.parse(JSON.stringify(data))) });
-  });
+app.get('/board', function (req, res, next) {
+  if (req.session.loggedin) {
+    var sql = 'select b.board_id, b.title, b.background_img, b.font_family, b.color, b.title_color, c.board_id as current_board_id from boards b inner join current_main_board c';
+    db.query(sql, req.params, function (err, data) {
+      if (err) throw err;
+      console.log("Read data (board list) is successful", { title: 'Express', board_list: data });
+      res.render('admin_board', { board_list: Object.values(JSON.parse(JSON.stringify(data))) });
+    });
+  } else {
+    res.redirect('/login');
+  }
 });
 
-router.get('/board/:board_id', function(req, res, next) {
-  var sql = 'SELECT * FROM boards WHERE ?';
-  console.log(req.params.board_id);
-  db.query(sql, req.params, function(err, data) {
-    if(err) throw err;
-    console.log("Read data (with board id) is successful");
-    console.log(data[0]);
-    res.render('admin_board_details', { board: Object.values(JSON.parse(JSON.stringify(data))) });
-  });
+app.get('/board/:board_id', function (req, res, next) {
+  if (req.session.loggedin) {
+    var sql = 'SELECT * FROM boards WHERE ?';
+    console.log(req.params.board_id);
+    db.query(sql, req.params, function (err, data) {
+      if (err) throw err;
+      console.log("Read data (with board id) is successful");
+      console.log(data[0]);
+      res.render('admin_board_details', { board: Object.values(JSON.parse(JSON.stringify(data))) });
+    });
+  } else {
+    res.redirect('/login');
+  }
 });
 
-router.get('/post', function (req, res, next) {
-  var unapproved_sql = 'SELECT * FROM posts WHERE status = 0';
-  db.query(unapproved_sql, function(err, data) {
-    if(err) throw err;
-    console.log("Reading unapproved posts is successful");
-    console.log(data);
-    res.render('admin_post', {data: data});  
-  });
+app.get('/post', function (req, res, next) {
+  if (req.session.loggedin) {
+    var unapproved_sql = 'SELECT * FROM posts WHERE status = 0';
+    db.query(unapproved_sql, function (err, data) {
+      if (err) throw err;
+      console.log("Reading unapproved posts is successful");
+      console.log(data);
+      res.render('admin_post', { data: data });
+    });
+  } else {
+    res.redirect('/login');
+  }
 });
 
 // router.post('/create', function(req, res, next) {
@@ -64,4 +76,4 @@ router.get('/post', function (req, res, next) {
 //   res.send('respond with a resource');
 // });
 
-module.exports = router;
+module.exports = app;

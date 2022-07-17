@@ -1,6 +1,7 @@
 var express = require('express');
-var router = express.Router();
+var app = express.Router();
 const multer = require('multer');
+
 // const storage = multer.diskStorage({
 //   destination: function(req, res, cb) {
 //     cb(null, './tmp/my-uploads')
@@ -13,12 +14,10 @@ const multer = require('multer');
 
 const upload = multer({ dest: 'public/images/posts' });
 
-
-
 var db = require('../database.cjs');
 var path = require('path');
 
-router.post('/approve/:post_id', function(req, res, next) {
+app.post('/approve/:post_id', function(req, res, next) {
   console.log(req.params.post_id);
   const post_id = req.params.post_id;
   
@@ -29,7 +28,7 @@ router.post('/approve/:post_id', function(req, res, next) {
   });
 });
 
-router.post('/reject/:post_id', function(req, res, next) {
+app.post('/reject/:post_id', function(req, res, next) {
   console.log(req.params.post_id);
   const post_id = req.params.post_id;
   
@@ -40,7 +39,7 @@ router.post('/reject/:post_id', function(req, res, next) {
   });
 });
 
-router.get('/:post_id', function(req, res, next) {
+app.get('/:post_id', function(req, res, next) {
   console.log(req.params.post_id);
 
   var sql = `SELECT * FROM posts WHERE post_id=${db.escape(req.params.post_id)}`;
@@ -51,7 +50,7 @@ router.get('/:post_id', function(req, res, next) {
   });
 });
 
-router.get('/:board_id/all', function(req, res, next) {
+app.get('/:board_id/all', function(req, res, next) {
   var sql = `SELECT * FROM posts WHERE parent_board_id=${db.escape(req.params.board_id)}`;
   console.log(req.params.board_id);
   db.query(sql, function(err, data) {
@@ -61,7 +60,7 @@ router.get('/:board_id/all', function(req, res, next) {
   });
 });
 
-router.get('/:board_id/approved', function(req, res, next) {
+app.get('/:board_id/approved', function(req, res, next) {
   var sql = `SELECT * FROM posts WHERE parent_board_id=${db.escape(req.params.board_id)} and status=1`;
   console.log(req.params.board_id);
   db.query(sql, function(err, data) {
@@ -71,7 +70,7 @@ router.get('/:board_id/approved', function(req, res, next) {
   });
 });
 
-router.get('/:board_id/pending', function(req, res, next) {
+app.get('/:board_id/pending', function(req, res, next) {
   var sql = `SELECT * FROM posts WHERE parent_board_id=${db.escape(req.params.board_id)} and status=0`;
   console.log(req.params.board_id);
   db.query(sql, function(err, data) {
@@ -81,7 +80,7 @@ router.get('/:board_id/pending', function(req, res, next) {
   });
 });
 
-router.get('/:board_id/rejected', function(req, res, next) {
+app.get('/:board_id/rejected', function(req, res, next) {
   var sql = `SELECT * FROM posts WHERE parent_board_id=${db.escape(req.params.board_id)} and status=2`;
   console.log(req.params.board_id);
   db.query(sql, function(err, data) {
@@ -91,7 +90,7 @@ router.get('/:board_id/rejected', function(req, res, next) {
   });
 });
 
-router.post('/create', upload.single('image'), function(req, res, next) {
+app.post('/create', upload.single('image'), function(req, res, next) {
   console.log("Hello");
   req.socket.setTimeout(10 * 60 * 1000);
   const postDetails = req.body;
@@ -133,4 +132,4 @@ router.post('/create', upload.single('image'), function(req, res, next) {
 //   res.send('respond with a resource');
 // });
 
-module.exports = router;
+module.exports = app;
