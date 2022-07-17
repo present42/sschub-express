@@ -121,7 +121,7 @@
                                         <div id="theme-check">
                                         <div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="theme-check" id="sky-check" value="sky">
+                                                <input class="form-check-input" type="radio" name="theme-check" id="sky-check" value="sky" checked>
                                                 <label class="form-check-label" for="sky-check">
                                                   Sky
                                                 </label>
@@ -138,7 +138,7 @@
                                         <form id="type-check">
                                             <div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="type-check" id="card-check" value="card">
+                                                <input class="form-check-input" type="radio" name="type-check" id="card-check" value="card" checked>
                                                 <label class="form-check-label" for="card-check">
                                                   Card
                                                 </label>
@@ -231,7 +231,38 @@
                 </button>
             </div>
             <div id="board-title" class="title"><%= board[0].title %></div>
-            <div id="messages"></div>  
+            <div id="messages">
+                <div class="paper green"> 
+                    <div class = "content">
+                        <div class="upper-part">
+                            <div class="left-half">
+                                <img class="message-img" src="../images/posts/cat.jpg">
+                            </div>
+                            <div class="right-half">
+                                <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer lower-part">
+                            <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
+                                account_circle</i>User_2
+                        </div>
+                    </div>
+                    <div class="paper pink"> 
+                    <div class = "content">
+                        <div class="upper-part">
+                            <div class="left-half">
+                                <img class="message-img" src="../images/posts/cat.jpg">
+                            </div>
+                            <div class="right-half">
+                                <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer lower-part">
+                            <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
+                                account_circle</i>User_2
+                        </div>
+                    </div>
+            </div>  
         </div>
     </div>
     
@@ -245,6 +276,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            document.getElementById("board-title").style.color="<%= board[0].title_color %>";
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
