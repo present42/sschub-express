@@ -17,7 +17,7 @@
     <script src="/js/bootstrap.bundle.min.js"></script>
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="/css/admin_styles.css">
-    <link rel="stylesheet" href="/css/admin_styles.css">
+    <link rel="stylesheet" href="/css/admin_preview.css">
 
     <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
     <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
@@ -76,7 +76,7 @@
                                 <li>
                                     <a href="#">Title
                                         <div class="form-group">
-                                            <input type="title" name="title" class="form-control" id="title"
+                                            <input type="title" name="title" class="form-control" id="titleInput"
                                                 aria-describedby="title" placeholder="Enter title"
                                                 value="<%= board[0].title %>">
                                         </div>
@@ -85,8 +85,8 @@
                                 <li>
                                     <a href="#">Color
                                         <div class="form-group">
-                                            <input type="text" name="title_color" id="title-demo"
-                                                class="form-control demo" data-control="titlecolor"
+                                            <input type="text" name="title_color" id="titleColor"
+                                                class="form-control titlePick" data-control="titlecolor"
                                                 value="# <%= board[0].title_color.toString(16) %>">
                                         </div>
                                     </a>
@@ -118,8 +118,8 @@
                                 <li>
                                     <a href="#">Color
                                         <div class="form-group">
-                                            <input type="text" name="background_color" id="background-demo"
-                                                class="form-control demo" data-control="bgcolor"
+                                            <input type="text" name="background_color" id="bgColor"
+                                                class="form-control bgPick" data-control="bgcolor"
                                                 value="# <%= board[0].color.toString(16) %>">
                                         </div>
                                     </a>
@@ -127,6 +127,54 @@
                                 <li>
                                     <a href="#">Image
                                         <input type="file" name="background_img" class="form-control" id="customFile" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#messageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Message</a>
+                            <ul class="collapse list-unstyled" id="messageSubmenu">
+                                <li>
+                                    <a href="#">Theme
+                                        <div id="theme-check">
+                                        <div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="theme-check" id="sky-check" value="sky">
+                                                <label class="form-check-label" for="sky-check">
+                                                  Sky
+                                                </label>
+                                            </div>
+                                              <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="theme-check" id="grass-check" value="grass">
+                                                <label class="form-check-label" for="grass-check">Grass
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </a>
+                                    <a href="#">Type
+                                        <form id="type-check">
+                                            <div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="type-check" id="card-check" value="card">
+                                                <label class="form-check-label" for="card-check">
+                                                  Card
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="type-check" id="pin-check" value="pin">
+                                                <label class="form-check-label" for="pin-check">
+                                                  Pin
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="type-check" id="tape-check" value="tape">
+                                                <label class="form-check-label" for="tape-check">
+                                                  Tape
+                                                </label>
+                                            </div>
+                                        </div>
+                                        </form>
                                     </a>
                                 </li>
                             </ul>
@@ -187,7 +235,7 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content">
+        <div id="content" class="preview">
             <div class="container-fluid">
 
                 <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -200,32 +248,18 @@
                     <i class="fas fa-align-justify"></i>
                 </button>
             </div>
+            <div id="board-title" class="title">SAMPLE TITLE</div>
+            <div id="messages"></div>  
         </div>
     </div>
-    <div class="toast-container position-fixed top-0 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#007aff"></rect>
-                </svg>
-                <strong class="me-auto">SSC HUB</strong>
-                <small>a few seconds ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Congrat! Your message is well received. We'll process your message as soon as possible.
-            </div>
-        </div>
-    </div>
+    
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
         integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
         crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" -->
-        < !--integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin = "anonymous" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"crossorigin="anonymous"></script>
 
     <script type="text/javascript">
             $(document).ready(function () {
@@ -240,44 +274,74 @@
         });
     </script>
     <script type="text/javascript">
-        $(function () {
-            var colpick = $('.demo').each(function () {
-                $(this).minicolors({
-                    control: $(this).attr('data-control') || 'hue',
-                    inline: $(this).attr('data-inline') === 'true',
-                    letterCase: 'lowercase',
-                    opacity: false,
-                    change: function (hex, opacity) {
-                        if (!hex) return;
-                        if (opacity) hex += ', ' + opacity;
-                        try {
-                            console.log(hex);
-                        } catch (e) { }
-                        $(this).select();
-                    },
-                    theme: 'bootstrap'
-                });
+        $(function(){
+          var colpick = $('.titlePick').each( function() {
+            $(this).minicolors({
+              control: $(this).attr('data-control') || 'hue',
+              inline: $(this).attr('data-inline') === 'true',
+              letterCase: 'lowercase',
+              opacity: false,
+              change: function(hex, opacity) {
+                if(!hex) return;
+                if(opacity) hex += ', ' + opacity;
+                try {
+                  $('.title').css('color', hex.toString());
+                } catch(e) {}
+                $(this).select();
+              },
+              theme: 'bootstrap'
             });
-
-            var $inlinehex = $('#inlinecolorhex h3 small');
-            $('#inlinecolors').minicolors({
-                inline: true,
-                theme: 'bootstrap',
-                change: function (hex) {
-                    if (!hex) return;
-                    $inlinehex.html(hex);
-                }
-            });
+            
+          });
+          
+          var $inlinehex = $('#inlinecolorhex h3 small');
+          $('#inlinecolors').minicolors({
+            inline: true,
+            theme: 'bootstrap',
+            change: function(hex) {
+              if(!hex) return;
+              $inlinehex.html(hex);
+              
+            }
+          });
+          
         });
-
-        // TODO - this is bootstrap 5 (but the previous version is boostrap 4 -- conflict)
-        // const toastLiveExample = document.getElementById('liveToast')
-        // if (location.href.split('/')[5].split('?')[1] == 'edit=success') {
-        //     const toast = new bootstrap.Toast(toastLiveExample);
-        //     toast.show();
-        // }
-
     </script>
+    <script type="text/javascript">
+        $(function(){
+          var colpick = $('.bgPick').each( function() {
+            $(this).minicolors({
+              control: $(this).attr('data-control') || 'hue',
+              inline: $(this).attr('data-inline') === 'true',
+              letterCase: 'lowercase',
+              opacity: false,
+              change: function(hex, opacity) {
+                if(!hex) return;
+                if(opacity) hex += ', ' + opacity;
+                try {
+                  $('.preview').css('background-color', hex.toString());
+                  $('.preview').css('background-image', 'none');
+                } catch(e) {}
+                $(this).select();
+              },
+              theme: 'bootstrap'
+            });
+            
+          });
+          
+          var $inlinehex = $('#inlinecolorhex h3 small');
+          $('#inlinecolors').minicolors({
+            inline: true,
+            theme: 'bootstrap',
+            change: function(hex) {
+              if(!hex) return;
+              $inlinehex.html(hex);
+            }
+          });
+          
+        });
+    </script>
+    <script src="/javascripts/admin_preview.js" type="module"></script>
 
 </body>
 
