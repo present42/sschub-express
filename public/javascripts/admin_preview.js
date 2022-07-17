@@ -23,25 +23,20 @@ document.getElementById("customFile").addEventListener('input', function (evt) {
         reader.readAsDataURL(input.files[0]);
     }
 });
-console.log(document.getElementById("theme-check"));
 
-document.getElementById("theme-check").addEventListener('input', function (evt) {
-    var input = new FormData(this);
-    var output = "";
-    //entry[1] is the value of selected
-    for (const entry of input) {
-        output = output + entry[0] + "=" + entry[1] + "\r";
-      };
-
-    console.log(output);
+// Post Colors
+document.getElementById("sky-check").addEventListener('input', function (evt) {
+    console.log("Sky is selected.");
 });
 
-document.getElementById("type-check").addEventListener('input', function (evt) {
-    var input = new FormData(this);
-    for (const entry of input) {
-        document.getElementById("messages").innerHTML = "";
-        if (entry[1] == 'pin'){
-            var str = `<div class="paper green animate">
+document.getElementById("grass-check").addEventListener('input', function(evt){
+    console.log("Grass is selected.");
+});
+
+// Post Type
+document.getElementById("pin-check").addEventListener('input', function(evt){
+    document.getElementById("messages").innerHTML = "";
+    var str = `<div class="paper green animate">
             <div class="top-pin pin_blue">
                 <div class="top-pin-head">
                     <div class="top-pin-highlight"></div>
@@ -50,7 +45,7 @@ document.getElementById("type-check").addEventListener('input', function (evt) {
             <div class = "message-content">
                 <div class="upper-part">
                     <div class="left-half">
-                        <img class="message-img" src="../resources/cat.jpg">
+                        <img class="message-img" src="../images/posts/cat.jpg">
                     </div>
                     <div class="right-half">
                         <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
@@ -71,7 +66,7 @@ document.getElementById("type-check").addEventListener('input', function (evt) {
             <div class = "message-content">
                 <div class="upper-part">
                     <div class="left-half">
-                        <img class="message-img" src="../resources/wave.jpg">
+                        <img class="message-img" src="../images/posts/wave.jpg">
                     </div>
                     <div class="right-half">
                         <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
@@ -82,13 +77,21 @@ document.getElementById("type-check").addEventListener('input', function (evt) {
                         account_circle</i>User_2
                 </div>
             </div>
-        </div>`;}else if (entry[1]=="tape") {
-                var str = `<div class="paper green"> 
+        </div>`;
+        var parser = new DOMParser();
+        var board = document.getElementById("messages");
+        var temp = parser.parseFromString(str, "text/html");
+        board.appendChild(temp.body);
+});
+
+document.getElementById("tape-check").addEventListener('input', function(evt){
+    document.getElementById("messages").innerHTML = "";
+    var str = `<div class="paper green"> 
             <div class="top-tape"></div>
             <div class = "content">
                 <div class="upper-part">
                     <div class="left-half">
-                        <img class="message-img" src='../resources/wave.jpg'>
+                        <img class="message-img" src="../images/posts/cat.jpg">
                     </div>
                     <div class="right-half">
                         <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
@@ -104,7 +107,7 @@ document.getElementById("type-check").addEventListener('input', function (evt) {
             <div class = "content">
                 <div class="upper-part">
                     <div class="left-half">
-                        <img class="message-img" src='../resources/wave.jpg'>
+                        <img class="message-img" src="../images/posts/wave.jpg">
                     </div>
                     <div class="right-half">
                         <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
@@ -115,43 +118,47 @@ document.getElementById("type-check").addEventListener('input', function (evt) {
                         account_circle</i>User_2
                 </div>
             </div>`;
-            }else{
-                var str = `<div class="paper green"> 
-            <div class = "content">
-                <div class="upper-part">
-                    <div class="left-half">
-                        <img class="message-img" src='../resources/wave.jpg'>
-                    </div>
-                    <div class="right-half">
-                        <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
-                    </div>
-                </div>
-                <div class="card-footer lower-part">
-                    <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
-                        account_circle</i>User_2
-                </div>
-            </div>
-            <div class="paper pink"> 
-            <div class = "content">
-                <div class="upper-part">
-                    <div class="left-half">
-                        <img class="message-img" src='../resources/wave.jpg'>
-                    </div>
-                    <div class="right-half">
-                        <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
-                    </div>
-                </div>
-                <div class="card-footer lower-part">
-                    <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
-                        account_circle</i>User_2
-                </div>
-            </div>`;
-            }
             var parser = new DOMParser();
             var board = document.getElementById("messages");
             var temp = parser.parseFromString(str, "text/html");
             board.appendChild(temp.body);
-            return;
-      };
+});
+
+document.getElementById("card-check").addEventListener('input', function (evt) {
+    document.getElementById("messages").innerHTML = "";
+                var str = `<div class="paper green"> 
+            <div class = "content">
+                <div class="upper-part">
+                    <div class="left-half">
+                        <img class="message-img" src="../images/posts/cat.jpg">
+                    </div>
+                    <div class="right-half">
+                        <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
+                    </div>
+                </div>
+                <div class="card-footer lower-part">
+                    <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
+                        account_circle</i>User_2
+                </div>
+            </div>
+            <div class="paper pink"> 
+            <div class = "content">
+                <div class="upper-part">
+                    <div class="left-half">
+                        <img class="message-img" src="../images/posts/cat.jpg">
+                    </div>
+                    <div class="right-half">
+                        <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
+                    </div>
+                </div>
+                <div class="card-footer lower-part">
+                    <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
+                        account_circle</i>User_2
+                </div>
+            </div>`;
+            var parser = new DOMParser();
+            var board = document.getElementById("messages");
+            var temp = parser.parseFromString(str, "text/html");
+            board.appendChild(temp.body);
 });
 

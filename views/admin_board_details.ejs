@@ -118,21 +118,21 @@
                             <ul class="collapse list-unstyled" id="messageSubmenu">
                                 <li>
                                     <a href="#">Theme
-                                        <form id="theme-check">
+                                        <div id="theme-check">
                                         <div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="theme-check" id="sky-check" value="sky">
                                                 <label class="form-check-label" for="sky-check">
                                                   Sky
                                                 </label>
-                                              </div>
+                                            </div>
                                               <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="theme-check" id="grass-check" value="grass">
                                                 <label class="form-check-label" for="grass-check">Grass
                                                 </label>
                                             </div>
                                         </div>
-                                        </form>
+                                    </div>
                                     </a>
                                     <a href="#">Type
                                         <form id="type-check">
@@ -234,22 +234,7 @@
             <div id="messages"></div>  
         </div>
     </div>
-    <div class="toast-container position-fixed top-0 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#007aff"></rect>
-                </svg>
-                <strong class="me-auto">SSC HUB</strong>
-                <small>a few seconds ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Congrat! Your message is well received. We'll process your message as soon as possible.
-            </div>
-        </div>
-    </div>
+    
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
         integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
