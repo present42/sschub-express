@@ -47,7 +47,6 @@ app.get('/post', function (req, res, next) {
     res.redirect('/login');
   }
 });
-
 // router.post('/create', function(req, res, next) {
 //   const postDetails = req.body;
 //   console.log(postDetails);
