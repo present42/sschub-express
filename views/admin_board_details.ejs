@@ -11,8 +11,8 @@
 
     <!-- Bootstrap CSS CDN -->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" -->
-        <!-- integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> -->
-    
+    <!-- integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> -->
+
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <script src="/js/bootstrap.bundle.min.js"></script>
     <!-- Our Custom CSS -->
@@ -52,7 +52,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a id="signout" class="rounded" data-toggle="modal" data-target="#sign_out">Sign Out</a>
+                    <a id="signout" class="rounded" href="/login/signout">Sign Out</a>
                 </li>
             </ul>
         </div>
@@ -97,6 +97,24 @@
                             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
                                 class="dropdown-toggle">Background</a>
                             <ul class="collapse list-unstyled" id="pageSubmenu">
+                                <li>
+                                    <a href="#">Animation Mode
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="animationMode"
+                                                id="flying" value="0" <%= board[0].board_type == 0 ? "checked" : "" %> >
+                                            <label class="form-check-label" for="flying">
+                                                Flying
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="animationMode"
+                                                id="post-it" value="1" <%= board[0].board_type == 1 ? "checked" : "" %>>
+                                            <label class="form-check-label" for="post-it">
+                                                Post-it
+                                            </label>
+                                        </div>
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="#">Color
                                         <div class="form-group">
@@ -280,7 +298,6 @@
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
-        });
         $('#closeedit').click(function () {
             // handle redirect here
             window.location.href = "board.html";

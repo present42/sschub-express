@@ -3,17 +3,41 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-// const multer = require('multer');
-// const upload = multer({dest: 'uploads/'});
-
-var indexRouter = require('./routes/index.cjs');
-var postsRouter = require('./routes/posts.cjs');
-
-var boardsRouter = require('./routes/boards.cjs');
-var adminRouter = require('./routes/admin.cjs');
+const session = require('express-session');
 
 var app = express();
+
+const indexRouter = require('./routes/index.cjs');
+const postsRouter = require('./routes/posts.cjs');
+const boardsRouter = require('./routes/boards.cjs');
+const adminRouter = require('./routes/admin.cjs');
+const loginRouter = require('./routes/login.cjs');
+
+app.set('trust proxy', 1);
+app.use(session({
+  secret: "fd34s@!@dfa453f3DF#$D&W",
+  saveUninitialized: false,
+  resave: false,
+  proxy: true,
+  cookie: {
+    maxAge: 3600000,
+    secure: false
+  }
+}));
+
+app.get('/helloworld', function (req, res, next) {
+  if (req.session.views) {
+    req.session.views++
+    res.setHeader('Content-Type', 'text/html')
+    res.write('<p>views: ' + req.session.views + '</p>')
+    res.write('<p>expires in: ' + (req.session.cookie.maxAge / 1000) + 's</p>')
+    res.end()
+  } else {
+    console.log(req.session);
+    req.session.views = 1
+    res.end('welcome to the session demo. refresh!')
+  }
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,30 +53,15 @@ app.use('/', indexRouter);
 app.use('/post', postsRouter);
 app.use('/boards', boardsRouter);
 app.use('/admin', adminRouter);
+app.use('/login', loginRouter);
 
-// app.post('/post/create', upload.single('image'), function(req, res, next) {
-//   console.log("Hello");
-//   console.log(req.fields, req.files);
-//   const postDetails = req.body;
-//   console.log("req.body", postDetails);
-//   // TODO - Allow the admin to change this value 
-//   postDetails.parent_board_id = 1;
-//   var sql = 'INSERT INTO posts SET ?';
-//   // db.query(sql, postDetails, function (err, data) {
-//   //   if(err) throw err;
-//   //     console.log("Post data is inserted successfully");
-//   // });
-//   console.log(req.file);
-//   // res.redirect('/form');
-//   res.send('success');
-// });
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

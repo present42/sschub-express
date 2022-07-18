@@ -1,3 +1,7 @@
+.img-inside-button {
+    /* max-height: calc(100% - 3rem); */
+    max-width: calc(100% - 3rem);
+}
 
 .navbar {
     padding: 15px 10px;
