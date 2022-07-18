@@ -33,7 +33,7 @@ app.post('/auth', function (req, res) {
 
 app.get('/signout', function(req, res) {
     req.session.destroy();
-    res.redirect('/login');
+    res.redirect('/login?signout');
 }) 
 
 module.exports = app;

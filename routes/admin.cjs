@@ -35,13 +35,45 @@ app.get('/board/:board_id', function (req, res, next) {
 });
 
 app.get('/post', function (req, res, next) {
+  res.redirect('/admin/post/pending');
+});
+
+app.get('/post/pending', function (req, res, next) {
   if (req.session.loggedin) {
     var unapproved_sql = 'SELECT * FROM posts WHERE status = 0';
     db.query(unapproved_sql, function (err, data) {
       if (err) throw err;
       console.log("Reading unapproved posts is successful");
       console.log(data);
-      res.render('admin_post', { data: data });
+      res.render('admin_post_withnav', { data: data, text: 'Pending Posts' });
+    });
+  } else {
+    res.redirect('/login');
+  }
+});
+
+app.get('/post/approved', function (req, res, next) {
+  if (req.session.loggedin) {
+    var unapproved_sql = 'SELECT * FROM posts WHERE status = 1';
+    db.query(unapproved_sql, function (err, data) {
+      if (err) throw err;
+      console.log("Reading unapproved posts is successful");
+      console.log(data);
+      res.render('admin_post_withnav', { data: data, text: 'Accepted Posts' });
+    });
+  } else {
+    res.redirect('/login');
+  }
+});
+
+app.get('/post/rejected', function (req, res, next) {
+  if (req.session.loggedin) {
+    var unapproved_sql = 'SELECT * FROM posts WHERE status = 2';
+    db.query(unapproved_sql, function (err, data) {
+      if (err) throw err;
+      console.log("Reading unapproved posts is successful");
+      console.log(data);
+      res.render('admin_post_withnav', { data: data, text: 'Rejected Posts' });
     });
   } else {
     res.redirect('/login');
