@@ -23,8 +23,15 @@ app.post('/:board_id/edit', upload.single('background_img'), function(req, res, 
   const boardDetails = req.body;
   const fileDetails = req.file;
   console.log(req.body, req.file);
-
-  const sql = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', color = '${boardDetails.color}', background_img = '${fileDetails?.filename}', board_type = ${boardDetails.animationMode} WHERE board_id = ${boardDetails.board_id}`
+  var temp ='';
+  if (boardDetails.color == '' && fileDetails == undefined){
+    console.log("fileDetails is undefined");
+    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.color}', board_type = '${boardDetails.type_check}' WHERE board_id = ${boardDetails.board_id}`;
+  }else{
+    console.log("fileDetails is defined");
+    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.color}', background_img = '${fileDetails?.filename}', board_type = '${boardDetails.type_check}' WHERE board_id = ${boardDetails.board_id}`;
+  }
+  const sql = temp;
   console.log(sql);
   db.query(sql, boardDetails, function(err, data) {
     if(err) throw err;

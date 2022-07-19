@@ -8,7 +8,7 @@ app.get('/', function (req, res, next) {
 
 app.get('/board', function (req, res, next) {
   if (req.session.loggedin) {
-    var sql = 'select b.board_id, b.title, b.background_img, b.font_family, b.color, b.title_color, c.board_id as current_board_id from boards b inner join current_main_board c';
+    var sql = 'select b.board_id, b.title, b.background_img, b.font_family, b.background_color, b.title_color, c.board_id as current_board_id from boards b inner join current_main_board c';
     db.query(sql, req.params, function (err, data) {
       if (err) throw err;
       console.log("Read data (board list) is successful", { title: 'Express', board_list: data });
