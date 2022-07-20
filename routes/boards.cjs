@@ -2,13 +2,26 @@ var express = require('express');
 var app = express.Router();
 var db = require('../database.cjs');
 const multer = require('multer');
-const upload = multer({ dest: 'public/images' });
+const storage = multer.diskStorage({
+  destination : function(req, file, cb){
+    if (file.fieldname === 'bg_music') {
+      cb(null, 'public/music');
+    } else if (file.fieldname === 'background_img') {
+      cb(null, 'public/images');
+    }
+}});
+const upload = multer({ storage: storage});
+var filefields = upload.fields([{name: 'background_img'}, {name: 'bg_music'}]);
 
 // TODO (1) select which board to show to the public (incl. UI)
 
 // TODO (2) 
 
+<<<<<<< HEAD
 app.post('/create', upload.single('background_img'), function (req, res, next) {
+=======
+app.post('/create', upload.fields([{name:'background_img', max_count:1},{name:'bg_music', max_count:1}]), function(req, res, next) {
+>>>>>>> b342528560a46149a9d728657c8ab2a0f50c46ac
   const boardDetails = req.body;
   const fileDetails = req.file;
   console.log(boardDetails);
@@ -35,12 +48,29 @@ app.post('/create', upload.single('background_img'), function (req, res, next) {
   res.redirect('/admin');
 });
 
-app.post('/edit', upload.single('background_img'), function (req, res, next) {
+app.post('/:board_id/edit', filefields, function(req, res, next) {
   const boardDetails = req.body;
-  const fileDetails = req.file;
-  console.log(req.body, req.file);
+  const fileDetails = req.files;
+  console.log("Files: ");
+  console.log(req.files);
+  console.log(req.files['background_img']);
+  console.log("Filename: " + req.files['background_img'][0]['filename']);
+  var temp ='';
+  if (boardDetails.color == '' && fileDetails['background_img'] == undefined){
+    console.log("fileDetails is undefined");
+    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.color}', board_type = '${boardDetails.type_check}' `;
+  }else{
+    console.log("fileDetails is defined");
+    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.color}', background_img = '${fileDetails['background_img'][0]['filename']}', board_type = '${boardDetails.type_check}' `;
+  }
 
-  const sql = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', color = '${boardDetails.color}', background_img = '${fileDetails?.filename}', board_type = ${boardDetails.animationMode} WHERE board_id = ${boardDetails.board_id}`
+  if(fileDetails['bg_music']!=undefined){
+    temp += `, bg_music = '${fileDetails['bg_music'][0]['filename']}' `;
+  }
+
+  temp += `WHERE board_id = ${boardDetails.board_id}`;
+
+  const sql = temp;
   console.log(sql);
   db.query(sql, boardDetails, function (err, data) {
     if (err) throw err;

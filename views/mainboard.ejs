@@ -13,8 +13,11 @@
   <link rel="stylesheet" type="text/css" href="/css/postcard.css" />
   <link rel="stylesheet" href="https://use.typekit.net/cji7del.css" />
 </head>
-
+<% if (data.color==undefined){ console.log("No color");%>
 <body style="background-image: url(/images/<%= data.background_img %>);">
+<% } else { %>
+  <body style="background-color: <%= data.color %>;">
+<% } %>
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
