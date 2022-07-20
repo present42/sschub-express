@@ -17,6 +17,7 @@ webSocket.onmessage = function (event) {
   console.log(JSON.parse(event.data));
   l = ['bg', 'md'];
   createNewMessage(0, 0, l[getRandomInt(0, 1)], data.message, data.nickname, data.email, data.image_path);
+  textFit(document.getElementsByClassName('card-text'));
 }
 
 webSocket.onclose = function (event) {
@@ -65,7 +66,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   console.log(pos_y);
   var str = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vw">
         <div class="row g-0">
-          <div class="col-md-6 full-height">
+          <div class="col-md-6 full-height" style="padding: 1vw">
             <img src="/images/posts/${filename}" class="card-img" alt="..." />
           </div>
           <div class="col-md-6 full-height">
@@ -122,7 +123,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
     } else {
       var temp = parser.parseFromString(str_without_text, "text/html");
     }
-    
+
   } else {
     var temp = parser.parseFromString(str_without_img, "text/html");
   }

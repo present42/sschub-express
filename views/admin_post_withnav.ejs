@@ -41,22 +41,36 @@
             </ul>
         </div>
     </nav>
-    <div class="container pt-5">
+    <div class="container pt-5" style="padding-top: 0!important;">
         <div class="wrapper">
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h4>Edit Board</h4>
-                    <ul>
-                        <li><a href="./pending">Pending Post</a></li>
-                        <li><a href="./approved">Accepted Post</a></li>
-                        <li><a href="./rejected">Rejected Post</a></li>
+                    <ul style="list-style: none;">
+                        <li><a href="../pending">Pending Post</a></li>
+                        <li><a href="../approved">Accepted Post</a></li>
+                        <li><a href="../rejected">Rejected Post</a></li>
                     </ul>
                 </div>
             </nav>
             <div id="content">
                 <div class="container-fluid">
-                    
-                    <h4> <%= text %> </h4>
+
+                    <h4>
+                        <%= text %>
+                    </h4>
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Selected Board: <%= selected_board[0].title %>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <% for(var i=0; i < board_data.length; i++) { %>
+                                <li><a class="dropdown-item" href="./<%= board_data[i].board_id %>"><%= board_data[i].title %></a></li>
+                            <% } %>
+                        </ul>
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -92,12 +106,14 @@
                                         <%= data[i].submitted_time.toLocaleString() %>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#post"
-                                            value="<%= data[i].post_id %>">Preview</button>
+                                        <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                            data-target="#post" value="<%= data[i].post_id %>">Preview</button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-success" value="<%= data[i].post_id %>">Approve</button>
-                                        <button type="button" class="btn btn-outline-danger" value="<%= data[i].post_id %>">Reject</button>
+                                        <button type="button" class="btn btn-outline-success"
+                                            value="<%= data[i].post_id %>">Approve</button>
+                                        <button type="button" class="btn btn-outline-danger"
+                                            value="<%= data[i].post_id %>">Reject</button>
                                     </td>
                                 </tr>
                                 <% } %>
@@ -105,8 +121,8 @@
                     </table>
                 </div>
             </div>
-            
-    
+
+
             <div class="modal fade" id="sign_out" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -129,7 +145,7 @@
             </div>
         </div>
         <!-- sidebar -->
-        
+
     </div>
 
     <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-labelledby="MyModel" aria-hidden="true">
@@ -180,8 +196,8 @@
             console.log(this.value);
             $.get(`/post/${this.value}`, function (data) {
                 createNewMessage(
-                    size = 'md', 
-                    message = data[0].message, 
+                    size = 'md',
+                    message = data[0].message,
                     nickname = data[0].nickname,
                     email = data[0].email,
                     image_path = data[0].image_path
@@ -193,7 +209,7 @@
         $('.btn-outline-success').on('click', function () {
             console.log(this.value);
             $.post(`/post/approve/${this.value}`, function (data) {
-                if(data.success) {
+                if (data.success) {
                     location.reload();
                 }
             });
@@ -202,7 +218,7 @@
         $('.btn-outline-danger').on('click', function () {
             console.log(this.value);
             $.post(`/post/reject/${this.value}`, function (data) {
-                if(data.success) {
+                if (data.success) {
                     location.reload();
                 }
             });

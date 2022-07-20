@@ -64,10 +64,12 @@
             <div class="sidebar-header">
                 <h4>Edit Board</h4>
             </div>
-            <form ref="adminBoardForm" id="adminBoardForm" action="/boards/1/edit" method="POST"
+            <form ref="adminBoardForm" id="adminBoardForm" action="/boards/<%= board[0].board_id != -1 ? 'edit' : 'create' %>" method="POST"
                 enctype="multipart/form-data">
                 <div>
+                    <% if(board[0].board_id != -1) { %>
                     <input type="hidden" name="board_id" id="board_id" value="<%= board[0].board_id %>">
+                    <% } %>
                     <ul class="list-unstyled components">
                         <li>
                             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
@@ -176,6 +178,51 @@
                                         </div>
                                         </form>
                                     </a>
+                                    <li>
+                                        <a href="#">Post Color 1
+                                            <div class="form-group postPick">
+                                                <input type="text" name="post_color_1" id="post_color_1"
+                                                    class="form-control" data-control="bgcolor"
+                                                    value="# <%= board[0].color.toString(16) %>">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Post Color 2
+                                            <div class="form-group postPick">
+                                                <input type="text" name="post_color_2" id="post_color_2"
+                                                    class="form-control" data-control="bgcolor"
+                                                    value="# <%= board[0].color.toString(16) %>">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Post Color 3
+                                            <div class="form-group postPick">
+                                                <input type="text" name="post_color_3" id="post_color_3"
+                                                    class="form-control" data-control="bgcolor"
+                                                    value="# <%= board[0].color.toString(16) %>">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Post Color 4
+                                            <div class="form-group postPick">
+                                                <input type="text" name="post_color_4" id="post_color_4"
+                                                    class="form-control" data-control="bgcolor"
+                                                    value="# 112311">
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Post Color 5
+                                            <div class="form-group postPick">
+                                                <input type="text" name="post_color_5" id="post_color_5"
+                                                    class="form-control" data-control="bgcolor"
+                                                    value="# <%= board[0].color.toString(16) %>">
+                                            </div>
+                                        </a>
+                                    </li>
                                 </li>
                             </ul>
                         </li>
@@ -235,7 +282,7 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content" class="preview">
+        <div id="content" class="preview" style="background-image: url(/images/<%= board[0].background_img %>);">
             <div class="container-fluid">
 
                 <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -355,6 +402,20 @@
                 } catch(e) {}
                 $(this).select();
               },
+              theme: 'bootstrap'
+            });
+            
+          });
+
+          var postpick = $('.postPick').each( function() {
+            $(this).minicolors({
+            //   control: $(this).attr('data-control') || 'hue',
+            //   inline: $(this).attr('data-inline') === 'true',
+            //   letterCase: 'lowercase',
+            //   opacity: false,
+            //   change: function(hex, opacity) {
+            //     $(this).select();
+            //   },
               theme: 'bootstrap'
             });
             

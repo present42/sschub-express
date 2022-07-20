@@ -19,6 +19,15 @@ app.get('/board', function (req, res, next) {
   }
 });
 
+app.get('/board/create', function (req, res, next) {
+  if (req.session.loggedin) {
+    res.render('admin_board_details', { board: [{ board_id: -1, title: "New Board", board_type: 0, color: 0, title_color: 0 }] });
+  } else {
+    res.redirect('/login');
+  }
+});
+
+
 app.get('/board/:board_id', function (req, res, next) {
   if (req.session.loggedin) {
     var sql = 'SELECT * FROM boards WHERE ?';
@@ -39,13 +48,26 @@ app.get('/post', function (req, res, next) {
 });
 
 app.get('/post/pending', function (req, res, next) {
+  db.query(`SELECT * FROM current_main_board`, function (err, data) {
+    if (err) throw err;
+
+    res.redirect(`/admin/post/pending/${data[0].board_id}`);
+  });
+});
+
+app.get('/post/pending/:board_id', function (req, res, next) {
   if (req.session.loggedin) {
-    var unapproved_sql = 'SELECT * FROM posts WHERE status = 0';
+    var unapproved_sql = `SELECT * FROM posts WHERE status = 0 and parent_board_id = ${db.escape(req.params.board_id)}`;
     db.query(unapproved_sql, function (err, data) {
       if (err) throw err;
       console.log("Reading unapproved posts is successful");
       console.log(data);
-      res.render('admin_post_withnav', { data: data, text: 'Pending Posts' });
+
+      var sql2 = 'SELECT * FROM boards';
+      db.query(sql2, function (err, data2) {
+        if (err) throw err;
+        res.render('admin_post_withnav', { data: data, text: 'Pending Posts', board_data: data2, selected_board: data2.filter(board => board.board_id == req.params.board_id) });
+      });
     });
   } else {
     res.redirect('/login');
@@ -53,13 +75,27 @@ app.get('/post/pending', function (req, res, next) {
 });
 
 app.get('/post/approved', function (req, res, next) {
+  db.query(`SELECT * FROM current_main_board`, function (err, data) {
+    if (err) throw err;
+
+    res.redirect(`/admin/post/approved/${data[0].board_id}`);
+  });
+});
+
+app.get('/post/approved/:board_id', function (req, res, next) {
   if (req.session.loggedin) {
-    var unapproved_sql = 'SELECT * FROM posts WHERE status = 1';
+    var unapproved_sql = `SELECT * FROM posts WHERE status = 1 and parent_board_id = ${db.escape(req.params.board_id)}`;
     db.query(unapproved_sql, function (err, data) {
       if (err) throw err;
-      console.log("Reading unapproved posts is successful");
+      console.log("Reading approved posts is successful");
       console.log(data);
-      res.render('admin_post_withnav', { data: data, text: 'Accepted Posts' });
+
+      var sql2 = 'SELECT * FROM boards';
+      db.query(sql2, function (err, data2) {
+        if (err) throw err;
+        console.log(data2);
+        res.render('admin_post_withnav', { data: data, text: 'Accepted Posts', board_data: data2, selected_board: data2.filter(board => board.board_id == req.params.board_id) });
+      });
     });
   } else {
     res.redirect('/login');
@@ -67,44 +103,30 @@ app.get('/post/approved', function (req, res, next) {
 });
 
 app.get('/post/rejected', function (req, res, next) {
+  db.query(`SELECT * FROM current_main_board`, function (err, data) {
+    if (err) throw err;
+
+    res.redirect(`/admin/post/rejected/${data[0].board_id}`);
+  });
+});
+
+app.get('/post/rejected/:board_id', function (req, res, next) {
   if (req.session.loggedin) {
-    var unapproved_sql = 'SELECT * FROM posts WHERE status = 2';
+    var unapproved_sql = `SELECT * FROM posts WHERE status = 2 and parent_board_id = ${db.escape(req.params.board_id)}`;
     db.query(unapproved_sql, function (err, data) {
       if (err) throw err;
-      console.log("Reading unapproved posts is successful");
+      console.log("Reading approved posts is successful");
       console.log(data);
-      res.render('admin_post_withnav', { data: data, text: 'Rejected Posts' });
+
+      var sql2 = 'SELECT * FROM boards';
+      db.query(sql2, function (err, data2) {
+        if (err) throw err;
+        res.render('admin_post_withnav', { data: data, text: 'Rejected Posts', board_data: data2, selected_board: data2.filter(board => board.board_id == req.params.board_id) });
+      });
     });
   } else {
     res.redirect('/login');
   }
 });
-// router.post('/create', function(req, res, next) {
-//   const postDetails = req.body;
-//   console.log(postDetails);
-//   var sql = 'INSERT INTO posts SET ?';
-//   db.query(sql, postDetails, function (err, data) {
-//     if(err) throw err;
-//       console.log("Post data is inserted successfully");
-//   });
-//   res.redirect('/');
-// });
-
-// router.post('/create/board', function(req, res, next) {
-//   const boardDetails = req.body;
-//   console.log(boardDetails);
-//   var sql = 'INSERT INTO boards SET ?';
-//   db.query(sql, boardDetails, function(err, data) {
-//     if(err) throw err;
-//     console.log("Post data (board) is inserted successfully");
-//   });
-//   res.redirect('/admin');
-// })
-
-
-/* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
 
 module.exports = app;

@@ -29,12 +29,42 @@
     -->
 
   <div class="container position-absolute" id="container">
-    <img src="/images/qr.png" style="transform: translate(51vw, 83vh); height: 16vh;">
+    <!-- <img src="/images/qr.png" style="transform: translate(51vw, 83vh); height: 16vh;"> -->
+    <!-- <div id="8" class="card position-absolute card-md-vert"
+      style="background: #edc22e;top: 15%; left: 0%;">
+      <div class="row g-0">
+        <div class="col-md-12 half-height">
+          <img src="/images/posts/6c42e087d4ff95cfd0971a37225042d1" class="card-img" alt="...">
+        </div>
+        <div class="col-md-12 half-height">
+          <div class="card-body">
+            <p class="card-text">Hi this is the first message This is testing for long messages! hihihi ohmg this is so
+              nice heyhyehye</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer lower-part">
+        <i class="material-icons" style="font-size: 1.5vh">
+          account_circle</i> Hetsdfasd
+
+        <i class="material-icons" style="font-size: 1.5vh"> mail</i> hey@ad.ek
+      </div>
+    </div> -->
   </div>
   <!-- <script src="/javascripts/postcard.js" type="module"></script> -->
-  <div class="board-title bottom" style="color: <%= data.title_color %>">
-    <%= data.title %>
+  <div class="board-title bottom" style="color: <%= data.title_color %>; text-align: left; padding-left: 1vw;">
+    <img src="/images/qr.png" style="display: inline-block; height: 20vh; z-index: -10; position: relative;">
+    <span style="bottom: 0; right: 0; position: absolute;"><%= data.title %></span>
   </div>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="/javascripts/jquery.fittext.js"></script>
+  <script>
+    jQuery(".card-text").fitText();
+  </script> -->
+  <script src="/javascripts/textFit.js"></script>
+  <script>
+    textFit(document.getElementsByClassName('card-text'));
+  </script>
 </body>
 
 </html>
