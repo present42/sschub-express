@@ -16,7 +16,7 @@ webSocket.onmessage = function (event) {
   data = JSON.parse(event.data);
   console.log(JSON.parse(event.data));
   l = ['bg', 'md'];
-  createNewMessage(0, 0, l[getRandomInt(0, 1)], data.message, data.nickname, data.email, data.image_path);
+  createNewMessage(0, 0, l[getRandomInt(0, 1)], data.message, data.nickname, data.email, data.image_path, data.approved_time);
   textFit(document.getElementsByClassName('card-text'));
 }
 
@@ -37,11 +37,19 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This content is a little bit longer.", nickname = "hyunju", email = "hyunju@connect.abc.com", filename) {
-  color_list = ["rgba()", "#eee4da", "#edc22e"];
+function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This content is a little bit longer.", nickname = "hyunju", email = "hyunju@connect.abc.com", filename, time) {
+  color_list = ["rgba(255, 255, 255, 0.856)", "rgba(238, 228, 218, 0.87)", "rgba(237, 194, 46, 0.87)"];
   color = getRandomInt(0, 2);
   color = color_list[color];
 
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  var date = undefined;
+  if (time) date = new Date(time);
+
+  console.log(time);
   console.log(size);
   var height = 16,
     width = 16,
@@ -66,7 +74,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   console.log(pos_y);
   var str = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vw">
         <div class="row g-0">
-          <div class="col-md-6 full-height" style="padding: 1vw">
+          <div class="col-md-6 full-height" style="padding: 0.5vh">
             <img src="/images/posts/${filename}" class="card-img" alt="..." />
           </div>
           <div class="col-md-6 full-height">
@@ -75,12 +83,15 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
             </div>
           </div>
         </div>
-        <div class="card-footer lower-part"> 
+        <div class="card-footer lower-part" style="clear: both">
+          <div style="float: left; font-size: 1.8vh"> 
           ${nickname ? `<i class="material-icons" style="font-size: 1.5vh">
           account_circle</i
         > ${nickname}` : ""}
-          
-          ${email ? `<i class="material-icons" style="font-size: 1.5vh"> mail</i> ${email}` : ""}
+          </div>
+          <div style="float: right; font-size: 1.8vh">
+          ${date ? `<i class="material-icons" style="font-size: 1.5vh"> access_time</i> ${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}` : ""}
+          </div>
         </div>
       </div>`;
 
@@ -92,12 +103,15 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
         </div>
       </div>
     </div>
-    <div class="card-footer lower-part"> 
+    <div class="card-footer lower-part" style="clear: both">
+          <div style="float: left"> 
           ${nickname ? `<i class="material-icons" style="font-size: 1.5vh">
           account_circle</i
         > ${nickname}` : ""}
-          
-          ${email ? `<i class="material-icons" style="font-size: 1.5vh"> mail</i> ${email}` : ""}
+          </div>
+          <div style="float: right">
+          ${date ? `<i class="material-icons" style="font-size: 1.5vh"> mail</i> ${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}` : ""}
+          </div>
         </div>
   </div>`;
 
@@ -107,13 +121,16 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
       <img src="/images/posts/${filename}" class="card-img" alt="..." />
     </div>
   </div>
-  <div class="card-footer lower-part"> 
-    ${nickname ? `<i class="material-icons" style="font-size: 1.5vh">
-    account_circle</i
-  > ${nickname}` : ""}
-    
-    ${email ? `<i class="material-icons" style="font-size: 1.5vh"> mail</i> ${email}` : ""}
-  </div>
+  <div class="card-footer lower-part" style="clear: both">
+          <div style="float: left"> 
+          ${nickname ? `<i class="material-icons" style="font-size: 1.5vh">
+          account_circle</i
+        > ${nickname}` : ""}
+          </div>
+          <div style="float: right">
+          ${date ? `<i class="material-icons" style="font-size: 1.5vh"> mail</i> ${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}` : ""}
+          </div>
+        </div>
 </div>`;
   var parser = new DOMParser();
   var container = document.getElementById("container");

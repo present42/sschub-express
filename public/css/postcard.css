@@ -101,7 +101,7 @@ body {
 
 .card {
     background-color: rgba(255, 255, 255, 0.907);
-    width: 25vw;
+    width: 12.5vw;
     height: 30vh;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     border-radius: 0.5vw;
@@ -112,12 +112,12 @@ body {
 .card-bg {
     background-color: rgba(255, 255, 255, 0.856);
     height: 30vh;
-    width: 30vw;
+    width: 15vw;
     padding: 1vh;
     border-radius: 0.5vw;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     animation-name: animation-md;
-    animation-duration: 30s;
+    animation-duration: 60s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -125,12 +125,12 @@ body {
 .card-md {
     background-color: rgba(255, 255, 255, 0.856);
     height: 20vh;
-    width: 20vw;
+    width: 10vw;
     padding: 1vh;
     border-radius: 0.5vw;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     animation-name: animation-md;
-    animation-duration: 30s;
+    animation-duration: 60s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -143,7 +143,7 @@ body {
     border-radius: 0.5vw;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     animation-name: animation-md;
-    animation-duration: 30s;
+    animation-duration: 60s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
