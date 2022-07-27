@@ -1,11 +1,16 @@
 /*
     DEMO STYLE
 */
+html, body {
+    margin: 0;
+    height: 100%;
+}
 
 body {
     font-family: sans-serif;
     font-weight: lighter;
     background: #fafafa;
+    overflow-y: hidden;
 }
 
 #page_title {
@@ -105,6 +110,9 @@ a:focus {
     background: #ffffff;
     color: rgb(161, 161, 161);
     transition: all 0.3s;
+
+    height: 89vh;
+    overflow-y: scroll!important;
 }
 
 #sidebar.active {

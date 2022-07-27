@@ -112,7 +112,8 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="bgRadioOptions"
                                                         id="bgRadio2" value="option2" data-bs-toggle="collapse"
-                                                        data-bs-target="#bgColorMenu.show,#bgImageMenu:not(.show)" aria-expanded="true" checked>
+                                                        data-bs-target="#bgColorMenu.show,#bgImageMenu:not(.show)"
+                                                        aria-expanded="true" checked>
                                                     <label class="form-check-label" for="bgRadio2">image</label>
                                                 </div>
                                             </a>
@@ -142,48 +143,37 @@
                                         class="dropdown-toggle btn-toggle">Message</a>
                                     <ul class="collapse list-unstyled" id="messageSubmenu">
                                         <li>
-                                            <a href="#">Theme
-                                                <div id="theme-check">
-                                                    <div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="theme-check" id="sky-check" value="sky" checked>
-                                                            <label class="form-check-label" for="sky-check">
-                                                                Sky
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="theme-check" id="grass-check" value="grass">
-                                                            <label class="form-check-label" for="grass-check">Grass
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" id="message-type">Type
+                                            <a href="#" id="message-type">Animation/Card Shape
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="type_check"
-                                                        id="card-check" value="0" <%=board[0].board_type==0 ? "checked"
+                                                        id="flying-check" value="0" <%=board[0].board_type==0 ? "checked"
                                                         : "" %> >
                                                     <label class="form-check-label" for="card-check">
-                                                        Card
+                                                        Flying / Card
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="type_check"
-                                                        id="pin-check" value="1" <%=board[0].board_type==1 ? "checked"
+                                                        id="card-check" value="1" <%=board[0].board_type==1 ? "checked"
                                                         : "" %>>
                                                     <label class="form-check-label" for="pin-check">
-                                                        Pin
+                                                        Post-it / Card
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="type_check"
-                                                        id="tape-check" value="2" <%=board[0].board_type==2 ? "checked"
+                                                        id="pin-check" value="2" <%=board[0].board_type==2 ? "checked"
                                                         : "" %>>
                                                     <label class="form-check-label" for="tape-check">
-                                                        Tape
+                                                        Post-it / Pin
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="type_check"
+                                                        id="tape-check" value="3" <%=board[0].board_type==3 ? "checked"
+                                                        : "" %>>
+                                                    <label class="form-check-label" for="tape-check">
+                                                        Post-it / Tape
                                                     </label>
                                                 </div>
                                             </a>
