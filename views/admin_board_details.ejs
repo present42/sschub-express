@@ -105,17 +105,17 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="bgRadioOptions"
                                                         id="bgRadio1" value="option1" data-bs-toggle="collapse"
-                                                        data-bs-target="#bgColorMenu,#bgImageMenu"
+                                                        data-bs-target="#bgColorMenu:not(.show),#bgImageMenu.show"
                                                         aria-expanded="false">
                                                     <label class="form-check-label" for="bgRadio1">color</label>
                                                 </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="bgRadioOptions"
+                                                        id="bgRadio2" value="option2" data-bs-toggle="collapse"
+                                                        data-bs-target="#bgColorMenu.show,#bgImageMenu:not(.show)" aria-expanded="true" checked>
+                                                    <label class="form-check-label" for="bgRadio2">image</label>
+                                                </div>
                                             </a>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="bgRadioOptions"
-                                                    id="bgRadio2" value="option2" data-bs-toggle="collapse"
-                                                    data-bs-target="#bgColorMenu,#bgImageMenu" aria-expanded="true">
-                                                <label class="form-check-label" for="bgRadio2">image</label>
-                                            </div>
                                         </li>
                                         <li class="collapse" id="bgColorMenu">
                                             <a href="#">Background Color
