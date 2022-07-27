@@ -116,7 +116,7 @@ body {
     border-radius: 0.5vw;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     animation-name: animation-md;
-    animation-duration: 60s;
+    animation-duration: 120s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -129,7 +129,7 @@ body {
     border-radius: 0.5vw;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     animation-name: animation-md;
-    animation-duration: 60s;
+    animation-duration: 120s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -142,7 +142,7 @@ body {
     border-radius: 0.5vw;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     animation-name: animation-md;
-    animation-duration: 60s;
+    animation-duration: 120s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -155,7 +155,7 @@ body {
     padding: 1vh;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     animation-name: animation-sm;
-    animation-duration: 30s;
+    animation-duration: 12  0s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -176,7 +176,7 @@ body {
     }
 
     100% {
-        transform: translateX(650%);
+        transform: translateX(1050%);
     }
 }
 
@@ -186,7 +186,7 @@ body {
     }
 
     100% {
-        transform: translateX(830%);
+        transform: translateX(1030%);
     }
 }
 
@@ -244,7 +244,7 @@ body {
 }
 
 .board-title {
-    font-size: 5vw; 
+    font-size: 10vh; 
     color:rgba(255, 255, 255, 0.856); 
     font-family: 'DosisLight';
     font-weight: 700; 
@@ -297,3 +297,4 @@ p,
 .p {
     font-size: 1.6vh;
 }
+

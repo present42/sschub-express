@@ -19,6 +19,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="css/bootstrap.min.css" rel="stylesheet" />
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"
+    integrity="sha512-ooSWpxJsiXe6t4+PPjCgYmVfr1NS5QXJACcR/FPpsdm6kqG1FmQ2SVyg2RXeVuCRBLr0lWHnWJP6Zs1Efvxzww=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css"
+    integrity="sha512-0SPWAwpC/17yYyZ/4HSllgaK7/gg9OlVozq8K7rf3J8LvCjYEEIfzzpnA2/SSjpGIunCSD18r3UhvDcu/xncWA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <script src="js/bootstrap.bundle.min.js"></script>
 
   <script>
@@ -29,6 +36,11 @@
       let imgInp = document.querySelector("#formFile");
 
       let thumbnail = document.querySelector("img.img-thumbnail");
+      let thumbnail_crop = document.querySelector("img#crop_img_tool");
+      let preview_button = document.querySelector("button.btn-secondary");
+      let crop_button = document.querySelector("button#crop_done");
+      let submit_button = document.querySelector("button#submit_button");
+      let crop_input = document.querySelector("input#formFile_crop");
 
       area.addEventListener(
         "input",
@@ -43,8 +55,25 @@
       imgInp.onchange = (evt) => {
         const [file] = imgInp.files;
         if (file) {
-          thumbnail.src = URL.createObjectURL(file);
+          thumbnail_crop.src = URL.createObjectURL(file);
         }
+
+        const image = document.getElementById('crop_img_tool');
+        // console.log(image);
+        cropper = new Cropper(image, {
+          aspectRatio: 1 / 1,
+          crop(event) {
+            console.log(event.detail.x);
+            console.log(event.detail.y);
+            console.log(event.detail.width);
+            console.log(event.detail.height);
+            console.log(event.detail.rotate);
+            console.log(event.detail.scaleX);
+            console.log(event.detail.scaleY);
+          },
+          minCanvusWidth: 500
+        });
+        myModal.show();
       };
 
       const toastLiveExample = document.getElementById('liveToast')
@@ -53,8 +82,57 @@
         const toast = new bootstrap.Toast(toastLiveExample);
         toast.show();
       }
+
+      const myModal = new bootstrap.Modal(document.getElementById('cropImageModal'));
+      var cropper;
+      const form_data = new FormData();
+
+      preview_button.onclick = (evt) => {
+
+        // import Cropper from 'cropperjs'
+        const image = document.getElementById('crop_img_tool');
+        // console.log(image);
+        cropper = new Cropper(image, {
+          aspectRatio: 1 / 1,
+          crop(event) {
+            console.log(event.detail.x);
+            console.log(event.detail.y);
+            console.log(event.detail.width);
+            console.log(event.detail.height);
+            console.log(event.detail.rotate);
+            console.log(event.detail.scaleX);
+            console.log(event.detail.scaleY);
+          },
+          minCanvusWidth: 600
+        });
+        myModal.show();
+      }
+
+      crop_button.onclick = (evt) => {
+        console.log(cropper);
+        console.log("hello");
+        cropper.getCroppedCanvas().toBlob((blob) => {
+          thumbnail.src = URL.createObjectURL(blob);
+          // crop_input.value = blob;
+          let cropped_file = new File([blob], "cropped_file", {type:"image/png", lastModified: new Date().getTime()});
+          let container = new DataTransfer();
+          container.items.add(cropped_file);
+          imgInp.files = container.files;
+        });
+        myModal.hide();
+      };
+
+      
     };
   </script>
+
+  <style>
+    .test {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+  </style>
 </head>
 
 <body>
@@ -127,7 +205,7 @@
         </div>
         <label class="form-label col-lg-2">Attachment Preview</label>
         <div class="col-lg-4">
-          <img src="" class="img-thumbnail" style="max-width: 120px" alt="Please select a valid file" />
+          <img src="" id="preview" class="img-thumbnail" style="max-width: 120px" alt="Please select a valid file" />
         </div>
       </div>
       <hr />
@@ -145,7 +223,7 @@
       <input type="hidden" name="parent_board_id" value="<%= data.board_id %>">
       <div class="mt-5">
         <button type="button" class="btn btn-secondary">Preview</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" id="submit_button" class="btn btn-primary">Submit</button>
       </div>
     </form>
   </div>
@@ -175,7 +253,31 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="cropImageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Crop your image</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div style="width: 100%;">
+            <img id="crop_img_tool" class="test" src="">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="crop_done">Crop</button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script src="/javascripts/form.js"></script>
 </body>
 
 </html>

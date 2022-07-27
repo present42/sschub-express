@@ -7,22 +7,23 @@ body {
     font-weight: lighter;
     background: #fafafa;
 }
-#page_title{
-    color:rgb(85, 85, 85);
-    font-weight:lighter;
+
+#page_title {
+    color: rgb(85, 85, 85);
+    font-weight: lighter;
     font-family: sans-serif;
 }
 
-#signout{
+#signout {
     margin-right: 20px;
-    padding:12px;
+    padding: 12px;
     background-color: #afafaf;
-    color:#ffffff;
-    border-style:initial;
+    color: #ffffff;
+    border-style: initial;
     text-decoration: none;
 }
 
-.form-control{
+.form-control {
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
     font-weight: 300;
@@ -30,7 +31,8 @@ body {
     color: #999;
 }
 
-.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.form-control::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
     font-weight: 300;
@@ -45,11 +47,13 @@ p {
     line-height: 1.7em;
     color: #999;
 }
-#sidebarCollapse{
+
+#sidebarCollapse {
     background-color: white;
     color: #afafaf;
-    border-color:#afafaf;
+    border-color: #afafaf;
 }
+
 a,
 a:hover,
 a:focus {
@@ -90,9 +94,8 @@ a:focus {
     align-items: stretch;
 }
 
-.whiteTextOverride
-{
- color: white !important;
+.whiteTextOverride {
+    color: white !important;
 }
 
 #sidebar {
@@ -113,7 +116,7 @@ a:focus {
     padding-top: 20px;
     background: rgb(255, 255, 255);
     color: rgb(82, 82, 82);
-    font-weight:lighter;
+    font-weight: lighter;
 }
 
 #sidebar ul.components {
@@ -134,7 +137,8 @@ a:focus {
 }
 
 #sidebar ul li a:hover {
-    color: rgb(255, 255, 255);;
+    color: rgb(255, 255, 255);
+    ;
     background: #afafaf;
 }
 
@@ -142,6 +146,25 @@ a:focus {
 a[aria-expanded="true"] {
     color: rgb(255, 255, 255);
     background: #afafaf;
+}
+
+a.btn-toggle {
+    display: inline-flex!important;
+    align-items: center;
+    width: 100%;
+}
+
+a.btn-toggle::before {
+    width: 1.25em;
+    line-height: 0;
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+    display: block;
+}
+
+a.btn-toggle[aria-expanded="true"]::before {
+    transform: rotate(90deg);
 }
 
 a[data-toggle="collapse"] {
@@ -159,7 +182,8 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: rgb(255, 255, 255);;
+    background: rgb(255, 255, 255);
+    ;
 }
 
 ul.CTAs {
@@ -185,6 +209,7 @@ a.article:hover {
     color: #fff !important;
 }
 
+
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -204,9 +229,11 @@ a.article:hover {
     #sidebar {
         margin-left: -250px;
     }
+
     #sidebar.active {
         margin-left: 0;
     }
+
     #sidebarCollapse span {
         display: none;
     }

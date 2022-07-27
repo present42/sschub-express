@@ -5,7 +5,7 @@ document.getElementById("titleInput").addEventListener('input', function (evt) {
 });
 
 document.getElementById("titleColor").addEventListener('input', function (evt) {
-
+    console.log("test");
     document.getElementById("board-title").style.color = color;
     console.log(document.getElementById("board-title").style);
 });

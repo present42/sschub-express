@@ -17,16 +17,12 @@ var filefields = upload.fields([{name: 'background_img'}, {name: 'bg_music'}]);
 
 // TODO (2) 
 
-<<<<<<< HEAD
-app.post('/create', upload.single('background_img'), function (req, res, next) {
-=======
 app.post('/create', upload.fields([{name:'background_img', max_count:1},{name:'bg_music', max_count:1}]), function(req, res, next) {
->>>>>>> b342528560a46149a9d728657c8ab2a0f50c46ac
   const boardDetails = req.body;
   const fileDetails = req.file;
   console.log(boardDetails);
 
-  var sql = `INSERT INTO boards (title, background_img, color, title_color, board_type) VALUES ('${boardDetails.title}', '${fileDetails?.filename || ''}', '${boardDetails.background_color}', '${boardDetails.title_color}', ${boardDetails.animationMode})`;
+  var sql = `INSERT INTO boards (title, background_img, background_color, title_color, board_type) VALUES ('${boardDetails.title}', '${fileDetails?.filename || ''}', '${boardDetails.background_color}', '${boardDetails.title_color}', ${boardDetails.animationMode})`;
   db.query(sql, boardDetails, function (err, data) {
     if (err) throw err;
     console.log("Post data (board) is inserted successfully", data);
@@ -56,12 +52,12 @@ app.post('/:board_id/edit', filefields, function(req, res, next) {
   console.log(req.files['background_img']);
   console.log("Filename: " + req.files['background_img'][0]['filename']);
   var temp ='';
-  if (boardDetails.color == '' && fileDetails['background_img'] == undefined){
+  if (boardDetails.background_color == '' && fileDetails['background_img'] == undefined){
     console.log("fileDetails is undefined");
-    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.color}', board_type = '${boardDetails.type_check}' `;
+    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.background_color}', board_type = '${boardDetails.type_check}' `;
   }else{
     console.log("fileDetails is defined");
-    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.color}', background_img = '${fileDetails['background_img'][0]['filename']}', board_type = '${boardDetails.type_check}' `;
+    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.background_color}', background_img = '${fileDetails['background_img'][0]['filename']}', board_type = '${boardDetails.type_check}' `;
   }
 
   if(fileDetails['bg_music']!=undefined){

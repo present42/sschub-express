@@ -9,7 +9,7 @@ let pid;
 
 var webSocket = new WebSocket('ws://172.105.206.64/websockets');
 webSocket.onopen = function (event) {
-  pid = setInterval(() => { webSocket.send(JSON.stringify({ msg: "give me new message" })); }, 6000);
+  pid = setInterval(() => { webSocket.send(JSON.stringify({ msg: "give me new message" })); }, 9000);
 };
 
 webSocket.onmessage = function (event) {
@@ -57,12 +57,12 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   var cur = count++;
   if (size == 'bg') {
     height = 25;
-    width = 25;
+    width = 25 * 2.25;
     // top: 2 - 73
     top = getRandomInt(2, 73);
   } else if (size == 'md') {
     height = 20;
-    width = 20;
+    width = 45;
     // top: 2 - 79
     top = getRandomInt(2, 79);
   } else {
@@ -72,7 +72,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   }
 
   console.log(pos_y);
-  var str = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vw">
+  var str = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vh">
         <div class="row g-0">
           <div class="col-md-6 full-height" style="padding: 0.5vh">
             <img src="/images/posts/${filename}" class="card-img" alt="..." />
@@ -95,7 +95,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
         </div>
       </div>`;
 
-  var str_without_img = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vw">
+  var str_without_img = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vh">
     <div class="row g-0 upper-part">
       <div class="col-md-12 full-height">
         <div class="card-body">
@@ -115,7 +115,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
         </div>
   </div>`;
 
-  var str_without_text = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vw">
+  var str_without_text = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vh">
   <div class="row g-0">
     <div class="col-md-12 full-height">
       <img src="/images/posts/${filename}" class="card-img" alt="..." />
