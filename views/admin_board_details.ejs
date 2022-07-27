@@ -30,7 +30,39 @@
     <script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="/javascripts/jquery.minicolors.min.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.minicolors.css">
+    <script>
+        $('.demo').each(function () {
+            //
+            // Dear reader, it's actually very easy to initialize MiniColors. For example:
+            //
+            //  $(selector).minicolors();
+            //
+            // The way I've done it below is just for the demo, so don't get confused
+            // by it. Also, data- attributes aren't supported at this time...they're
+            // only used for this demo.
+            //
+            $(this).minicolors({
+                control: $(this).attr('data-control') || 'hue',
+                defaultValue: $(this).attr('data-defaultValue') || '',
+                format: $(this).attr('data-format') || 'hex',
+                keywords: $(this).attr('data-keywords') || '',
+                inline: $(this).attr('data-inline') === 'true',
+                letterCase: $(this).attr('data-letterCase') || 'lowercase',
+                opacity: $(this).attr('data-opacity'),
+                position: $(this).attr('data-position') || 'bottom',
+                swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
+                change: function (value, opacity) {
+                    if (!value) return;
+                    if (opacity) value += ', ' + opacity;
+                    if (typeof console === 'object') {
+                        console.log(value);
+                    }
+                },
+                theme: 'bootstrap'
+            });
 
+        });
+    </script>
 </head>
 
 <body>
@@ -91,8 +123,12 @@
                                                     <!-- class="form-control minicolors-input titlePick" 
                                                          -->
                                                     <input type="text" name="title_color" id="titleColor"
-                                                        class="form-control color-picker minicolors-input" data-format="rgb"
-                                                        data-opacity="0.69" value="rgba(52, 64, 158, 0.5)">
+                                                        class="form-control color-picker minicolors-input"
+                                                        data-format="rgb" data-opacity="0.69"
+                                                        value="rgba(52, 64, 158, 0.5)">
+                                                    <input type="text" id="rgba" class="form-control demo"
+                                                        data-format="rgb" data-opacity=".5"
+                                                        value="rgba(52, 64, 158, 0.5)">
                                                 </div>
                                             </a>
                                         </li>
@@ -368,27 +404,27 @@
                         $('#savechanges').modal('hide');
                     });
 
-                    $('.color-picker').each(function () {
-                        $(this).minicolors({
-                            control: $(this).attr('data-control') || 'hue',
-                            defaultValue: $(this).attr('data-defaultValue') || '',
-                            format: $(this).attr('data-format') || 'hex',
-                            keywords: $(this).attr('data-keywords') || '',
-                            inline: $(this).attr('data-inline') === 'true',
-                            letterCase: $(this).attr('data-letterCase') || 'lowercase',
-                            opacity: $(this).attr('data-opacity'),
-                            position: $(this).attr('data-position') || 'bottom left',
-                            swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
-                            change: function (value, opacity) {
-                                if (!value) return;
-                                if (opacity) value += ', ' + opacity;
-                                if (typeof console === 'object') {
-                                    console.log(value);
-                                }
-                            },
-                            theme: 'bootstrap'
-                        });
-                    });
+                    // $('.color-picker').each(function () {
+                    //     $(this).minicolors({
+                    //         control: $(this).attr('data-control') || 'hue',
+                    //         defaultValue: $(this).attr('data-defaultValue') || '',
+                    //         format: $(this).attr('data-format') || 'hex',
+                    //         keywords: $(this).attr('data-keywords') || '',
+                    //         inline: $(this).attr('data-inline') === 'true',
+                    //         letterCase: $(this).attr('data-letterCase') || 'lowercase',
+                    //         opacity: $(this).attr('data-opacity'),
+                    //         position: $(this).attr('data-position') || 'bottom left',
+                    //         swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
+                    //         change: function (value, opacity) {
+                    //             if (!value) return;
+                    //             if (opacity) value += ', ' + opacity;
+                    //             if (typeof console === 'object') {
+                    //                 console.log(value);
+                    //             }
+                    //         },
+                    //         theme: 'bootstrap'
+                    //     });
+                    // });
                 });
             </script>
             <script type="text/javascript">
