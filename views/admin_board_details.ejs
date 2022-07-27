@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.minicolors.css">
     <script>
         $(document).ready(function () {
-            $('.demo').each(function () {
+            $('.color-picker').each(function () {
                 //
                 // Dear reader, it's actually very easy to initialize MiniColors. For example:
                 //
@@ -54,9 +54,13 @@
                     swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
                     change: function (value, opacity) {
                         if (!value) return;
-                        if (opacity) value += ', ' + opacity;
                         if (typeof console === 'object') {
-                            console.log(value);
+                            if ($(this)[0] === document.getElementById("titleColor")) {
+                                // change in title color (event)
+                                console.log("test");
+                                document.getElementById("board-title").style.color = value;
+                                console.log(document.getElementById("board-title").style);
+                            }
                         }
                     },
                     theme: 'bootstrap'
@@ -120,17 +124,13 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">Color
+                                            <a href="#">Title Color
                                                 <div class="form-group">
                                                     <!-- class="form-control minicolors-input titlePick" 
                                                          -->
                                                     <input type="text" name="title_color" id="titleColor"
-                                                        class="form-control color-picker minicolors-input"
-                                                        data-format="rgb" data-opacity="0.69"
-                                                        value="rgba(52, 64, 158, 0.5)">
-                                                    <input type="text" id="rgba" class="form-control demo"
-                                                        data-format="rgb" data-opacity=".5"
-                                                        value="rgba(52, 64, 158, 0.5)">
+                                                        class="form-control color-picker" data-format="rgb"
+                                                        data-opacity=".5" value="rgba(52, 64, 158, 0.5)">
                                                 </div>
                                             </a>
                                         </li>
@@ -405,115 +405,6 @@
                         window.location.href = "board.html";
                         $('#savechanges').modal('hide');
                     });
-
-                    // $('.color-picker').each(function () {
-                    //     $(this).minicolors({
-                    //         control: $(this).attr('data-control') || 'hue',
-                    //         defaultValue: $(this).attr('data-defaultValue') || '',
-                    //         format: $(this).attr('data-format') || 'hex',
-                    //         keywords: $(this).attr('data-keywords') || '',
-                    //         inline: $(this).attr('data-inline') === 'true',
-                    //         letterCase: $(this).attr('data-letterCase') || 'lowercase',
-                    //         opacity: $(this).attr('data-opacity'),
-                    //         position: $(this).attr('data-position') || 'bottom left',
-                    //         swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
-                    //         change: function (value, opacity) {
-                    //             if (!value) return;
-                    //             if (opacity) value += ', ' + opacity;
-                    //             if (typeof console === 'object') {
-                    //                 console.log(value);
-                    //             }
-                    //         },
-                    //         theme: 'bootstrap'
-                    //     });
-                    // });
-                });
-            </script>
-            <script type="text/javascript">
-                $(function () {
-                    var colpick = $('.titlePick').each(function () {
-                        $(this).minicolors({
-                            control: $(this).attr('data-control') || 'hue',
-                            defaultValue: $(this).attr('data-defaultValue') || '',
-                            format: $(this).attr('data-format') || 'hex',
-                            keywords: $(this).attr('data-keywords') || '',
-                            inline: $(this).attr('data-inline') === 'true',
-                            letterCase: $(this).attr('data-letterCase') || 'lowercase',
-                            opacity: $(this).attr('data-opacity'),
-                            position: $(this).attr('data-position') || 'bottom left',
-                            swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
-                            change: function (value, opacity) {
-                                if (!value) return;
-                                if (opacity) value += ', ' + opacity;
-                                if (typeof console === 'object') {
-                                    console.log(value);
-                                }
-                            },
-                            theme: 'bootstrap'
-                        });
-                    });
-
-
-
-                    // var $inlinehex = $('#inlinecolorhex h3 small');
-                    // $('#inlinecolors').minicolors({
-                    //     inline: true,
-                    //     theme: 'bootstrap',
-                    //     change: function (hex) {
-                    //         if (!hex) return;
-                    //         $inlinehex.html(hex);
-
-                    //     }
-                    // });
-
-                });
-            </script>
-            <script type="text/javascript">
-                $(function () {
-                    // var colpick = $('.bgPick').each(function () {
-                    //     $(this).minicolors({
-                    //         control: $(this).attr('data-control') || 'hue',
-                    //         inline: $(this).attr('data-inline') === 'true',
-                    //         letterCase: 'lowercase',
-                    //         opacity: false,
-                    //         change: function (hex, opacity) {
-                    //             if (!hex) return;
-                    //             if (opacity) hex += ', ' + opacity;
-                    //             try {
-                    //                 $('.preview').css('background-color', hex.toString());
-                    //                 $('.preview').css('background-image', 'none');
-                    //             } catch (e) { }
-                    //             $(this).select();
-                    //         },
-                    //         theme: 'bootstrap'
-                    //     });
-
-                    // });
-
-                    // var postpick = $('.postPick').each(function () {
-                    //     $(this).minicolors({
-                    //         //   control: $(this).attr('data-control') || 'hue',
-                    //         //   inline: $(this).attr('data-inline') === 'true',
-                    //         //   letterCase: 'lowercase',
-                    //         //   opacity: false,
-                    //         //   change: function(hex, opacity) {
-                    //         //     $(this).select();
-                    //         //   },
-                    //         theme: 'bootstrap'
-                    //     });
-
-                    // });
-
-                    // var $inlinehex = $('#inlinecolorhex h3 small');
-                    // $('#inlinecolors').minicolors({
-                    //     inline: true,
-                    //     theme: 'bootstrap',
-                    //     change: function (hex) {
-                    //         if (!hex) return;
-                    //         $inlinehex.html(hex);
-                    //     }
-                    // });
-
                 });
             </script>
 
