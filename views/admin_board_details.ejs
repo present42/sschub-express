@@ -57,9 +57,9 @@
                         if (typeof console === 'object') {
                             if ($(this)[0] === document.getElementById("titleColor")) {
                                 // change in title color (event)
-                                console.log("test");
                                 document.getElementById("board-title").style.color = value;
-                                console.log(document.getElementById("board-title").style);
+                            } else if ($(this)[0] === document.getElementById("bgColor")) {
+                                document.getElementById("content").style.color = value;
                             }
                         }
                     },
@@ -126,8 +126,6 @@
                                         <li>
                                             <a href="#">Title Color
                                                 <div class="form-group">
-                                                    <!-- class="form-control minicolors-input titlePick" 
-                                                         -->
                                                     <input type="text" name="title_color" id="titleColor"
                                                         class="form-control color-picker" data-format="rgb"
                                                         data-opacity=".5" value="rgba(52, 64, 158, 0.5)">
@@ -142,11 +140,14 @@
                                     <ul class="collapse list-unstyled" id="backgroundSubmenu">
 
                                         <li>
-                                            <a href="#">Color
+                                            <a href="#">Background Color
                                                 <div class="form-group">
                                                     <input type="text" name="color" id="bgColor"
+                                                        class="form-control color-picker" data-format="rgb"
+                                                        data-opacity=".9" value="rgba(52, 64, 158, 0.8)">
+                                                    <!-- <input type="text" name="color" id="bgColor"
                                                         class="form-control bgPick" data-control="bgcolor"
-                                                        value="<%= board[0].background_color %>">
+                                                        value="<%= board[0].background_color %>"> -->
                                                 </div>
                                             </a>
                                         </li>
