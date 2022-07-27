@@ -146,8 +146,8 @@
                                             <a href="#" id="message-type">Animation/Card Shape
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="type_check"
-                                                        id="flying-check" value="0" <%=board[0].board_type==0 ? "checked"
-                                                        : "" %> >
+                                                        id="flying-check" value="0" <%=board[0].board_type==0
+                                                        ? "checked" : "" %> >
                                                     <label class="form-check-label" for="card-check">
                                                         Flying / Card
                                                     </label>
@@ -177,18 +177,15 @@
                                                     </label>
                                                 </div>
                                             </a>
+
+                                            </a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#musicSubmenu"
-                                        class="dropdown-toggle btn-toggle">Music</a>
-                                    <ul class="collapse list-unstyled" id="musicSubmenu">
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#postColorSubmenu"
+                                        class="dropdown-toggle btn-toggle">Post Colors</a>
+                                    <ul class="collpase" id="postColorSubmenu">
                                         <li>
-                                            <a href="#">
-                                                <input type="file" name="bg_music" class="form-control" id="bg_music"
-                                                    accept="audio/*" />
-                                            </a>
+                                            <a>
                                         <li>
                                             <a href="#">Post Color 1
                                                 <div class="form-group postPick">
@@ -229,7 +226,21 @@
                                                 </div>
                                             </a>
                                         </li>
+                                    </ul>
                                 </li>
+                            </ul>
+                            </li>
+                            <li>
+                                <a href="#" data-bs-toggle="collapse" data-bs-target="#musicSubmenu"
+                                    class="dropdown-toggle btn-toggle">Music</a>
+                                <ul class="collapse list-unstyled" id="musicSubmenu">
+                                    <li>
+                                        <a href="#">
+                                            <input type="file" name="bg_music" class="form-control" id="bg_music"
+                                                accept="audio/*" />
+                                        </a>
+                                    </li>
+                            </li>
                             </ul>
                             </li>
                             <li>
