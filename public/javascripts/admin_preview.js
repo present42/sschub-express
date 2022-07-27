@@ -1,4 +1,40 @@
-import boardDetailsAPI from "../javascripts/admin_board_detailsAPI.js";
+$(document).ready(function () {
+    $('.color-picker').each(function () {
+        //
+        // Dear reader, it's actually very easy to initialize MiniColors. For example:
+        //
+        //  $(selector).minicolors();
+        //
+        // The way I've done it below is just for the demo, so don't get confused
+        // by it. Also, data- attributes aren't supported at this time...they're
+        // only used for this demo.
+        //
+        $(this).minicolors({
+            control: $(this).attr('data-control') || 'hue',
+            defaultValue: $(this).attr('data-defaultValue') || '',
+            format: $(this).attr('data-format') || 'hex',
+            keywords: $(this).attr('data-keywords') || '',
+            inline: $(this).attr('data-inline') === 'true',
+            letterCase: $(this).attr('data-letterCase') || 'lowercase',
+            opacity: $(this).attr('data-opacity'),
+            position: $(this).attr('data-position') || 'bottom',
+            swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
+            change: function (value, opacity) {
+                if (!value) return;
+                if (typeof console === 'object') {
+                    if ($(this)[0] === document.getElementById("titleColor")) {
+                        // change in title color (event)
+                        document.getElementById("board-title").style.color = value;
+                    } else if ($(this)[0] === document.getElementById("bgColor")) {
+                        document.getElementById("content").style.background = value;
+                    }
+                }
+            },
+            theme: 'bootstrap'
+        });
+
+    });
+});
 
 document.getElementById("titleInput").addEventListener('input', function (evt) {
     document.getElementById("board-title").innerHTML = this.value;
