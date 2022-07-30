@@ -11,17 +11,13 @@ const storage = multer.diskStorage({
     }
 }});
 const upload = multer({ storage: storage});
-var filefields = upload.fields([{name: 'background_img'}, {name: 'bg_music'}]);
+var filefields = upload.fields([{name: 'background_img', max_count:1}, {name: 'bg_music', max_count:1}]);
 
 // TODO (1) select which board to show to the public (incl. UI)
 
 // TODO (2) 
 
-<<<<<<< HEAD
-app.post('/create', upload.single('background_img'), function (req, res, next) {
-=======
 app.post('/create', upload.fields([{name:'background_img', max_count:1},{name:'bg_music', max_count:1}]), function(req, res, next) {
->>>>>>> b342528560a46149a9d728657c8ab2a0f50c46ac
   const boardDetails = req.body;
   const fileDetails = req.file;
   console.log(boardDetails);

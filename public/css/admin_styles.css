@@ -22,6 +22,10 @@ body {
     text-decoration: none;
 }
 
+.form-group{
+    padding-right: 1vw;
+}
+
 .form-control{
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
@@ -63,6 +67,7 @@ a:focus {
     background: #fff;
     border: none;
     border-radius: 0;
+    height: 10vh;
     margin-bottom: 10px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -98,10 +103,13 @@ a:focus {
 #sidebar {
     margin-top: 0px;
     min-width: 300px;
-    max-width: 300px;
+    max-width: 25vw;
+    padding-right: 5px;
     background: #ffffff;
     color: rgb(161, 161, 161);
     transition: all 0.3s;
+    overflow: scroll;
+    height: 90vh;
 }
 
 #sidebar.active {
@@ -185,6 +193,94 @@ a.article:hover {
     color: #fff !important;
 }
 
+
+/* ---------------------------------------------------
+    TOOLTIP
+----------------------------------------------------- */
+
+.help-tip{
+    position: relative;
+    display:inline;
+    float: right;
+    text-align: center;
+    background-color: #c9c9c9;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    cursor: default;
+}
+
+.help-tip:before{
+    margin-top: 1px;
+    content: '?';
+    font-weight: bold;
+    color:#fff;
+}
+
+.help-tip:hover p{
+    display:block;
+    transform-origin: 100% 0%;
+
+    -webkit-animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out;
+
+}
+
+.help-tip p{    /* The tooltip */
+    display: none;
+    text-align: left;
+    background-color: #ffffffba;
+    padding: 20px;
+    width: 300px;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    right: -4px;
+    color: rgb(0, 0, 0) !important;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.help-tip p:before{ /* The pointer of the tooltip */
+    position: absolute;
+    content: '';
+    width:0;
+    height: 0;
+    border:6px solid transparent;
+    border-bottom-color:#ffffffba;
+    right:10px;
+    top:-12px;
+}
+
+.help-tip p:after{ /* Prevents the tooltip from being hidden */
+    width:100%;
+    height:40px;
+    content:'';
+    position: absolute;
+    top:-40px;
+    left:0;
+}
+
+/* CSS animation */
+
+@-webkit-keyframes fadeIn {
+    0% { 
+        opacity:0; 
+        transform: scale(0.6);
+    }
+
+    100% {
+        opacity:100%;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity:0; }
+    100% { opacity:100%; }
+}
+
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -192,7 +288,7 @@ a.article:hover {
 #content {
     width: 100%;
     padding: 20px;
-    min-height: 100vh;
+    max-height: 90vh;
     transition: all 0.3s;
 }
 

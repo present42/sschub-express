@@ -33,14 +33,6 @@ document.getElementById("customFile").addEventListener('input', function (evt) {
     }
 });
 
-// Post Colors
-document.getElementById("sky-check").addEventListener('input', function (evt) {
-    console.log("Sky is selected.");
-});
-
-document.getElementById("grass-check").addEventListener('input', function(evt){
-    console.log("Grass is selected.");
-});
 
 document.getElementById("card-check").addEventListener('input', function (evt) {
     setMessageType(0);     

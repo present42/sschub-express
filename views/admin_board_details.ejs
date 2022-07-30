@@ -89,9 +89,7 @@
                                         <div class="form-group">
                                             <input type="text" name="title_color" id="titleColor"
                                                 class="form-control titlePick" data-control="titlecolor"
-                                                <% if (board[0].title_color != undefined){ %> 
-                                                    value="# <%= board[0].title_color.toString() %> 
-                                                    <% } %>">
+                                                    value="<%= board[0].title_color.toString() %>"> 
                                         </div>
                                     </a>
                                 </li>
@@ -113,7 +111,9 @@
                                 </li>
                                 <li>
                                     <a href="#">Image
+                                        <div class="form-group">
                                         <input type="file" name="background_img" class="form-control" id="customFile" />
+                                        </div>
                                     </a>
                                 </li>
                             </ul>
@@ -122,42 +122,70 @@
                             <a href="#messageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Message</a>
                             <ul class="collapse list-unstyled" id="messageSubmenu">
                                 <li>
-                                    <a href="#">Theme
-                                        <div id="theme-check">
-                                        <div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="theme-check" id="sky-check" value="sky" checked>
-                                                <label class="form-check-label" for="sky-check">
-                                                  Sky
-                                                </label>
-                                            </div>
-                                              <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="theme-check" id="grass-check" value="grass">
-                                                <label class="form-check-label" for="grass-check">Grass
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </a>
                                     <a href="#" id="message-type">Type
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="type_check" id="card-check" value="0"  <%= board[0].board_type == 0 ? "checked" : "" %> >
-                                                <label class="form-check-label" for="card-check">
-                                                  Card
-                                                </label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="type_check" id="card-check" value="0"  <%= board[0].board_type == 0 ? "checked" : "" %> >
+                                            <label class="form-check-label" for="card-check">
+                                              Card
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="type_check" id="pin-check" value="1" <%= board[0].board_type == 1 ? "checked" : "" %>>
+                                            <label class="form-check-label" for="pin-check">
+                                              Pin
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="type_check" id="tape-check" value="2" <%= board[0].board_type == 2 ? "checked" : "" %>>
+                                            <label class="form-check-label" for="tape-check">
+                                              Tape
+                                            </label>
+                                        </div>
+                                    </a>
+                                    <a href="#">Color  
+                                        <div class="help-tip">
+                                            <p>THis is sjfo bacckk</p>
+                                        </div>
+                                        <a href="#">Post Color 1
+                                            <div class="form-group postPick">
+                                                <input type="text" name="post_color_1" id="post_color_1"
+                                                    class="form-control" data-control="bgcolor"
+                                                    <% if (board[0].title_color.toString(16) == null) { %> value="#ffffff"
+                                                    <% } else { %>
+                                                        value = <%= board[0].title_color.toString(16) %>
+                                                    <% } %> >
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="type_check" id="pin-check" value="1" <%= board[0].board_type == 1 ? "checked" : "" %>>
-                                                <label class="form-check-label" for="pin-check">
-                                                  Pin
-                                                </label>
+                                        </a>
+                                        <a href="#">Post Color 2
+                                            <div class="form-group postPick">
+                                                <input type="text" name="post_color_2" id="post_color_2"
+                                                    class="form-control" data-control="bgcolor"
+                                                    value= "<%= board[0].title_color.toString(16) %>">
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="type_check" id="tape-check" value="2" <%= board[0].board_type == 2 ? "checked" : "" %>>
-                                                <label class="form-check-label" for="tape-check">
-                                                  Tape
-                                                </label>
+                                        </a>
+                                        <a href="#">Post Color 3
+                                            <div class="form-group postPick">
+                                                <input type="text" name="post_color_3" id="post_color_3"
+                                                    class="form-control" data-control="bgcolor"
+                                                    value="<%= board[0].title_color.toString(16) %>">
                                             </div>
+                                        </a>
+                                        <a href="#">Post Color 4
+                                            <div class="form-group postPick">
+                                                <input type="text" name="post_color_4" id="post_color_4"
+                                                    class="form-control" data-control="bgcolor"
+                                                    value=<% if (board[0].title_color.toString(16) != "#ffffff") { %> "912534"
+                                                    <% } %> >
+                                            </div>
+                                        </a>
+                                        <a href="#">Post Color 5
+                                            <div class="form-group postPick">
+                                                <input type="text" name="post_color_5" id="post_color_5"
+                                                    class="form-control" data-control="bgcolor"
+                                                    value="<%= board[0].title_color.toString(16) %>">
+                                            </div>
+                                        </a>
+                              
                                     </a>
                                 </li>
                             </ul>
@@ -168,53 +196,11 @@
                             <ul class="collapse list-unstyled" id="musicSubMenu">
                                 <li>
                                     <a href="#">
-                                        <input type="file" name="bg_music" class="form-control" id="bg_music" accept="audio/*" />
+                                        <div class="form-group">
+                                            <input type="file" name="bg_music" class="form-control" id="bg_music" accept="audio/*" />
+                                        </div> 
                                     </a>
-                                    <li>
-                                        <a href="#">Post Color 1
-                                            <div class="form-group postPick">
-                                                <input type="text" name="post_color_1" id="post_color_1"
-                                                    class="form-control" data-control="bgcolor"
-                                                    value="# <%= board[0].color.toString(16) %>">
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Post Color 2
-                                            <div class="form-group postPick">
-                                                <input type="text" name="post_color_2" id="post_color_2"
-                                                    class="form-control" data-control="bgcolor"
-                                                    value="# <%= board[0].color.toString(16) %>">
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Post Color 3
-                                            <div class="form-group postPick">
-                                                <input type="text" name="post_color_3" id="post_color_3"
-                                                    class="form-control" data-control="bgcolor"
-                                                    value="# <%= board[0].color.toString(16) %>">
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Post Color 4
-                                            <div class="form-group postPick">
-                                                <input type="text" name="post_color_4" id="post_color_4"
-                                                    class="form-control" data-control="bgcolor"
-                                                    value="# 112311">
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Post Color 5
-                                            <div class="form-group postPick">
-                                                <input type="text" name="post_color_5" id="post_color_5"
-                                                    class="form-control" data-control="bgcolor"
-                                                    value="# <%= board[0].color.toString(16) %>">
-                                            </div>
-                                        </a>
-                                    </li>
+                                    
                                 </li>
                             </ul>
                         </li>
@@ -293,7 +279,7 @@
                     <div class = "content">
                         <div class="upper-part">
                             <div class="left-half">
-                                <img class="message-img" src="../images/posts/cat.jpg">
+                                <img class="message-img" src="/images/posts/cat.jpg">
                             </div>
                             <div class="right-half">
                                 <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
@@ -308,7 +294,7 @@
                     <div class = "content">
                         <div class="upper-part">
                             <div class="left-half">
-                                <img class="message-img" src="../images/posts/cat.jpg">
+                                <img class="message-img" src="/images/posts/cat.jpg">
                             </div>
                             <div class="right-half">
                                 <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
