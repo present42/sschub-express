@@ -22,7 +22,7 @@ app.post('/create', upload.fields([{name:'background_img', max_count:1},{name:'b
   const fileDetails = req.file;
   console.log(boardDetails);
 
-  var sql = `INSERT INTO boards (title, background_img, background_color, title_color, board_type) VALUES ('${boardDetails.title}', '${fileDetails?.filename || ''}', '${boardDetails.background_color}', '${boardDetails.title_color}', ${boardDetails.animationMode})`;
+  var sql = `INSERT INTO boards (title, background_img, background_color, title_color, board_type) VALUES ('${boardDetails.title}', '${fileDetails?.filename || ''}', '${boardDetails.background_color}', '${boardDetails.title_color}', '${boardDetails.type_check}')`;
   db.query(sql, boardDetails, function (err, data) {
     if (err) throw err;
     console.log("Post data (board) is inserted successfully", data);

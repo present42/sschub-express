@@ -67,14 +67,14 @@
               <% } %>
             <%= board_list[i].title %>
           </h4>
-          <a href="/admin/board/<%= board_list[i].board_id %>"><button class="shadow p-4 mb-5 bg-white rounded"><img
+          <a href="/admin/board/<%= board_list[i].board_id %>"><button class="thumbnail shadow mb-5 bg-white rounded"><img
                 src="/images/<%= board_list[i].background_img %>" class="img-fluid img-inside-button" class="rounded"
-                alt="board sample image"></button></a>
+                alt="No Background"></button></a>
         </div>
         <% } %>
           <div class="col-md-3">
             <h4>&#8203</h4>
-            <a href="board/create"><button class="shadow p-3 mb-5 bg-white rounded"><img
+            <a href="board/create"><button class="thumbnail shadow mb-5 bg-white rounded"><img
                   src="/images/admin/add_board.png" class="img-fluid" class="rounded"
                   alt="board sample image"></button></a>
           </div>

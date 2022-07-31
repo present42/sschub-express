@@ -1,6 +1,7 @@
 .img-inside-button {
     /* max-height: calc(100% - 3rem); */
     max-width: calc(100% - 3rem);
+    max-height:calc(100% - 3rem);
 }
 
 .navbar {
@@ -10,6 +11,13 @@
     border-radius: 0;
     margin-bottom: 20px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail{
+    max-width: 20vw;
+    max-height: 25vh;
+    width:100%;
+    height:100%;
 }
 
 .modal-body .post-body {

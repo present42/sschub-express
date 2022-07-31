@@ -267,40 +267,17 @@
 
                             </li>
                             </ul>
-
-
                             <ul class="list-unstyled CTAs text-center ">
                                 <li>
-                                    <button class="btn btn-secondary reset">Reset</button>
+                                    <button class="btn btn-secondary reset" type="button" onClick="window.location.reload();" >Reset</button>
                                 </li>
                                 <li>
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    <button type="submit" class="btn btn-primary save">Save Changes</button>
                                 </li>
                             </ul>
                 </div>
 
             </form>
-
-            <div class="modal fade" id="savechanges" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Save Changes</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Changes to the board have been saved.
-                        </div>
-                        <div class="modal-footer">
-                            <a href="board.html"><button id="closeedit" type="button" class="btn btn-secondary"
-                                    data-dismiss="modal">Close</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </nav>
 
         <!-- Page Content  -->
@@ -400,21 +377,19 @@
                     $('#sidebarCollapse').on('click', function () {
                         $('#sidebar').toggleClass('active');
                     });
-                    $('#closeedit').click(function () {
-                        // handle redirect here
-                        window.location.href = "board.html";
-                        $('#savechanges').modal('hide');
-                    });
+                    
                 });
             </script>
 
             <script>
-                $('.btn-primary').on('click', function () {
+                $('.save').on('click', function () {
+                    
                     $.post(`/:board_id/edit`, function (data) {
                         if (data.success) {
                             location.reload();
                         }
                     });
+                    
                 });
             </script>
 </body>
