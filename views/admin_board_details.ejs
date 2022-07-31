@@ -71,10 +71,11 @@
                         <input type="hidden" name="board_id" id="board_id" value="<%= board[0].board_id %>">
                         <% } %>
                             <ul class="list-unstyled components">
+                                <div class="category">Board</div>
                                 <li>
                                     <a href="#" data-bs-toggle="collapse" data-bs-target="#titleSubmenu"
-                                        aria-expanded="true" class="dropdown-toggle btn-toggle">Title</a>
-                                    <ul class="collapse list-unstyled show" id="titleSubmenu">
+                                         class="dropdown-toggle btn-toggle">Title</a>
+                                    <ul class="collapse list-unstyled" id="titleSubmenu">
                                         <li>
                                             <a href="#">
                                                 Title
@@ -107,19 +108,19 @@
                                                         id="bgRadio1" value="option1" data-bs-toggle="collapse"
                                                         data-bs-target="#bgColorMenu:not(.show),#bgImageMenu.show"
                                                         aria-expanded="false">
-                                                    <label class="form-check-label" for="bgRadio1">color</label>
+                                                    <label class="form-check-label" for="bgRadio1">Color</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="bgRadioOptions"
                                                         id="bgRadio2" value="option2" data-bs-toggle="collapse"
                                                         data-bs-target="#bgColorMenu.show,#bgImageMenu:not(.show)"
                                                         aria-expanded="true" checked>
-                                                    <label class="form-check-label" for="bgRadio2">image</label>
+                                                    <label class="form-check-label" for="bgRadio2">Image</label>
                                                 </div>
                                             </a>
                                         </li>
                                         <li class="collapse" id="bgColorMenu">
-                                            <a href="#">Background Color
+                                            <a href="#">
                                                 <div class="form-group">
                                                     <input type="text" name="color" id="bgColor"
                                                         class="form-control color-picker" data-format="rgb"
@@ -131,7 +132,7 @@
                                             </a>
                                         </li>
                                         <li class="collapse show" id="bgImageMenu">
-                                            <a href="#">Image
+                                            <a href="#">
                                                 <input type="file" name="background_img" class="form-control"
                                                     id="customFile" />
                                             </a>
@@ -139,11 +140,24 @@
                                     </ul>
                                 </li>
                                 <li>
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#musicSubmenu"
+                                        class="dropdown-toggle btn-toggle">Music</a>
+                                    <ul class="collapse list-unstyled" id="musicSubmenu">
+                                        <li>
+                                            <a href="#">
+                                                <input type="file" name="bg_music" class="form-control" id="bg_music"
+                                                    accept="audio/*" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <div class="category">Message</div>
+                                <li>
                                     <a href="#" data-bs-toggle="collapse" data-bs-target="#messageSubmenu"
-                                        class="dropdown-toggle btn-toggle">Message</a>
+                                        class="dropdown-toggle btn-toggle">Animation / Card Shape</a>
                                     <ul class="collapse list-unstyled" id="messageSubmenu">
                                         <li>
-                                            <a href="#" id="message-type">Animation/Card Shape
+                                            <a href="#" id="message-type">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="type_check"
                                                         id="flying-check" value="0" <%=board[0].board_type==0
@@ -184,8 +198,8 @@
                                 </li>
                                 <li>
                                     <a href="#" data-bs-toggle="collapse" data-bs-target="#postColorSubmenu"
-                                        class="dropdown-toggle btn-toggle">Post Colors</a>
-                                    <ul class="list-unstyled components" id="postColorSubmenu">
+                                        class="dropdown-toggle btn-toggle">Background</a>
+                                    <ul class="list-unstyled collapse" id="postColorSubmenu">
                                         <li>
                                             <a href="#">Post Color 1
                                                 <div class="form-group postPick">
@@ -233,24 +247,12 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#musicSubmenu"
-                                        class="dropdown-toggle btn-toggle">Music</a>
-                                    <ul class="collapse list-unstyled" id="musicSubmenu">
-                                        <li>
-                                            <a href="#">
-                                                <input type="file" name="bg_music" class="form-control" id="bg_music"
-                                                    accept="audio/*" />
-                                            </a>
-                                        </li>
-                                </li>
+                                
                             </ul>
                             </li>
                             <li>
-                                <!-- <a href="#mainboardSubmenu" data-toggle="collapse" aria-expanded="true"
-                                class="dropdown-toggle">Mainboard</a> -->
-                                <br>
-                                <ul class="list-unstyled" id="mainboardSubmenu">
+                    
+                                <ul class="list-unstyled select-main" id="mainboardSubmenu">
                                     <li>
                                         <div class="form-check">
                                             <input class="form-check-input" name="chooseAsMain" type="checkbox"
@@ -266,12 +268,11 @@
                             </ul>
 
 
-                            <ul class="list-unstyled CTAs">
+                            <ul class="list-unstyled CTAs text-center ">
                                 <li>
-                                    <a href="#" class="download">Reset</a>
+                                    <button class="btn btn-secondary reset">Reset</button>
                                 </li>
                                 <li>
-                                    <!-- <a href="https://bootstrapious.com/p/bootstrap-sidebar" data-toggle="modal" data-target="#savechanges" class="article">Save Changes</a> -->
                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </li>
                             </ul>

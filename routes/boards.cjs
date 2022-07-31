@@ -47,12 +47,8 @@ app.post('/create', upload.fields([{name:'background_img', max_count:1},{name:'b
 app.post('/:board_id/edit', filefields, function(req, res, next) {
   const boardDetails = req.body;
   const fileDetails = req.files;
-  console.log("Files: ");
-  console.log(req.files);
-  console.log(req.files['background_img']);
-  console.log("Filename: " + req.files['background_img'][0]['filename']);
   var temp ='';
-  if (boardDetails.background_color == '' && fileDetails['background_img'] == undefined){
+  if (fileDetails['background_img'] == undefined){
     console.log("fileDetails is undefined");
     temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.background_color}', board_type = '${boardDetails.type_check}' `;
   }else{
@@ -61,6 +57,7 @@ app.post('/:board_id/edit', filefields, function(req, res, next) {
   }
 
   if(fileDetails['bg_music']!=undefined){
+    console.log(fileDetails['bg_music']);
     temp += `, bg_music = '${fileDetails['bg_music'][0]['filename']}' `;
   }
 

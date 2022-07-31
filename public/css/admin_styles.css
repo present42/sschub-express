@@ -28,12 +28,23 @@ body {
     text-decoration: none;
 }
 
+.btn-primary{
+    text-align: center;
+    align-self: center;
+    display: inline-block;
+}
+
 .form-control {
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
     font-weight: 300;
     line-height: 1.7em;
     color: #999;
+}
+
+.form-check{
+    padding-left:5px;
+    text-align: left;
 }
 
 .form-control::placeholder {
@@ -72,6 +83,7 @@ a:focus {
     background: #fff;
     border: none;
     border-radius: 0;
+    height: 10vh;
     margin-bottom: 10px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -106,13 +118,12 @@ a:focus {
 #sidebar {
     margin-top: 0px;
     min-width: 300px;
-    max-width: 300px;
+    max-width: 30vw;
     background: #ffffff;
     color: rgb(161, 161, 161);
     transition: all 0.3s;
-
-    height: 89vh;
-    overflow-y: scroll!important;
+    overflow: scroll !important;
+    height: 90vh;
 }
 
 #sidebar.active {
@@ -129,6 +140,8 @@ a:focus {
 
 #sidebar ul.components {
     padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
     padding-left: 20px;
     border-bottom: 1px rgb(161, 161, 161);
 }
@@ -140,20 +153,20 @@ a:focus {
 
 #sidebar ul li a {
     padding: 10px;
+    padding-right: 20px;
     font-size: 1.1em;
     display: block;
 }
 
 #sidebar ul li a:hover {
     color: rgb(255, 255, 255);
-    ;
-    background: #afafaf;
+    background: #c3c3c3;
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: rgb(255, 255, 255);
-    background: #afafaf;
+    background: #c3c3c3;
 }
 
 a.btn-toggle {
@@ -191,30 +204,48 @@ ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
     background: rgb(255, 255, 255);
-    ;
 }
 
 ul.CTAs {
     padding: 20px;
 }
 
-ul.CTAs a {
+ul.CTAs li {
     text-align: center;
     font-size: 0.9em !important;
     display: block;
     border-radius: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-a.download {
+button.reset {
+    width: 70%;
     background: #fff;
     color: #afafaf;
+    border-color: #999;
+}
+
+button.btn-primary{
+    width: 70%;
 }
 
 a.article,
 a.article:hover {
-    background: #afafaf !important;
+    background: #c3c3c3 !important;
     color: #fff !important;
+}
+
+.category{
+    color: rgb(101, 101, 101);
+    padding: 7px;
+    font-size:1.3em;
+    border-bottom-style: dotted;
+    border-color: #999;
+    margin-right:20px;
+}
+
+.select-main{
+    padding: 0vw 2vw;
 }
 
 
