@@ -59,7 +59,7 @@
   <div class="container pt-5">
     <div class="row">
       <% for(var i=0; i < board_list.length; i++) { %>
-        <div class="col-md-3">
+        <div class="col-md-3 board">
           <h4 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
             <% if (board_list[i].board_id==board_list[i].current_board_id) { %>
               <span class="material-symbols-outlined">
@@ -68,9 +68,10 @@
               <% } %>
             <%= board_list[i].title %>
           </h4>
-          <a href="/admin/board/<%= board_list[i].board_id %>"><button class="thumbnail shadow mb-5 bg-white rounded"><img
-                src="/images/<%= board_list[i].background_img %>" class="img-fluid img-inside-button" class="rounded"
-                alt="No Background"></button></a>
+          <a href="/admin/board/<%= board_list[i].board_id %>">
+            <button class="thumbnail shadow mb-5 bg-white rounded" style="background-image: url('/images/<%= board_list[i].background_img? board_list[i].background_img:'neon.jpeg' %>');">
+            </button>
+          </a>
         </div>
         <% } %>
           <div class="col-md-3">
