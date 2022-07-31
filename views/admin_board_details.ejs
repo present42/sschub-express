@@ -103,19 +103,19 @@
                                         class="dropdown-toggle btn-toggle">Background</a>
                                     <ul class="collapse list-unstyled" id="backgroundSubmenu">
                                         <li>
-                                            <a href="#">
+                                            <a href="#" id="bg-type">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="bgRadioOptions"
                                                         id="bgRadio1" value="option1" data-bs-toggle="collapse"
                                                         data-bs-target="#bgColorMenu:not(.show),#bgImageMenu.show"
-                                                        aria-expanded="false">
+                                                        >
                                                     <label class="form-check-label" for="bgRadio1">Color</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="bgRadioOptions"
                                                         id="bgRadio2" value="option2" data-bs-toggle="collapse"
                                                         data-bs-target="#bgColorMenu.show,#bgImageMenu:not(.show)"
-                                                        aria-expanded="true" checked>
+                                                        aria-expanded="false">
                                                     <label class="form-check-label" for="bgRadio2">Image</label>
                                                 </div>
                                             </a>
@@ -202,47 +202,47 @@
                                         class="dropdown-toggle btn-toggle">Background</a>
                                     <ul class="list-unstyled collapse" id="postColorSubmenu">
                                         <li>
-                                            <a href="#">Post Color 1
+                                            <a href="#">
                                                 <div class="form-group postPick">
                                                     <input type="text" name="post_color_1" id="post_color_1"
-                                                        class="form-control color-picker" data-format="rgb"
-                                                        data-opacity=".8" value="rgba(52, 64, 158, 0.8)">
+                                                        class="form-control color-picker" data-format="rgb" 
+                                                        >
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">Post Color 2
+                                            <a href="#">
                                                 <div class="form-group postPick">
                                                     <input type="text" name="post_color_2" id="post_color_2"
                                                         class="form-control color-picker" data-format="rgb"
-                                                        data-opacity=".8" value="rgba(52, 64, 158, 0.8)">
+                                                        >
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">Post Color 3
+                                            <a href="#">
                                                 <div class="form-group postPick">
                                                     <input type="text" name="post_color_3" id="post_color_3"
                                                         class="form-control color-picker" data-format="rgb"
-                                                        data-opacity=".8" value="rgba(52, 64, 158, 0.8)">
+                                                        >
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">Post Color 4
+                                            <a href="#">
                                                 <div class="form-group postPick">
                                                     <input type="text" name="post_color_4" id="post_color_4"
                                                         class="form-control color-picker" data-format="rgb"
-                                                        data-opacity=".8" value="rgba(52, 64, 158, 0.8)">
+                                                        >
                                                 </div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">Post Color 5
+                                            <a href="#">
                                                 <div class="form-group postPick">
                                                     <input type="text" name="post_color_5" id="post_color_5"
                                                         class="form-control color-picker" data-format="rgb"
-                                                        data-opacity=".8" value="rgba(52, 64, 158, 0.8)">
+                                                        >
                                                 </div>
                                             </a>
                                         </li>
@@ -369,17 +369,32 @@
             <!-- <script src="/javascripts/admin_preview.js" type="module"></script> -->
             <script type="text/javascript">
                 $(document).ready(function () {
+                    let text = "<%= board[0].post_colors %>";
+                    const color_list = text.split("  ");
+                    for (let i=1; i<6; i++){
+                        console.log(color_list[i-1]);
+                        $("#post_color_"+i.toString()).minicolors('value', color_list[i-1]);
+                        console.log(document.getElementById("post_color_"+i.toString()).value);
+                    }
+
                     document.getElementById("board-title").style.color = "<%= board[0].title_color %>";
                     document.getElementById("board-title").innerHTML = "<%= board[0].title %>";
+                    var event = new Event('input', { checked: true });
                     if ("<%= board[0].background_color %>" == 'undefined' || "<%= board[0].background_color %>" == '') {
+                        document.getElementById("bgRadio2").checked = true;
+                        document.getElementById("bgColorMenu").classList.remove("show");
+                        document.getElementById("bgImageMenu").classList.add("show");
                         document.getElementById("content").style.backgroundImage = "url(/images/<%= board[0].background_img %>)";
                         document.getElementById("customFile").files[0] = "<%= board[0].background_img %>";
-                        console.log(document.getElementById("customFile").files[0]);
+                        document.getElementById("bg-type").children[1].children[0].dispatchEvent(event);
                     } else {
                         $(".preview").css("background", "");
+                        document.getElementById("bgRadio1").checked = true;
+                        document.getElementById("bgImageMenu").classList.remove("show");
+                        document.getElementById("bgColorMenu").classList.add("show");
                         document.getElementById("content").style.backgroundColor = "<%= board[0].background_color %>";
                     }
-                    var event = new Event('input', { checked: true });
+                    console.log(document.getElementById("message-type").children["<%= board[0].board_type %>"]);
                     document.getElementById("message-type").children["<%= board[0].board_type %>"].children[0].dispatchEvent(event);
 
                     $('#sidebarCollapse').on('click', function () {

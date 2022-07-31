@@ -61,6 +61,8 @@ app.post('/:board_id/edit', filefields, function(req, res, next) {
     temp += `, bg_music = '${fileDetails['bg_music'][0]['filename']}' `;
   }
 
+  var post_colors = `, post_colors = '${boardDetails.post_color_1}  ${boardDetails.post_color_2}  ${boardDetails.post_color_3}  ${boardDetails.post_color_4}  ${boardDetails.post_color_5}' `;
+  temp += post_colors;
   temp += `WHERE board_id = ${boardDetails.board_id}`;
 
   const sql = temp;
