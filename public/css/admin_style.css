@@ -13,6 +13,40 @@
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+.floating-button{
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #fefefe;
+  border: solid;
+  border-radius: 50%;
+  border-color: red;
+  border-width: 1px;
+  right: 5vh;
+  bottom: 5vh;
+  margin: auto;
+  color: rgb(255, 0, 0);
+  line-height: 65px;
+  text-align: center;
+  font-size: 23px;
+  z-index: 100;
+  box-shadow: 0 10px 25px -5px rgba(240, 44, 44, 0.6);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.floating-button:hover, 
+.floating-button.is-active {
+    box-shadow: 0 10px 25px rgba(240, 44, 44, 0.6);
+    background-color: red;
+    color: white;
+    -webkit-transform: translatey(5px);
+            transform: translatey(5px);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
 .thumbnail{
     max-width: 20vw;
     max-height: 25vh;
