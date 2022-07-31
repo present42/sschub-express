@@ -61,25 +61,20 @@ $(document).ready(function () {
         }
     });
 
-    // Post Colors
-    document.getElementById("sky-check").addEventListener('input', function (evt) {
-        console.log("Sky is selected.");
-    });
-
-    document.getElementById("grass-check").addEventListener('input', function (evt) {
-        console.log("Grass is selected.");
-    });
-
-    document.getElementById("card-check").addEventListener('input', function (evt) {
+    document.getElementById("flying-check").addEventListener('input', function (evt) {
         setMessageType(0);
     });
 
-    document.getElementById("pin-check").addEventListener('input', function (evt) {
+    document.getElementById("card-check").addEventListener('input', function (evt) {
         setMessageType(1);
     });
 
-    document.getElementById("tape-check").addEventListener('input', function (evt) {
+    document.getElementById("pin-check").addEventListener('input', function (evt) {
         setMessageType(2);
+    });
+
+    document.getElementById("tape-check").addEventListener('input', function (evt) {
+        setMessageType(3);
     });
 });
 
@@ -87,7 +82,7 @@ function setMessageType(type) {
     console.log("Initializing message type");
     document.getElementById("messages").innerHTML = "";
     var str = '';
-    if (type == 0) {
+    if (type == 1) {
         str = `<div class="paper green"> 
             <div class = "content">
                 <div class="upper-part">
@@ -118,7 +113,7 @@ function setMessageType(type) {
                         account_circle</i>User_2
                 </div>
             </div>`;
-    } else if (type == 1) {
+    } else if (type == 2) {
         str = `<div class="paper green animate">
             <div class="top-pin pin_blue">
                 <div class="top-pin-head">
