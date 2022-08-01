@@ -59,7 +59,7 @@
   <div class="container pt-5">
     <div class="row">
       <% for(var i=0; i < board_list.length; i++) { %>
-        <div class="col-md-3 board">
+        <div class="col-md-3 board" id="<%= board_list[i].board_id %>">
           <h4 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
             <% if (board_list[i].board_id==board_list[i].current_board_id) { %>
               <span class="material-symbols-outlined">
@@ -82,8 +82,14 @@
           </div>
     </div>
   </div>
-
-  <div class="floating-button" id="delete"><i class="fa-solid fa-trash-can"></i></div>
+  <div class="floating-container">
+    <div class="floating-button" id="delete"><i class="fa-solid fa-trash-can"></i></div>
+    <div class="element-container">
+      <span class="float-element tooltip-left">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
+    </div>
+  </div>
 
   <div class="modal fade" id="sign_out" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
