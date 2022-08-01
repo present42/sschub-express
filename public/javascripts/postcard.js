@@ -2,18 +2,31 @@
 // console.log(row);
 // row.classList.addClass('horizTranslate');
 // console.log(row.ClassList);
-
+// (() => {
 var count = 0;
 var messages = {};
 let pid;
 
 var webSocket = new WebSocket('ws://172.105.206.64/websockets');
+var board_details;
+var color_list;
+
 webSocket.onopen = function (event) {
   pid = setInterval(() => { webSocket.send(JSON.stringify({ msg: "give me new message" })); }, 9000);
 };
 
 webSocket.onmessage = function (event) {
   data = JSON.parse(event.data);
+  console.log(data);
+
+  board_details = data[1][0];
+  color_list = board_details.post_colors.split('  ');
+  
+  var board_title = document.getElementById("board_title");
+  board_title.innerHTML = board_details.title;
+  board_title.style.color = board_details.title_color;
+  data = data[0];
+
   console.log(JSON.parse(event.data));
   l = ['bg', 'md'];
   createNewMessage(0, 0, l[getRandomInt(0, 1)], data.message, data.nickname, data.email, data.image_path, data.approved_time);
@@ -38,7 +51,8 @@ function getRandomInt(min, max) {
 }
 
 function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This content is a little bit longer.", nickname = "hyunju", email = "hyunju@connect.abc.com", filename, time) {
-  color_list = ["rgba(255, 255, 255, 0.856)", "rgba(238, 228, 218, 0.87)", "rgba(237, 194, 46, 0.87)"];
+  console.log(board_details);
+  // color_list = ["rgba(255, 255, 255, 0.856)", "rgba(238, 228, 218, 0.87)", "rgba(237, 194, 46, 0.87)"];
   color = getRandomInt(0, 2);
   color = color_list[color];
 
@@ -159,5 +173,6 @@ function deleteMessage(id) {
 }
 
 l = ['bg', 'md']
+// })();
 
 // setInterval(() => createNewMessage(0, 0, l[getRandomInt(0, 1)]), 6000)

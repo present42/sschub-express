@@ -37,7 +37,7 @@ app.get('/helloworld', function (req, res, next) {
     req.session.views = 1
     res.end('welcome to the session demo. refresh!')
   }
-})
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

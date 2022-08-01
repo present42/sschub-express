@@ -96,7 +96,8 @@ app.post('/create', upload.single('image'), function(req, res, next) {
   const postDetails = req.body;
   if(req.file) req.body.image_path = req.file.filename;
   console.log("req.body", postDetails);
-
+  console.log(postDetails.message);
+  
   var sql = 'INSERT INTO posts SET ?';
   db.query(sql, postDetails, function (err, data) {
     if(err) throw err;
