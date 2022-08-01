@@ -28,103 +28,7 @@
 
   <script src="js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    window.onload = (event) => {
-      let area = document.querySelector("#message");
-      let word_count = document.querySelector("#word-count");
-
-      let imgInp = document.querySelector("#formFile");
-
-      let thumbnail = document.querySelector("img.img-thumbnail");
-      let thumbnail_crop = document.querySelector("img#crop_img_tool");
-      let preview_button = document.querySelector("button.btn-secondary");
-      let crop_button = document.querySelector("button#crop_done");
-      let submit_button = document.querySelector("button#submit_button");
-      let crop_input = document.querySelector("input#formFile_crop");
-
-      area.addEventListener(
-        "input",
-        function () {
-          temp = area.value.trim();
-          word_count.textContent =
-            temp != "" ? (temp.match(/ /g) || []).length + 1 : 0;
-        },
-        false
-      );
-
-      imgInp.onchange = (evt) => {
-        const [file] = imgInp.files;
-        if (file) {
-          thumbnail_crop.src = URL.createObjectURL(file);
-        }
-
-        const image = document.getElementById('crop_img_tool');
-        // console.log(image);
-        cropper = new Cropper(image, {
-          aspectRatio: 1 / 1,
-          crop(event) {
-            console.log(event.detail.x);
-            console.log(event.detail.y);
-            console.log(event.detail.width);
-            console.log(event.detail.height);
-            console.log(event.detail.rotate);
-            console.log(event.detail.scaleX);
-            console.log(event.detail.scaleY);
-          },
-          minCanvusWidth: 500
-        });
-        myModal.show();
-      };
-
-      const toastLiveExample = document.getElementById('liveToast')
-      console.log(location.href.split('/')[3] == 'form?success');
-      if (location.href.split('/')[3] == 'form?success') {
-        const toast = new bootstrap.Toast(toastLiveExample);
-        toast.show();
-      }
-
-      const myModal = new bootstrap.Modal(document.getElementById('cropImageModal'));
-      var cropper;
-      const form_data = new FormData();
-
-      preview_button.onclick = (evt) => {
-
-        // import Cropper from 'cropperjs'
-        const image = document.getElementById('crop_img_tool');
-        // console.log(image);
-        cropper = new Cropper(image, {
-          aspectRatio: 1 / 1,
-          crop(event) {
-            console.log(event.detail.x);
-            console.log(event.detail.y);
-            console.log(event.detail.width);
-            console.log(event.detail.height);
-            console.log(event.detail.rotate);
-            console.log(event.detail.scaleX);
-            console.log(event.detail.scaleY);
-          },
-          minCanvusWidth: 600
-        });
-        myModal.show();
-      }
-
-      crop_button.onclick = (evt) => {
-        console.log(cropper);
-        console.log("hello");
-        cropper.getCroppedCanvas().toBlob((blob) => {
-          thumbnail.src = URL.createObjectURL(blob);
-          // crop_input.value = blob;
-          let cropped_file = new File([blob], "cropped_file", {type:"image/png", lastModified: new Date().getTime()});
-          let container = new DataTransfer();
-          container.items.add(cropped_file);
-          imgInp.files = container.files;
-        });
-        myModal.hide();
-      };
-
-      
-    };
-  </script>
+  <script src="javascripts/form.js"></script>
 
   <style>
     .test {
@@ -263,6 +167,11 @@
           <h5 class="modal-title" id="staticBackdropLabel">Crop your image</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="d-flex justify-content-center" id="spinner">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
         <div class="modal-body">
           <div style="width: 100%;">
             <img id="crop_img_tool" class="test" src="">
@@ -270,14 +179,12 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="crop_cancel">Close</button>
           <button type="button" class="btn btn-primary" id="crop_done">Crop</button>
         </div>
       </div>
     </div>
   </div>
-
-  <script src="/javascripts/form.js"></script>
 </body>
 
 </html>
