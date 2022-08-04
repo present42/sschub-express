@@ -17,44 +17,28 @@
   <!-- width=device-width part sets the width of the page to follow the screen-width of the device -->
   <!-- initial-scale=1 part sets the initial zoom level when the page is first loaded by the browser -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
   <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"
+    integrity="sha512-ooSWpxJsiXe6t4+PPjCgYmVfr1NS5QXJACcR/FPpsdm6kqG1FmQ2SVyg2RXeVuCRBLr0lWHnWJP6Zs1Efvxzww=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css"
+    integrity="sha512-0SPWAwpC/17yYyZ/4HSllgaK7/gg9OlVozq8K7rf3J8LvCjYEEIfzzpnA2/SSjpGIunCSD18r3UhvDcu/xncWA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <script src="js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    window.onload = (event) => {
-      let area = document.querySelector("#message");
-      let word_count = document.querySelector("#word-count");
+  <script src="javascripts/form.js"></script>
 
-      let imgInp = document.querySelector("#formFile");
-
-      let thumbnail = document.querySelector("img.img-thumbnail");
-
-      area.addEventListener(
-        "input",
-        function () {
-          temp = area.value.trim();
-          word_count.textContent =
-            temp != "" ? (temp.match(/ /g) || []).length + 1 : 0;
-        },
-        false
-      );
-
-      imgInp.onchange = (evt) => {
-        const [file] = imgInp.files;
-        if (file) {
-          thumbnail.src = URL.createObjectURL(file);
-        }
-      };
-
-      const toastLiveExample = document.getElementById('liveToast')
-      console.log(location.href.split('/')[3] == 'form?success');
-      if (location.href.split('/')[3] == 'form?success') {
-        const toast = new bootstrap.Toast(toastLiveExample);
-        toast.show();
-      }
-    };
-  </script>
+  <style>
+    .test {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+  </style>
 </head>
 
 <body>
@@ -93,7 +77,8 @@
     </p>
   </div>
   <div class="container p-5 mb-5 border">
-    <form ref="postForm" id="postForm" action="/post/create" method="POST" enctype="multipart/form-data">
+    <form ref="postForm" id="postForm" action="/post/create" method="POST" enctype="multipart/form-data"
+      accept-charset="utf-8">
       <div class="d-flex align-items-center row mb-4 mt-4">
         <label for="message" class="col-lg-2 col-form-label align-middle">
           Message (*)<br />
@@ -127,7 +112,7 @@
         </div>
         <label class="form-label col-lg-2">Attachment Preview</label>
         <div class="col-lg-4">
-          <img src="" class="img-thumbnail" style="max-width: 120px" alt="Please select a valid file" />
+          <img src="" id="preview" class="img-thumbnail" style="max-width: 120px" alt="Please select a valid file" />
         </div>
       </div>
       <hr />
@@ -145,7 +130,7 @@
       <input type="hidden" name="parent_board_id" value="<%= data.board_id %>">
       <div class="mt-5">
         <button type="button" class="btn btn-secondary">Preview</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" id="submit_button" class="btn btn-primary">Submit</button>
       </div>
     </form>
   </div>
@@ -175,6 +160,33 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="cropImageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Crop your image</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="d-flex justify-content-center" id="spinner">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div style="width: 100%;">
+            <img id="crop_img_tool" class="test" src="">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="crop_cancel">Close</button>
+          <button type="button" class="btn btn-primary" id="crop_done">Crop</button>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 

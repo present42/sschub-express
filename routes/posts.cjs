@@ -94,9 +94,10 @@ app.post('/create', upload.single('image'), function(req, res, next) {
   console.log("Hello");
   req.socket.setTimeout(10 * 60 * 1000);
   const postDetails = req.body;
-  req.body.image_path = req.file.filename;
+  if(req.file) req.body.image_path = req.file.filename;
   console.log("req.body", postDetails);
-
+  console.log(postDetails.message);
+  
   var sql = 'INSERT INTO posts SET ?';
   db.query(sql, postDetails, function (err, data) {
     if(err) throw err;

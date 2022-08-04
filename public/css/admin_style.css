@@ -1,6 +1,7 @@
 .img-inside-button {
     /* max-height: calc(100% - 3rem); */
     max-width: calc(100% - 3rem);
+    max-height:calc(100% - 3rem);
 }
 
 .navbar {
@@ -10,6 +11,183 @@
     border-radius: 0;
     margin-bottom: 20px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.floating-button{
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #fefefe;
+  border: solid;
+  border-radius: 50%;
+  border-color: red;
+  border-width: 1px;
+  right: 5vh;
+  bottom: 5vh;
+  margin: auto;
+  color: rgb(255, 0, 0);
+  line-height: 65px;
+  text-align: center;
+  font-size: 23px;
+  z-index: 100;
+  box-shadow: 0 10px 25px -5px rgba(240, 44, 44, 0.6);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.board{
+    padding: 20px;
+    border-radius: 10px;
+    z-index:50;
+}
+
+.board.select:hover,
+.board.select.is-active{
+    background:rgb(152, 152, 152);
+    z-index:50;
+}
+
+/* Delete Button */
+
+@-webkit-keyframes come-in {
+    0% {
+      -webkit-transform: translatey(100px);
+              transform: translatey(100px);
+      opacity: 0;
+    }
+    30% {
+      -webkit-transform: translateX(-50px) scale(0.4);
+              transform: translateX(-50px) scale(0.4);
+    }
+    70% {
+      -webkit-transform: translateX(0px) scale(1.2);
+              transform: translateX(0px) scale(1.2);
+    }
+    100% {
+      -webkit-transform: translatey(0px) scale(1);
+              transform: translatey(0px) scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes come-in {
+    0% {
+      -webkit-transform: translatey(100px);
+              transform: translatey(100px);
+      opacity: 0;
+    }
+    30% {
+      -webkit-transform: translateX(-50px) scale(0.4);
+              transform: translateX(-50px) scale(0.4);
+    }
+    70% {
+      -webkit-transform: translateX(0px) scale(1.2);
+              transform: translateX(0px) scale(1.2);
+    }
+    100% {
+      -webkit-transform: translatey(0px) scale(1);
+              transform: translatey(0px) scale(1);
+      opacity: 1;
+    }
+  }
+
+.floating-container {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    bottom: 0;
+    right: 0;
+    margin: 35px 25px;
+  }
+
+  .floating-container.is-active {
+    height: 160px;
+  }
+
+  .floating-container:hover .floating-button {
+    box-shadow: 0 10px 25px rgba(240, 44, 44, 0.6);
+    -webkit-transform: translatey(5px);
+            transform: translatey(5px);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .floating-container.is-active .element-container .float-element:nth-child(1) {
+    -webkit-animation: come-in 0.2s forwards;
+            animation: come-in 0.2s forwards;
+  }
+
+  .floating-container .floating-button {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background: #ffffff;
+    bottom: 0;
+    border-radius: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: rgb(255, 0, 0);
+    line-height: 65px;
+    text-align: center;
+    font-size: 23px;
+    z-index: 100;
+    box-shadow: 0 10px 25px -5px rgba(240, 44, 44, 0.6);
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .floating-container .float-element {
+    position: relative;
+    display: block;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    margin: 15px auto;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    line-height: 65px;
+    z-index: 0;
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+  }
+  .floating-container .float-element .material-icons {
+    vertical-align: middle;
+    font-size: 16px;
+  }
+  .floating-container.is-active .float-element:nth-child(1) {
+    background: #ffffff;
+    border: solid gray 1px;
+    color: gray;
+    box-shadow: 0 20px 20px -5px rgba(120, 120, 120, 0.253);
+  }
+  
+.floating-button.is-active {
+    box-shadow: 0 10px 25px rgba(240, 44, 44, 0.6);
+    background-color: red;
+    color: white;
+    -webkit-transform: translatey(5px);
+            transform: translatey(5px);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+/* Board Thumbnails */
+
+.thumbnail{
+    padding:20px;
+    max-width: 20vw;
+    max-height: 25vh;
+    width:20vw;
+    height:25vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip: content-box;
+    z-index:-10;
 }
 
 .modal-body .post-body {

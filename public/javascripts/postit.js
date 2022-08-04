@@ -10,7 +10,11 @@ webSocket.onopen = function (event) {
 webSocket.onmessage = function(event) {
     console.log(event.data);
     
-    let data = JSON.parse(event.data);
+    data = JSON.parse(event.data);
+
+    board_details = data[1];
+    data = data[0];
+    
     console.log(data);
     const l = ['bg', 'md'];
     //createNewMessage(0, 0, l[getRandomInt(0, 1)], data.message, data.nickname, data.email, data.image_path);

@@ -24,7 +24,7 @@ app.post('/auth', function (req, res) {
                 // Redirect to home page
                 res.redirect('/admin');
             } else {
-                res.redirect('/login');
+                res.redirect('/login?bad');
             }
             res.end();
         });
@@ -33,7 +33,7 @@ app.post('/auth', function (req, res) {
 
 app.get('/signout', function(req, res) {
     req.session.destroy();
-    res.redirect('/login');
+    res.redirect('/login?signout');
 }) 
 
 module.exports = app;

@@ -9,10 +9,6 @@
 
     <title>Discussion Board Admin Page</title>
 
-    <!-- Bootstrap CSS CDN -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" -->
-    <!-- integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> -->
-
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <script src="/js/bootstrap.bundle.min.js"></script>
     <!-- Our Custom CSS -->
@@ -21,7 +17,6 @@
 
     <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
     <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
-    <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.minicolors.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -30,8 +25,13 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
         integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js"></script>
+
+    <!-- CSS / JS for minicolors -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="/javascripts/jquery.minicolors.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.minicolors.css">
+    
+    <script type="text/javascript" src="/javascripts/admin_preview.js"></script>
 </head>
 
 <body>
@@ -64,174 +64,220 @@
             <div class="sidebar-header">
                 <h4>Edit Board</h4>
             </div>
-            <form ref="adminBoardForm" id="adminBoardForm" action="/boards/1/edit" method="POST"
+            <form ref="adminBoardForm" id="adminBoardForm"
+                action="/boards/<%= board[0].board_id != -1 ?  board[0].board_id + '/edit' : 'create' %>" method="POST"
                 enctype="multipart/form-data">
                 <div>
-                    <input type="hidden" name="board_id" id="board_id" value="<%= board[0].board_id %>">
-                    <ul class="list-unstyled components">
-                        <li>
-                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-                                class="dropdown-toggle">Title</a>
-                            <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <% if(board[0].board_id !=-1) { %>
+                        <input type="hidden" name="board_id" id="board_id" value="<%= board[0].board_id %>">
+                        <% } %>
+                            <ul class="list-unstyled components">
+                                <div class="category">Board</div>
                                 <li>
-                                    <a href="#">Title
-                                        <div class="form-group">
-                                            <input type="title" name="title" class="form-control" id="titleInput"
-                                                aria-describedby="title" placeholder="Enter title"
-                                                value="<%= board[0].title %>">
-                                        </div>
-                                    </a>
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#titleSubmenu"
+                                         class="dropdown-toggle btn-toggle">Title</a>
+                                    <ul class="collapse list-unstyled" id="titleSubmenu">
+                                        <li>
+                                            <a href="#">
+                                                Title
+                                                <div class="form-group">
+                                                    <input type="title" name="title" class="form-control"
+                                                        id="titleInput" aria-describedby="title"
+                                                        placeholder="Enter title" value="<%= board[0].title %>">
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Title Color
+                                                <div class="form-group">
+                                                    <input type="text" name="title_color" id="titleColor"
+                                                        class="form-control color-picker" data-format="rgb"
+                                                        data-opacity=".5" value="<%= board[0].title_color %>">
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    <a href="#">Color
-                                        <div class="form-group">
-                                            <input type="text" name="title_color" id="titleColor"
-                                                class="form-control titlePick" data-control="titlecolor"
-                                                value="# <%= board[0].title_color.toString(16) %>">
-                                        </div>
-                                    </a>
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#backgroundSubmenu"
+                                        class="dropdown-toggle btn-toggle">Background</a>
+                                    <ul class="collapse list-unstyled" id="backgroundSubmenu">
+                                        <li>
+                                            <a href="#" id="bg-type">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="bgRadioOptions"
+                                                        id="bgRadio1" value="option1" data-bs-toggle="collapse"
+                                                        data-bs-target="#bgColorMenu:not(.show),#bgImageMenu.show"
+                                                        >
+                                                    <label class="form-check-label" for="bgRadio1">Color</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="bgRadioOptions"
+                                                        id="bgRadio2" value="option2" data-bs-toggle="collapse"
+                                                        data-bs-target="#bgColorMenu.show,#bgImageMenu:not(.show)"
+                                                        aria-expanded="false">
+                                                    <label class="form-check-label" for="bgRadio2">Image</label>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="collapse" id="bgColorMenu">
+                                            <a href="#">
+                                                <div class="form-group">
+                                                    <input type="text" name="background_color" id="bgColor"
+                                                        class="form-control color-picker" data-format="rgb"
+                                                        data-opacity=".9" value="<%= board[0].background_color %>">
+                                                    <!-- <input type="text" name="color" id="bgColor"
+                                                        class="form-control bgPick" data-control="bgcolor"
+                                                        value="<%= board[0].background_color %>"> -->
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="collapse show" id="bgImageMenu">
+                                            <a href="#">
+                                                <input type="file" name="background_img" class="form-control"
+                                                    id="customFile" />
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
+                                <li>
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#musicSubmenu"
+                                        class="dropdown-toggle btn-toggle">Music</a>
+                                    <ul class="collapse list-unstyled" id="musicSubmenu">
+                                        <li>
+                                            <a href="#">
+                                                <input type="file" name="bg_music" class="form-control" id="bg_music"
+                                                    accept="audio/*" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <div class="category">Message</div>
+                                <li>
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#messageSubmenu"
+                                        class="dropdown-toggle btn-toggle">Animation / Card Shape</a>
+                                    <ul class="collapse list-unstyled" id="messageSubmenu">
+                                        <li>
+                                            <a href="#" id="message-type">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="type_check"
+                                                        id="flying-check" value="0" <%=board[0].board_type==0
+                                                        ? "checked" : "" %> >
+                                                    <label class="form-check-label" for="flying-check">
+                                                        Flying
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="type_check"
+                                                        id="card-check" value="1" <%=board[0].board_type==1 ? "checked"
+                                                        : "" %>>
+                                                    <label class="form-check-label" for="card-check">
+                                                        Post-it
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="type_check"
+                                                        id="pin-check" value="2" <%=board[0].board_type==2 ? "checked"
+                                                        : "" %>>
+                                                    <label class="form-check-label" for="pin-check">
+                                                        Pin
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="type_check"
+                                                        id="tape-check" value="3" <%=board[0].board_type==3 ? "checked"
+                                                        : "" %>>
+                                                    <label class="form-check-label" for="tape-check">
+                                                        Tape
+                                                    </label>
+                                                </div>
+                                            </a>
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#postColorSubmenu"
+                                        class="dropdown-toggle btn-toggle">Background</a>
+                                    <ul class="list-unstyled collapse" id="postColorSubmenu">
+                                        <li>
+                                            <a href="#">
+                                                <div class="form-group postPick">
+                                                    <input type="text" name="post_color_1" id="post_color_1"
+                                                        class="form-control color-picker" data-format="rgb" 
+                                                        >
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="form-group postPick">
+                                                    <input type="text" name="post_color_2" id="post_color_2"
+                                                        class="form-control color-picker" data-format="rgb"
+                                                        >
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="form-group postPick">
+                                                    <input type="text" name="post_color_3" id="post_color_3"
+                                                        class="form-control color-picker" data-format="rgb"
+                                                        >
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="form-group postPick">
+                                                    <input type="text" name="post_color_4" id="post_color_4"
+                                                        class="form-control color-picker" data-format="rgb"
+                                                        >
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="form-group postPick">
+                                                    <input type="text" name="post_color_5" id="post_color_5"
+                                                        class="form-control color-picker" data-format="rgb"
+                                                        >
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
-                                class="dropdown-toggle">Background</a>
-                            <ul class="collapse list-unstyled" id="pageSubmenu">
-                                <li>
-                                    <a href="#">Animation Mode
+                            </li>
+                            <li>
+                    
+                                <ul class="list-unstyled select-main" id="mainboardSubmenu">
+                                    <li>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="animationMode"
-                                                id="flying" value="0" <%= board[0].board_type == 0 ? "checked" : "" %> >
-                                            <label class="form-check-label" for="flying">
-                                                Flying
+                                            <input class="form-check-input" name="chooseAsMain" type="checkbox"
+                                                value="chooseAsMain" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Select this board as the main board to be displayed.
                                             </label>
                                         </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="animationMode"
-                                                id="post-it" value="1" <%= board[0].board_type == 1 ? "checked" : "" %>>
-                                            <label class="form-check-label" for="post-it">
-                                                Post-it
-                                            </label>
-                                        </div>
-                                    </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            </ul>
+                            <ul class="list-unstyled CTAs text-center ">
+                                <li>
+                                    <button class="btn btn-secondary reset" type="button" onClick="window.location.reload();" >Reset</button>
                                 </li>
                                 <li>
-                                    <a href="#">Color
-                                        <div class="form-group">
-                                            <input type="text" name="background_color" id="bgColor"
-                                                class="form-control bgPick" data-control="bgcolor"
-                                                value="# <%= board[0].color.toString(16) %>">
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">Image
-                                        <input type="file" name="background_img" class="form-control" id="customFile" />
-                                    </a>
+                                    <button type="submit" class="btn btn-primary save">Save Changes</button>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#messageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Message</a>
-                            <ul class="collapse list-unstyled" id="messageSubmenu">
-                                <li>
-                                    <a href="#">Theme
-                                        <div id="theme-check">
-                                        <div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="theme-check" id="sky-check" value="sky" checked>
-                                                <label class="form-check-label" for="sky-check">
-                                                  Sky
-                                                </label>
-                                            </div>
-                                              <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="theme-check" id="grass-check" value="grass">
-                                                <label class="form-check-label" for="grass-check">Grass
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </a>
-                                    <a href="#">Type
-                                        <form id="type-check">
-                                            <div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="type-check" id="card-check" value="card" checked>
-                                                <label class="form-check-label" for="card-check">
-                                                  Card
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="type-check" id="pin-check" value="pin">
-                                                <label class="form-check-label" for="pin-check">
-                                                  Pin
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="type-check" id="tape-check" value="tape">
-                                                <label class="form-check-label" for="tape-check">
-                                                  Tape
-                                                </label>
-                                            </div>
-                                        </div>
-                                        </form>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <!-- <a href="#mainboardSubmenu" data-toggle="collapse" aria-expanded="true"
-                                class="dropdown-toggle">Mainboard</a> -->
-                            <br>
-                            <ul class="list-unstyled" id="mainboardSubmenu">
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="chooseAsMain" type="checkbox"
-                                            value="chooseAsMain" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            Select this board as the main board to be displayed.
-                                        </label>
-                                    </div>
-                                </li>
-                            </ul>
-
-                        </li>
-                    </ul>
-
-
-                    <ul class="list-unstyled CTAs">
-                        <li>
-                            <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Reset</a>
-                        </li>
-                        <li>
-                            <!-- <a href="https://bootstrapious.com/p/bootstrap-sidebar" data-toggle="modal" data-target="#savechanges" class="article">Save Changes</a> -->
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
-                        </li>
-                    </ul>
                 </div>
 
             </form>
-
-            <div class="modal fade" id="savechanges" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Save Changes</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Changes to the board have been saved.
-                        </div>
-                        <div class="modal-footer">
-                            <a href="board.html"><button id="closeedit" type="button" class="btn btn-secondary"
-                                    data-dismiss="modal">Close</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </nav>
 
         <!-- Page Content  -->
@@ -248,16 +294,20 @@
                     <i class="fas fa-align-justify"></i>
                 </button>
             </div>
-            <div id="board-title" class="title"><%= board[0].title %></div>
+            <div id="board-title" class="title">
+                <%= board[0].title %>
+            </div>
             <div id="messages">
-                <div class="paper green"> 
-                    <div class = "content">
+                <div class="paper green">
+                    <div class="content">
                         <div class="upper-part">
                             <div class="left-half">
-                                <img class="message-img" src="../images/posts/cat.jpg">
+                                <img class="message-img" src="/images/posts/cat.jpg">
                             </div>
                             <div class="right-half">
-                                <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
+                                <p class="card-text">This is a sample message for a pin type post-it. The user is
+                                    allowed to enter up to nnn words per post. They can choose the color of the post-it,
+                                    but the pin color will be randomized.</p>
                             </div>
                         </div>
                         <div class="card-footer lower-part">
@@ -265,123 +315,83 @@
                                 account_circle</i>User_2
                         </div>
                     </div>
-                    <div class="paper pink"> 
-                    <div class = "content">
-                        <div class="upper-part">
-                            <div class="left-half">
-                                <img class="message-img" src="../images/posts/cat.jpg">
+                    <div class="paper pink">
+                        <div class="content">
+                            <div class="upper-part">
+                                <div class="left-half">
+                                    <img class="message-img" src="/images/posts/cat.jpg">
+                                </div>
+                                <div class="right-half">
+                                    <p class="card-text">This is a sample message for a pin type post-it. The user is
+                                        allowed to enter up to nnn words per post. They can choose the color of the
+                                        post-it, but the pin color will be randomized.</p>
+                                </div>
                             </div>
-                            <div class="right-half">
-                                <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
+                            <div class="card-footer lower-part">
+                                <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
+                                    account_circle</i>User_2
                             </div>
-                        </div>
-                        <div class="card-footer lower-part">
-                            <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
-                                account_circle</i>User_2
                         </div>
                     </div>
-            </div>  
-        </div>
-    </div>
-    
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"crossorigin="anonymous"></script>
+                </div>
+            </div>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            document.getElementById("board-title").style.color="<%= board[0].title_color %>";
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        $('#closeedit').click(function () {
-            // handle redirect here
-            window.location.href = "board.html";
-            $('#savechanges').modal('hide');
-        });
-    </script>
-    <script type="text/javascript">
-        $(function(){
-          var colpick = $('.titlePick').each( function() {
-            $(this).minicolors({
-              control: $(this).attr('data-control') || 'hue',
-              inline: $(this).attr('data-inline') === 'true',
-              letterCase: 'lowercase',
-              opacity: false,
-              change: function(hex, opacity) {
-                if(!hex) return;
-                if(opacity) hex += ', ' + opacity;
-                try {
-                  $('.title').css('color', hex.toString());
-                } catch(e) {}
-                $(this).select();
-              },
-              theme: 'bootstrap'
-            });
-            
-          });
-          
-          var $inlinehex = $('#inlinecolorhex h3 small');
-          $('#inlinecolors').minicolors({
-            inline: true,
-            theme: 'bootstrap',
-            change: function(hex) {
-              if(!hex) return;
-              $inlinehex.html(hex);
-              
-            }
-          });
-          
-        });
-    </script>
-    <script type="text/javascript">
-        $(function(){
-          var colpick = $('.bgPick').each( function() {
-            $(this).minicolors({
-              control: $(this).attr('data-control') || 'hue',
-              inline: $(this).attr('data-inline') === 'true',
-              letterCase: 'lowercase',
-              opacity: false,
-              change: function(hex, opacity) {
-                if(!hex) return;
-                if(opacity) hex += ', ' + opacity;
-                try {
-                  $('.preview').css('background-color', hex.toString());
-                  $('.preview').css('background-image', 'none');
-                } catch(e) {}
-                $(this).select();
-              },
-              theme: 'bootstrap'
-            });
-            
-          });
-          
-          var $inlinehex = $('#inlinecolorhex h3 small');
-          $('#inlinecolors').minicolors({
-            inline: true,
-            theme: 'bootstrap',
-            change: function(hex) {
-              if(!hex) return;
-              $inlinehex.html(hex);
-            }
-          });
-          
-        });
-    </script>
-    <script src="/javascripts/admin_preview.js" type="module"></script>
-    <script>
-         $('.btn-primary').on('click', function () {
-            $.post(`/:board_id/edit`, function (data) {
-                if(data.success) {
-                    location.reload();
-                }
-            });
-        });
-    </script>
+            <!-- Popper.JS -->
+            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+                integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+                crossorigin="anonymous"></script> -->
+            <!-- Bootstrap JS -->
+            <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" -->
+            <!-- integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"crossorigin="anonymous"></script> -->
+            <!-- <script src="/javascripts/admin_preview.js" type="module"></script> -->
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    let text = "<%= board[0].post_colors %>";
+                    const color_list = text.split("  ");
+                    for (let i=1; i<6; i++){
+                        console.log(color_list[i-1]);
+                        $("#post_color_"+i.toString()).minicolors('value', color_list[i-1]);
+                        console.log(document.getElementById("post_color_"+i.toString()).value);
+                    }
+
+                    document.getElementById("board-title").style.color = "<%= board[0].title_color %>";
+                    document.getElementById("board-title").innerHTML = "<%= board[0].title %>";
+                    var event = new Event('input', { checked: true });
+                    if ("<%= board[0].background_color %>" == 'undefined' || "<%= board[0].background_color %>" == '') {
+                        document.getElementById("bgRadio2").checked = true;
+                        document.getElementById("bgColorMenu").classList.remove("show");
+                        document.getElementById("bgImageMenu").classList.add("show");
+                        document.getElementById("content").style.backgroundImage = "url(/images/<%= board[0].background_img %>)";
+                        document.getElementById("customFile").files[0] = "<%= board[0].background_img %>";
+                        document.getElementById("bg-type").children[1].children[0].dispatchEvent(event);
+                    } else {
+                        $(".preview").css("background", "");
+                        document.getElementById("bgRadio1").checked = true;
+                        document.getElementById("bgImageMenu").classList.remove("show");
+                        document.getElementById("bgColorMenu").classList.add("show");
+                        document.getElementById("content").style.backgroundColor = "<%= board[0].background_color %>";
+                    }
+                    console.log(document.getElementById("message-type").children["<%= board[0].board_type %>"]);
+                    document.getElementById("message-type").children["<%= board[0].board_type %>"].children[0].dispatchEvent(event);
+
+                    $('#sidebarCollapse').on('click', function () {
+                        $('#sidebar').toggleClass('active');
+                    });
+                    
+                });
+            </script>
+
+            <script>
+                $('.save').on('click', function () {
+                    
+                    $.post(`/:board_id/edit`, function (data) {
+                        if (data.success) {
+                            location.reload();
+                        }
+                    });
+                    
+                });
+            </script>
 </body>
 
 </html>

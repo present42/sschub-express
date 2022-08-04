@@ -6,12 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="Content-Type" content="text/html">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="/css/admin_style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <style>
     .material-symbols-outlined {
       font-variation-settings:
-        'FILL'0,
+        'FILL',
         'wght'400,
         'GRAD'0,
         'opsz'48
@@ -56,9 +57,9 @@
   </nav>
 
   <div class="container pt-5">
-    <div class="row">
+    <div class="row" id="thumbnails">
       <% for(var i=0; i < board_list.length; i++) { %>
-        <div class="col-md-3">
+        <div class="col-md-3 board" id="<%= board_list[i].board_id %>">
           <h4 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
             <% if (board_list[i].board_id==board_list[i].current_board_id) { %>
               <span class="material-symbols-outlined">
@@ -67,20 +68,28 @@
               <% } %>
             <%= board_list[i].title %>
           </h4>
-          <a href="/admin/board/<%= board_list[i].board_id %>"><button class="shadow p-4 mb-5 bg-white rounded"><img
-                src="/images/<%= board_list[i].background_img %>" class="img-fluid img-inside-button" class="rounded"
-                alt="board sample image"></button></a>
+          <a href="/admin/board/<%= board_list[i].board_id %>">
+            <button class="thumbnail shadow mb-5 bg-white rounded" style="background-image: url('/images/<%= board_list[i].background_img? board_list[i].background_img:'neon.jpeg' %>');">
+            </button>
+          </a>
         </div>
         <% } %>
           <div class="col-md-3">
             <h4>&#8203</h4>
-            <a href="board_sma.html"><button class="shadow p-3 mb-5 bg-white rounded"><img
+            <a href="board/create"><button class="thumbnail shadow mb-5 bg-white rounded"><img
                   src="/images/admin/add_board.png" class="img-fluid" class="rounded"
                   alt="board sample image"></button></a>
           </div>
     </div>
   </div>
-
+  <div class="floating-container">
+    <div class="floating-button" id="delete"><i class="fa-solid fa-trash-can"></i></div>
+    <div class="element-container">
+      <span class="float-element tooltip-left" id="cancel">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
+    </div>
+  </div>
 
   <div class="modal fade" id="sign_out" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -126,6 +135,7 @@
     });
   </script>
 
+<script src="/javascripts/admin_board.js" type="module"></script>
 </body>
 
 </html>

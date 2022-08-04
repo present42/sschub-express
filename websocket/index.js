@@ -9,49 +9,6 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const dummyMessages = [{
-    message: "There is only one way left to escape the alienation of present day society: to retreat ahead of it.",
-    nickname: "Roland Barthes",
-    email: "rb@connect.ust.hk",
-    imagepath: "a0b43be0b988a47093dd0adb650403ef",
-}, {
-    message: "I despise all adjectives that try to describe people as liberal of conservative, rightist or leftist, as long as they stay in the useful part of the road.",
-    nickname: "Dwight David Eisenhower",
-    email: "ddeisenhower@connect.ust.hk",
-    imagepath: "a0b43be0b988a47093dd0adb650403ef",
-}, {
-    message: `I will age ungracefully until I become an old woman in a small garden, doing whatever the hell I want.
-    `,
-    nickname: "Hosokawa Tadaoki",
-    email: "ht@connect.ust.hk",
-    imagepath: "a0b43be0b988a47093dd0adb650403ef",
-}, {
-    message: "The Way of Tea lies in studying the ceremony, in understanding the principles, and in grasping the reality of things. These are its three rules",
-    nickname: "",
-    email: "@connect.ust.hk",
-    imagepath: "a0b43be0b988a47093dd0adb650403ef",
-}, {
-    message: "Glory is like a circle in the water, Which never ceaseth to enlarge itself, Till by broad spreading it disperse to nought.    ",
-    nickname: "William Shakespeare",
-    email: "ws@connect.ust.hk",
-    imagepath: "a0b43be0b988a47093dd0adb650403ef",
-}, {
-    message: "ZEUS, n. The chief of Grecian gods, adored by the Romans as Jupiter and by the modern Americans as God, Gold, Mob and Dog.",
-    nickname: "Robin Chotzinoff",
-    email: "pm@connect.ust.hk",
-    imagepath: "a0b43be0b988a47093dd0adb650403ef",
-}, {
-    message: "Are we going to be a services power? The double-cheeseburger-hold-the-mayo kings of the world?",
-    nickname: "Lee Iacocca",
-    email: "lee@connect.ust.hk",
-    imagepath: "a0b43be0b988a47093dd0adb650403ef",
-}, {
-    message: "As long as I don't write about the government, religion, politics, and other institutions, I am free to print anything.",
-    nickname: "Pierre Augustin",
-    email: "pa@connect.ust.hk",
-    imagepath: "a0b43be0b988a47093dd0adb650403ef",
-}]
-
 // takes in a single argument of expressServer which
 // contains the Express app instance
 export default (expressServer) => {
@@ -85,13 +42,17 @@ export default (expressServer) => {
 
             websocketConnection.on("message", (message) => {
                 const sql = "select * from posts inner join current_main_board on posts.parent_board_id = current_main_board.board_id where status=1";
-                let messages;
+                let messages, board_details;
                 db.query(sql, function(err, data) {
                     if(err) throw err;
                     console.log("test", data);
-                    messages = data;
-                    console.log(getRandomInt(0, messages.length - 1));
-                    websocketConnection.send(JSON.stringify(messages[getRandomInt(0, messages.length - 1)]));
+                    const sql2 = 'SELECT * from current_main_board inner join boards on current_main_board.board_id = boards.board_id';
+                    db.query(sql2, function(err2, data2) {
+                        messages = data;
+                        board_details = data2;
+                        console.log(getRandomInt(0, messages.length - 1));
+                        websocketConnection.send(JSON.stringify([messages[getRandomInt(0, messages.length - 1)], board_details]));
+                    });
                 });
 
                 // const parsedMessage = JSON.parse(message);

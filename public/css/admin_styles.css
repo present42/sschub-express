@@ -1,28 +1,40 @@
 /*
     DEMO STYLE
 */
+html, body {
+    margin: 0;
+    height: 100%;
+}
 
 body {
     font-family: sans-serif;
     font-weight: lighter;
     background: #fafafa;
+    overflow-y: hidden;
 }
-#page_title{
-    color:rgb(85, 85, 85);
-    font-weight:lighter;
+
+#page_title {
+    color: rgb(85, 85, 85);
+    font-weight: lighter;
     font-family: sans-serif;
 }
 
-#signout{
+#signout {
     margin-right: 20px;
-    padding:12px;
+    padding: 12px;
     background-color: #afafaf;
-    color:#ffffff;
-    border-style:initial;
+    color: #ffffff;
+    border-style: initial;
     text-decoration: none;
 }
 
-.form-control{
+.btn-primary{
+    text-align: center;
+    align-self: center;
+    display: inline-block;
+}
+
+.form-control {
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
     font-weight: 300;
@@ -30,7 +42,13 @@ body {
     color: #999;
 }
 
-.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.form-check{
+    padding-left:5px;
+    text-align: left;
+}
+
+.form-control::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
     font-family: 'Poppins', sans-serif;
     font-size: 0.9em;
     font-weight: 300;
@@ -45,11 +63,13 @@ p {
     line-height: 1.7em;
     color: #999;
 }
-#sidebarCollapse{
+
+#sidebarCollapse {
     background-color: white;
     color: #afafaf;
-    border-color:#afafaf;
+    border-color: #afafaf;
 }
+
 a,
 a:hover,
 a:focus {
@@ -63,6 +83,7 @@ a:focus {
     background: #fff;
     border: none;
     border-radius: 0;
+    height: 10vh;
     margin-bottom: 10px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -90,18 +111,19 @@ a:focus {
     align-items: stretch;
 }
 
-.whiteTextOverride
-{
- color: white !important;
+.whiteTextOverride {
+    color: white !important;
 }
 
 #sidebar {
     margin-top: 0px;
     min-width: 300px;
-    max-width: 300px;
+    max-width: 30vw;
     background: #ffffff;
     color: rgb(161, 161, 161);
     transition: all 0.3s;
+    overflow: scroll !important;
+    height: 90vh;
 }
 
 #sidebar.active {
@@ -113,11 +135,13 @@ a:focus {
     padding-top: 20px;
     background: rgb(255, 255, 255);
     color: rgb(82, 82, 82);
-    font-weight:lighter;
+    font-weight: lighter;
 }
 
 #sidebar ul.components {
     padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
     padding-left: 20px;
     border-bottom: 1px rgb(161, 161, 161);
 }
@@ -129,61 +153,98 @@ a:focus {
 
 #sidebar ul li a {
     padding: 10px;
+    padding-right: 20px;
     font-size: 1.1em;
     display: block;
 }
 
 #sidebar ul li a:hover {
-    color: rgb(255, 255, 255);;
-    background: #afafaf;
+    color: rgb(255, 255, 255);
+    background: #c3c3c3;
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: rgb(255, 255, 255);
-    background: #afafaf;
+    background: #c3c3c3;
+}
+
+a.btn-toggle {
+    display: inline-flex!important;
+    align-items: center;
+    width: 100%;
+}
+
+a.btn-toggle::before {
+    width: 1.25em;
+    line-height: 0;
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+    display: block;
+}
+
+a.btn-toggle[aria-expanded="true"]::before {
+    transform: rotate(90deg);
 }
 
 a[data-toggle="collapse"] {
     position: relative;
 }
 
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
 
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: rgb(255, 255, 255);;
+    background: rgb(255, 255, 255);
 }
 
 ul.CTAs {
     padding: 20px;
 }
 
-ul.CTAs a {
+ul.CTAs li {
     text-align: center;
     font-size: 0.9em !important;
     display: block;
     border-radius: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-a.download {
+button.reset {
+    width: 70%;
     background: #fff;
     color: #afafaf;
+    border-color: #999;
+}
+
+.dropdown-toggle:after {
+    content: none;
+ }
+
+button.btn-primary{
+    width: 70%;
 }
 
 a.article,
 a.article:hover {
-    background: #afafaf !important;
+    background: #c3c3c3 !important;
     color: #fff !important;
 }
+
+.category{
+    color: rgb(101, 101, 101);
+    padding: 7px;
+    font-size:1.3em;
+    border-bottom-style: dotted;
+    border-color: #999;
+    margin-right:20px;
+}
+
+.select-main{
+    padding: 0vw 2vw;
+}
+
 
 /* ---------------------------------------------------
     CONTENT STYLE
@@ -204,9 +265,11 @@ a.article:hover {
     #sidebar {
         margin-left: -250px;
     }
+
     #sidebar.active {
         margin-left: 0;
     }
+
     #sidebarCollapse span {
         display: none;
     }

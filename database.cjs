@@ -7,7 +7,7 @@ var conn = mysql.createConnection({
     user: process.env.DB_USER,
     password: process.env.DB_PW,
     database: process.env.DB_NAME
-    */
+    */  
     host: 'localhost',
     user: 'root',
     password: '@@Khj0706',

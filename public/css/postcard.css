@@ -25,7 +25,6 @@ html {
 }
 
 body {
-    background-image: url('/images/neon.jpeg');
     background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
     background-position: center center; 
@@ -101,7 +100,7 @@ body {
 
 .card {
     background-color: rgba(255, 255, 255, 0.907);
-    width: 25vw;
+    width: 12.5vw;
     height: 30vh;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     border-radius: 0.5vw;
@@ -112,12 +111,12 @@ body {
 .card-bg {
     background-color: rgba(255, 255, 255, 0.856);
     height: 30vh;
-    width: 30vw;
-    padding: 1.5vh;
+    width: 15vw;
+    padding: 1vh;
     border-radius: 0.5vw;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     animation-name: animation-md;
-    animation-duration: 30s;
+    animation-duration: 120s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -125,12 +124,25 @@ body {
 .card-md {
     background-color: rgba(255, 255, 255, 0.856);
     height: 20vh;
-    width: 20vw;
-    padding: 1.5vh;
+    width: 10vw;
+    padding: 1vh;
     border-radius: 0.5vw;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     animation-name: animation-md;
-    animation-duration: 30s;
+    animation-duration: 120s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.card-md-vert {
+    background-color: rgba(255, 255, 255, 0.856);
+    height: 50vh;
+    width: 15vw;
+    padding: 1vh;
+    border-radius: 0.5vw;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    animation-name: animation-md;
+    animation-duration: 120s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -140,10 +152,10 @@ body {
     border-radius: 0.5vw;
     height: 25vh;
     width: 25vw;
-    padding: 1.5vh;
+    padding: 1vh;
     box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
     animation-name: animation-sm;
-    animation-duration: 30s;
+    animation-duration: 12  0s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -164,7 +176,7 @@ body {
     }
 
     100% {
-        transform: translateX(650%);
+        transform: translateX(1050%);
     }
 }
 
@@ -174,7 +186,7 @@ body {
     }
 
     100% {
-        transform: translateX(830%);
+        transform: translateX(1030%);
     }
 }
 
@@ -196,6 +208,7 @@ body {
 .card-body {
     font-size: 1.5vh;
     height: 100%;
+    padding: 0.2rem 0.2rem;
 }
 
 .card-footer {
@@ -216,7 +229,7 @@ body {
 .card-text {
     font-family: 'Arial';
     height: 100%;
-    font-size: 1.5vh;
+    font-size: 12vh;
     overflow: hidden;
     word-wrap: break-word;
     /* white-space: nowrap; */
@@ -225,8 +238,13 @@ body {
 .full-height {
     height:100%;
 }
+
+.half-height {
+    height: 50%;
+}
+
 .board-title {
-    font-size: 5vw; 
+    font-size: 10vh; 
     color:rgba(255, 255, 255, 0.856); 
     font-family: 'DosisLight';
     font-weight: 700; 
@@ -279,3 +297,4 @@ p,
 .p {
     font-size: 1.6vh;
 }
+
