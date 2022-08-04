@@ -83,44 +83,83 @@ function setMessageType(type) {
     document.getElementById("messages").innerHTML = "";
     var str = '';
     if (type == 0) {
-        str = `<div class="card position-absolute flying-md card1">
-        <div class="row g-0">
-          <div class="col-md-6 full-height" style="padding: 0.5vh">
-            <img src="/images/posts/cat.jpg" class="flying-img" alt="..." />
-          </div>
-          <div class="col-md-6 full-height">
-            <div class="card-body">
-              <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+        str = `
+        <div class="card position-absolute flying-md card1">
+            <div class="row g-0">
+                <div class="col-md-6 full-height" style="padding: 0.5vh">
+                    <img src="/images/posts/cat.jpg" class="flying-img" alt="..." />
+                </div>
+                <div class="col-md-6 full-height">
+                    <div class="card-body">
+                        <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="card-footer lower-flying" style="clear: both">
-          <div style="float: left; font-size: 1.8vh"> 
-          <i class="material-icons" style="font-size: 1.5vh">
-          account_circle</i> username
-          </div>
-          
-        </div>
-      </div>
-      <div class="card position-absolute flying-md card2">
-        <div class="row g-0">
-          <div class="col-md-6 full-height" style="padding: 0.5vh">
-            <img src="/images/posts/cat.jpg" class="flying-img" alt="..." />
-          </div>
-          <div class="col-md-6 full-height">
-            <div class="card-body">
-              <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+            <div class="card-footer lower-flying">
+                username
             </div>
-          </div>
         </div>
-        <div class="card-footer lower-flying" style="clear: both">
-          <div style="float: left; font-size: 1.8vh"> 
-          <i class="material-icons" style="font-size: 1.5vh">
-          account_circle</i> username
-          </div>
-          
+        <div class="card position-absolute flying-md card2">
+            <div class="row g-0">
+                <div class="col-md-6 full-height" style="padding: 0.5vh">
+                    <img src="/images/posts/cat.jpg" class="flying-img" alt="..." />
+                </div>
+                <div class="col-md-6 full-height">
+                    <div class="card-body">
+                        <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer lower-flying" style="clear: both">
+                    username
+            </div>
         </div>
-      </div>`;
+        <div class="card position-absolute flying-md card3">
+            <div class="row g-0">
+                <div class="col-md-6 full-height" style="padding: 0.5vh">
+                    <img src="/images/posts/cat.jpg" class="flying-img" alt="..." />
+                </div>
+                <div class="col-md-6 full-height">
+                    <div class="card-body">
+                        <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer lower-flying" style="clear: both">
+                    username
+            </div>
+        </div>
+        <div class="card position-absolute flying-md card4">
+            <div class="row g-0">
+                <div class="col-md-6 full-height" style="padding: 0.5vh">
+                    <img src="/images/posts/flower-sqr.png" class="flying-img" alt="..." />
+                </div>
+                <div class="col-md-6 full-height">
+                    <div class="card-body">
+                        <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer lower-flying" style="clear: both">
+                    username
+            </div>
+        </div>
+        <div class="card position-absolute flying-md card5">
+            <div class="row g-0">
+                <div class="col-md-6 full-height" style="padding: 0.5vh">
+                    <img src="/images/posts/wave.jpg" class="flying-img" alt="..." />
+                </div>
+                <div class="col-md-6 full-height">
+                    <div class="card-body">
+                        <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer lower-flying" style="clear: both">
+                    username
+            </div>
+        </div>
+      `;
     } else if (type == 1) {
         str = `<div class="paper green"> 
             <div class = "content">

@@ -196,25 +196,6 @@
     /* border: 0.1vh grey solid; */
   }
   
-  @media only screen and (max-width: 1000px) {
-    .card-footer {
-        height: 100%;
-        font-size: 1vw;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        word-wrap: break-word;
-    }
-  }
-  @media only screen and (min-width: 1000px){
-  .card-footer {
-    height: 100%;
-    font-size: 1.5vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-  }
-  }
-  
   .left-half{
     display: flex;
     align-items: center;
@@ -264,7 +245,7 @@
     margin-top: 3%;
     width: 97%;
     height: 97%;
-    font-size: 10px;
+    font-size: 7px;
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: break-word;
@@ -274,12 +255,30 @@
 
 .card1{
   margin-top: 30vh;
-  left:50vw;
+  left:35vw;
 }
 .card2{
   position:relative;
   margin-top: 5vh;
   left: 30vw;
+}
+
+.card3{
+  position:relative;
+  margin-top: 20vh;
+  left: 47vw;
+}
+
+.card4{
+  position:relative;
+  margin-top: 10vh;
+  left: 65vw;
+}
+
+.card5{
+  position:relative;
+  margin-top: 40vh;
+  left: 60vw;
 }
 
 .full-height {
@@ -288,8 +287,8 @@
 
 .flying-md{
   background-color: rgba(255, 255, 255, 0.856);
-  height: 20vh;
-  width: 10vw;
+  height: 10vh;
+  width: 5vw;
   padding: 1vh;
   border-radius: 0.5vw;
   box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
@@ -312,14 +311,17 @@
 }
 
 .card-body {
-  font-size: 1.5vh;
   height: 100%;
   padding: 0.2rem 0.2rem;
 }
 
 .card-footer {
-  height: 20%;
-  font-size: 1.5vh;
+  font-family: 'Poppins', sans-serif;
+  color: #999;
+  font-size: 0.7em;
+  padding-top: 20vh;
+  padding: 0;
+  height: 10%;
   text-align: left;
   background-color: transparent;
 }
@@ -328,15 +330,11 @@
   height: 85%;
 }
 
-.lower-flying {
-  height: 15%;
-}
-
 .card {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.907);
-  width: 400px;
-  height: 30vh;
+  width: 20vw;
+  height: 20vh;
   box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
   border-radius: 0.5vw;
   padding: 20px;
