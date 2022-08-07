@@ -7,7 +7,7 @@ var count = 0;
 var messages = {};
 let pid;
 
-var webSocket = new WebSocket('ws://172.105.206.64/websockets');
+var webSocket = new WebSocket('ws://localhost:3000/websockets');
 var board_details;
 var color_list;
 

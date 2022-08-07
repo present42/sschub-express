@@ -28,7 +28,15 @@ function deleteBoards(){
 
     if (confirm("Are you sure you want to delete these boards?")){
         /* Send selected board id to route */
-        console.log("Delete boards.");
+
+        let options = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({a: board_id})
+        };
     }
 };
 
