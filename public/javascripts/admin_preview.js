@@ -64,6 +64,8 @@ $(document).ready(function () {
                         document.getElementById("board-title").style.color = value;
                     } else if ($(this)[0] === document.getElementById("bgColor")) {
                         document.getElementById("content").style.background = value;
+                    } else if ($(this)[0] === document.getElementById("textColor")){
+                        document.documentElement.style.setProperty('--msg-text',value);
                     } else if ($(this)[0] === document.getElementById("post_color_1")) {
                         document.documentElement.style.setProperty('--msg1',value);
                         document.querySelector(".card1").style.setProperty('--paper-dark',darkerColor(rgbToHex(value), 20));
