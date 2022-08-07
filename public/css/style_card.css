@@ -1,0 +1,82 @@
+/* Card */
+
+.full-height {
+    height:100%;
+  }
+
+.title{
+    position:absolute;
+    font-family: 'DosisLight';
+    bottom:0;
+    right:0;
+    font-size: 6vh;
+    margin: 5vh;
+}
+  
+  .flying-md{
+    background-color: rgba(255, 255, 255, 0.856);
+    height: 10vh;
+    width: 5vw;
+    padding: 1vh;
+    border-radius: 0.5vw;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    animation: animation-md 10s infinite linear;
+  }
+  .row.g-0 {
+    height: 85%;
+  }
+  
+  .flying-img {
+    height: 90%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width:100%; height:100%;
+    object-fit: contain;
+    margin-left: 1vh;
+    margin: auto;
+    /* border: 0.1vh grey solid; */
+  }
+  
+  .card-body {
+    height: 100%;
+    padding: 0.2rem 0.2rem;
+  }
+
+  .upper-flying {
+  }
+  
+  .message-content{
+    overflow: hidden;
+    font-family: 'Verdana';
+  }
+
+  
+  .card {
+    position: fixed;
+    width: 20vw;
+    height: 20vh;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    border-radius: 0.5vw;
+    padding: 15px 20px 5px 20px;
+    display: flex;
+  }
+  
+  @keyframes animation-md {
+    0% {
+        transform: translateX(0%);
+        opacity: 0;
+    }
+    10%, 85% {
+      opacity:1;
+    }
+  
+    95%{
+      opacity: 0;
+    }
+  
+    100% {
+      opacity:0;
+      transform: translateX(70%);
+    }
+  }
