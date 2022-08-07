@@ -218,6 +218,10 @@ button.reset {
     border-color: #999;
 }
 
+.form-check{
+    margin-left: 20px;
+  }
+
 .dropdown-toggle:after {
     content: none;
  }

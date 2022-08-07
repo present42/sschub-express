@@ -1,8 +1,9 @@
 var count = 0;
 var messages = {};
+const timer = ms => new Promise(res => setTimeout(res, ms));
 let pid;
 
-var webSocket = new WebSocket('ws://172.105.206.64/websockets');
+var webSocket = new WebSocket('ws://localhost:3000/websockets');
 webSocket.onopen = function (event) {
     pid = setInterval(() => { webSocket.send(JSON.stringify({ msg: "give me new message" })); }, 6000);
 };
@@ -10,9 +11,9 @@ webSocket.onopen = function (event) {
 webSocket.onmessage = function(event) {
     console.log(event.data);
     
-    data = JSON.parse(event.data);
+    var data = JSON.parse(event.data);
 
-    board_details = data[1];
+    var board_details = data[1];
     data = data[0];
     
     console.log(data);
@@ -40,8 +41,7 @@ function createNewPostIt(item) {
     var cur = count++;
 
     var str = `<div id = ${cur} class="paper ${color}" style="top: ${getRandomInt(10, 60)}%; left: ${getRandomInt(10, 50)}%">
-        <div class="top-tape"></div>
-        <div class = "content">
+        <div class = "message-content">
         <div class="upper-part">
             <div class="left-half">
                 <img class="message-img" src=/images/posts/${item['image_path']}>
@@ -71,7 +71,8 @@ function createNewPostIt(item) {
     // return;
 }
 
-function deleteMessage(id) {
+async function deleteMessage(id) {
+    await timer(2000);
     if (id in messages) {
         messages[id].remove();
     }

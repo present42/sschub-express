@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/postit.css" rel="stylesheet">
+    <link href="/css/postboard.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Indie+Flower&display=swap" rel="stylesheet">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+</head>
+
+<body style="background-image: url(/images/<%= data.background_img %>);">
+    <div class="board-header">
+        <div class="board-title" style="color: <%= data.title_color %>"><%= data.title %></div>
+        <!-- <div class="board-description">This is a sample description for a board.</div> -->
+    </div>
+
+    <div class="container">
+        <div id="board" class="post-board">
+        </div>
+    </div>
+    <script src="/javascripts/postit_pin.js" type="module"></script>
+</body>
+
+</html>

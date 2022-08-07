@@ -1,0 +1,175 @@
+/* Post-it */
+
+.title{
+    height: 10vh;
+    font-family: 'DosisLight';
+    font-size: 6vh; 
+    text-align: center; 
+    color: #ffffff;
+  }
+  
+  :root {
+    --board-pin: rgb(255, 98, 0);
+    --board-pin-highlight: rgb(255, 198, 163);
+    --tape-gray: #dbd8be;
+    --tape-edge-gray: #b7b49d;
+    --transparent: rgba(255, 255, 255, 0);
+  }
+  
+  @keyframes rotation {
+    0% {
+      transform: rotate(-1.5deg);
+    }
+    50% {
+      transform: rotate(1.5deg);
+    }
+    100%{
+      transform: rotate(-1.5deg);
+    }
+  }
+  
+  .paper {
+    --shadow-size: 3px;
+    --transparent: rgba(255, 0, 34, 0);
+    width: 20vw;
+    height: 20vh;
+    position: fixed;
+    background: linear-gradient(
+        to bottom right,
+        var(--paper-dark),
+        10%,
+        var(--transparent)
+      ),
+      var(--paper-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Caveat", cursive;
+    font-size: 2rem;
+    box-shadow: var(--shadow-size) var(--shadow-size) 3px rgba(0, 0, 0, 0.427);
+    margin-top: 5vh;
+    margin-left: 5vh;
+  }
+  
+  .animate{
+    animation: rotation 16s infinite; 
+    animation-fill-mode: forwards;
+  }
+  
+  .top-tape {
+    position: absolute;
+    height: 4vmin;
+    top: -10px;
+    width: 110%;
+    background-color: var(--tape-gray);
+    border-right: 1px dotted var(--tape-edge-gray);
+    border-left: 1px dotted var(--tape-edge-gray);
+    opacity: 0.5;
+  }
+  
+  .pin_red{
+    --board-pin: rgb(255, 0, 0);
+    --board-pin-highlight: rgb(255, 246, 179);
+  
+  }
+  .pin_yellow{
+    --board-pin: yellow;
+    --board-pin-highlight: rgb(255, 246, 179);
+  }
+  
+  .pin_green{
+    --board-pin: green;
+    --board-pin-highlight: rgb(232, 255, 183);
+  }
+  .pin_blue{
+    --board-pin: blue;
+    --board-pin-highlight: rgb(179, 255, 250);
+  }
+  .pin_white{
+    --board-pin: rgb(229, 229, 229);
+    --board-pin-highlight: rgb(255, 255, 255);
+  }
+  
+  .top-pin{
+    position: absolute;
+    box-shadow: var(--shadow-size) var(--shadow-size) 2px rgba(0, 0, 0, 0.427);
+    height: 1.8vh;
+    top: -5px;
+    width: 1.8vh;
+    background-color: var(--board-pin);
+    border: 0.1vh solid rgba(255, 208, 0, 0.587);
+    border-radius: 50%;
+  }
+  
+  .top-pin-head{
+    position: absolute;
+    box-shadow: var(--shadow-size) var(--shadow-size) 2px rgba(0, 0, 0, 0.427);
+    height: 1.5vh;
+    top: -3px;
+    width: 1.5vh;
+    background-color: var(--board-pin);
+    border-radius: 50%;
+  }
+  
+  .top-pin-highlight{
+    position: absolute;
+    left: 0.2vh;
+    top: 0.2vh;
+    background: white;
+    border-radius: 50%;
+    height:0.6vh;
+    width: 0.6vh;
+    filter: blur(1px);
+    opacity: 0.8;
+  }
+  
+  .message-content{
+    height: 20vh;
+    padding-top: 1vh;
+    overflow: hidden;
+    font-family: 'Verdana';
+  }
+  
+  .message-img{
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+  
+  .left-half{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:50%;
+    height: 100%;
+    padding-left: 2%;
+    padding-bottom: 2%;
+    padding-top:2%;
+  }
+  
+  .right-half{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:50%;
+    height: 100%;
+    padding-right: 3%;
+    padding-left: 1%;
+    padding-bottom: 2%;
+    padding-top:2%;
+  }
+  
+  .upper-part {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+  }
+  
+  .lower-part {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 20%;
+  }

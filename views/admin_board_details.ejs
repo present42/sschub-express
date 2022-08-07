@@ -14,7 +14,9 @@
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="/css/admin_styles.css">
     <link rel="stylesheet" href="/css/admin_preview.css">
-
+    <link rel="stylesheet" href="/css/style_postit.css" id="cardtype">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
     <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
 
@@ -298,42 +300,77 @@
                 <%= board[0].title %>
             </div>
             <div id="messages">
-                <div class="paper green">
-                    <div class="content">
+                <div class="paper green card1"> 
+                    <div class = "message-content">
                         <div class="upper-part">
                             <div class="left-half">
                                 <img class="message-img" src="/images/posts/cat.jpg">
                             </div>
                             <div class="right-half">
-                                <p class="card-text">This is a sample message for a pin type post-it. The user is
-                                    allowed to enter up to nnn words per post. They can choose the color of the post-it,
-                                    but the pin color will be randomized.</p>
+                                <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
                             </div>
                         </div>
                         <div class="card-footer lower-part">
-                            <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
-                                account_circle</i>User_2
+                        <i class="fa-solid fa-circle-user icon"></i>
+                                User_2
                         </div>
                     </div>
-                    <div class="paper pink">
-                        <div class="content">
-                            <div class="upper-part">
-                                <div class="left-half">
-                                    <img class="message-img" src="/images/posts/cat.jpg">
-                                </div>
-                                <div class="right-half">
-                                    <p class="card-text">This is a sample message for a pin type post-it. The user is
-                                        allowed to enter up to nnn words per post. They can choose the color of the
-                                        post-it, but the pin color will be randomized.</p>
-                                </div>
+                    <div class="paper pink card2"> 
+                    <div class = "message-content">
+                        <div class="upper-part">
+                            <div class="left-half">
+                                <img class="message-img" src="/images/posts/cat.jpg">
                             </div>
-                            <div class="card-footer lower-part">
-                                <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
-                                    account_circle</i>User_2
+                            <div class="right-half">
+                                <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
                             </div>
                         </div>
+                        <div class="card-footer lower-part">
+                        <i class="fa-solid fa-circle-user icon"></i>User_2
+                        </div>
                     </div>
-                </div>
+                    <div class="paper pink card3"> 
+                    <div class = "message-content">
+                        <div class="upper-part">
+                            <div class="left-half">
+                                <img class="message-img" src="/images/posts/cat.jpg">
+                            </div>
+                            <div class="right-half">
+                                <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer lower-part">
+                        <i class="fa-solid fa-circle-user icon"></i>User_2
+                        </div>
+                    </div>
+                    <div class="paper pink card4"> 
+                    <div class = "message-content">
+                        <div class="upper-part">
+                            <div class="left-half">
+                                <img class="message-img" src="/images/posts/cat.jpg">
+                            </div>
+                            <div class="right-half">
+                                <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer lower-part">
+                        <i class="fa-solid fa-circle-user icon"></i>User_2
+                        </div>
+                    </div>
+                    <div class="paper pink card5"> 
+                    <div class = "message-content">
+                        <div class="upper-part">
+                            <div class="left-half">
+                                <img class="message-img" src="/images/posts/cat.jpg">
+                            </div>
+                            <div class="right-half">
+                                <p class="card-text">This is a sample message for a pin type post-it. The user is allowed to enter up to nnn words per post. They can choose the color of the post-it, but the pin color will be randomized.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer lower-part">
+                        <i class="fa-solid fa-circle-user icon"></i>User_2
+                        </div>
+                    </div>
             </div>
 
             <!-- Popper.JS -->
@@ -371,7 +408,6 @@
                         document.getElementById("bgColorMenu").classList.add("show");
                         document.getElementById("content").style.backgroundColor = "<%= board[0].background_color %>";
                     }
-                    console.log(document.getElementById("message-type").children["<%= board[0].board_type %>"]);
                     document.getElementById("message-type").children["<%= board[0].board_type %>"].children[0].dispatchEvent(event);
 
                     $('#sidebarCollapse').on('click', function () {
