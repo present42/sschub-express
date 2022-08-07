@@ -94,6 +94,29 @@ app.post('/:board_id/edit', filefields, function(req, res, next) {
   // res.redirect('/admin');
 })
 
+app.post('/:board_id/delete', function(req, res, next) {
+  const board_id = Number(req.params.board_id);
+  if(!Number.isInteger(board_id)) throw err;
+
+  const sql = `SELECT * FROM boards WHERE board_id = ${board_id}`;
+  console.log(sql);
+  db.query(sql, function (err, data) {
+    if (err) throw err;
+    if (data.length == 1) {
+      db.query(`DELETE FROM boards WHERE board_id = ${board_id}`, function (err, data) {
+        if (err) throw err;
+        console.log(`board with board_id = ${board_id} is successfully deleted`);
+        res.send('OK');
+        // res.sendStatus(200);
+      });
+    } else {
+      console.log("No board record is found");
+      res.sendStatus(400);
+    }
+  });
+})
+
+
 app.get('/list', function (req, res, next) {
   var sql = 'SELECT * FROM boards';
   db.query(sql, function (err, data) {
