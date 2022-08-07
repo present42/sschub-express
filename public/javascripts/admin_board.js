@@ -28,15 +28,12 @@ function deleteBoards(){
 
     if (confirm("Are you sure you want to delete these boards?")){
         /* Send selected board id to route */
-
-        let options = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({a: board_id})
-        };
+        for (let i=0; i<board_id.length; i++){
+            $.post(`/boards/${board_id[i]}/delete`, function (data) {
+            });
+        }
+        location.reload();
+        
     }
 };
 
