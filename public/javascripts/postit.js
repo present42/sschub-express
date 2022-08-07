@@ -3,7 +3,7 @@ var messages = {};
 const timer = ms => new Promise(res => setTimeout(res, ms));
 let pid;
 
-var webSocket = new WebSocket('ws://localhost:3000/websockets');
+var webSocket = new WebSocket('ws://172.105.206.64/websockets');
 webSocket.onopen = function (event) {
     pid = setInterval(() => { webSocket.send(JSON.stringify({ msg: "give me new message" })); }, 6000);
 };
