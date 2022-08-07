@@ -28,7 +28,12 @@ function deleteBoards(){
 
     if (confirm("Are you sure you want to delete these boards?")){
         /* Send selected board id to route */
-        console.log("Delete boards.");
+        for (let i=0; i<board_id.length; i++){
+            $.post(`/boards/${board_id[i]}/delete`, function (data) {
+            });
+        }
+        location.reload();
+        
     }
 };
 

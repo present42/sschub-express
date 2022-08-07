@@ -16,6 +16,12 @@ app.get('/', function(req, res, next) {
       } else if(data[0].board_type == 1) {
         // layout -- post-it messages
         res.render('mainboard_postit', { data: data[0] } );
+      } else if(data[0].board_type == 2) {
+        // layout -- post-it messages
+        res.render('mainboard_postit_pin', { data: data[0] } );
+      } else if(data[0].board_type == 3) {
+        // layout -- post-it messages
+        res.render('mainboard_postit_tape', { data: data[0] } );
       }
     });
   } else {

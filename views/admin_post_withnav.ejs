@@ -16,6 +16,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Do not change above this line -->
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            let table = new DataTable('#post_table', {});
+        });
+    </script>
+
     <title>Discussion Board Admin Page</title>
 </head>
 
@@ -55,23 +65,27 @@
             </nav>
             <div id="content">
                 <div class="container-fluid">
+                    <div class="row">
+                        <h4 class="col-9">
+                            <%= text %>
+                        </h4>
+                        <div class="dropdown col-3">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Selected Board: <%= selected_board[0].title %>
+                            </a>
 
-                    <h4>
-                        <%= text %>
-                    </h4>
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Selected Board: <%= selected_board[0].title %>
-                        </a>
-
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <% for(var i=0; i < board_data.length; i++) { %>
-                                <li><a class="dropdown-item" href="./<%= board_data[i].board_id %>"><%= board_data[i].title %></a></li>
-                            <% } %>
-                        </ul>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <% for(var i=0; i < board_data.length; i++) { %>
+                                    <li><a class="dropdown-item" href="./<%= board_data[i].board_id %>">
+                                            <%= board_data[i].title %>
+                                        </a></li>
+                                    <% } %>
+                            </ul>
+                        </div>
                     </div>
-                    <table class="table">
+                    <hr class="bg-secondary border-2 border-top border-secondary">
+                    <table class="table" id="post_table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
