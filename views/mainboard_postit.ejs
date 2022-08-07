@@ -19,7 +19,9 @@
 
 <body style="background-image: url(/images/<%= data.background_img %>);">
     <div class="board-header">
-        <div class="board-title" style="color: <%= data.title_color %>"><%= data.title %></div>
+        <div class="board-title" style="color: <%= data.title_color %>">
+            <%= data.title %>
+        </div>
         <!-- <div class="board-description">This is a sample description for a board.</div> -->
     </div>
 
@@ -28,6 +30,10 @@
         </div>
     </div>
     <script src="/javascripts/postit.js" type="module"></script>
+    <script src="/javascripts/textFit.js"></script>
+    <script>
+        textFit(document.getElementsByClassName('card-text'));
+    </script>
 </body>
 
 </html>
