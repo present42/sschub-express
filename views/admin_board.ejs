@@ -59,7 +59,7 @@
   <div class="container pt-5">
     <div class="row" id="thumbnails">
       <% for(var i=0; i < board_list.length; i++) { %>
-        <div class="col-md-3 board" id="<%= board_list[i].board_id %>">
+        <div class="col-md-3 board selectable" id="<%= board_list[i].board_id %>">
           <h4 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
             <% if (board_list[i].board_id==board_list[i].current_board_id) { %>
               <span class="material-symbols-outlined">
