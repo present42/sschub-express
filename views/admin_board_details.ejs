@@ -109,16 +109,23 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="bgRadioOptions"
                                                         id="bgRadio1" value="option1" data-bs-toggle="collapse"
-                                                        data-bs-target="#bgColorMenu:not(.show),#bgImageMenu.show"
+                                                        data-bs-target="#bgColorMenu:not(.show),#bgImageMenu.show,#bgVideoMenu.show"
                                                         >
                                                     <label class="form-check-label" for="bgRadio1">Color</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="bgRadioOptions"
                                                         id="bgRadio2" value="option2" data-bs-toggle="collapse"
-                                                        data-bs-target="#bgColorMenu.show,#bgImageMenu:not(.show)"
+                                                        data-bs-target="#bgColorMenu.show,#bgImageMenu:not(.show),#bgVideoMenu.show"
                                                         aria-expanded="false">
                                                     <label class="form-check-label" for="bgRadio2">Image</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="bgRadioOptions"
+                                                        id="bgRadio3" value="option3" data-bs-toggle="collapse"
+                                                        data-bs-target="#bgColorMenu.show,#bgImageMenu.show,#bgVideoMenu:not(.show)"
+                                                        aria-expanded="false">
+                                                    <label class="form-check-label" for="bgRadio3">Video</label>
                                                 </div>
                                             </a>
                                         </li>
@@ -128,16 +135,19 @@
                                                     <input type="text" name="background_color" id="bgColor"
                                                         class="form-control color-picker" data-format="rgb"
                                                         data-opacity=".9" value="<%= board[0].background_color %>">
-                                                    <!-- <input type="text" name="color" id="bgColor"
-                                                        class="form-control bgPick" data-control="bgcolor"
-                                                        value="<%= board[0].background_color %>"> -->
                                                 </div>
                                             </a>
                                         </li>
                                         <li class="collapse show" id="bgImageMenu">
                                             <a href="#">
                                                 <input type="file" name="background_img" class="form-control"
-                                                    id="customFile" />
+                                                    id="customFile" accept="image/*" />
+                                            </a>
+                                        </li>
+                                        <li class="collapse" id="bgVideoMenu">
+                                            <a href="#">
+                                                <input type="file" name="background_video" class="form-control"
+                                                    id="customFile" accept="video/mp4" />
                                             </a>
                                         </li>
                                     </ul>
@@ -150,6 +160,11 @@
                                             <a href="#">
                                                 <input type="file" name="bg_music" class="form-control" id="bg_music"
                                                     accept="audio/*" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Volume
+                                                <input type="range" class="form-range" min="0" max="100" step="5" value="<%= board[0].bg_music_volume || 0 %>" id="bg_music_volume" name="bg_music_volume">
                                             </a>
                                         </li>
                                     </ul>

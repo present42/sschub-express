@@ -8,18 +8,19 @@ webSocket.onopen = function (event) {
     pid = setInterval(() => { webSocket.send(JSON.stringify({ msg: "give me new message" })); }, 6000);
 };
 
-webSocket.onmessage = function(event) {
+webSocket.onmessage = function (event) {
     console.log(event.data);
-    
+
     var data = JSON.parse(event.data);
 
     var board_details = data[1];
     data = data[0];
-    
+
     console.log(data);
     const l = ['bg', 'md'];
     //createNewMessage(0, 0, l[getRandomInt(0, 1)], data.message, data.nickname, data.email, data.image_path);
-    createNewPostIt(data)
+    createNewPostIt(data);
+    textFit(document.getElementsByClassName('card-text'));
 }
 
 webSocket.onclose = function (event) {
@@ -34,13 +35,20 @@ function getRandomInt(min, max) {
 
 function createNewPostIt(item) {
     const color_list = ["pink", "blue", "green", "yellow", "white"];
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
     let color = getRandomInt(1, color_list.length - 1);
     color = color_list[color];
 
     console.log(item);
+
+    var date = undefined;
+    if (item['submitted_time']) date = new Date(item['submitted_time']);
+
     var cur = count++;
 
-    var str = `<div id = ${cur} class="paper ${color}" style="top: ${getRandomInt(10, 60)}%; left: ${getRandomInt(10, 50)}%">
+    var str = `<div id = ${cur} class="paper ${color}" style="top: ${getRandomInt(-3, 64)}%; left: ${getRandomInt(-2, 77)}%">
         <div class = "message-content">
         <div class="upper-part">
             <div class="left-half">
@@ -55,14 +63,38 @@ function createNewPostIt(item) {
                 account_circle</i>${item['nickname']}
         </div>
     </div>`;
+
+    var str_without_img = `<div id = ${cur} class="paper ${color}" 
+        style="top: ${getRandomInt(-3, 64)}%; left: ${getRandomInt(-2, 77)}%; width: 30vh; height: 40vh;">
+        <div class = "message-content">
+        <div class="upper-part">
+            <!--div class="entire">
+                <img class="message-img" src=/images/posts/${item['image_path']}>
+            </div-->
+            <div class="entire">
+                <p class="card-text">${item['message']}</p>
+            </div>
+        </div>
+        <div class="card-footer lower-part">
+            <i class="material-icons" style="font-size: 1.5vh; margin-right:1vh">
+                account_circle</i>${item['nickname']}
+        </div>
+    </div>`;
+
     var parser = new DOMParser();
     var board = document.getElementById("board");
-    var temp = parser.parseFromString(str, "text/html");
+
+    if (item['image_path'] == null) {
+        var temp = parser.parseFromString(str_without_img, "text/html");
+    } else {
+        var temp = parser.parseFromString(str, "text/html");
+    }
+    
     messages[cur] = temp.body.firstChild;
 
     temp.body.firstChild.addEventListener('animationend', () => {
         console.log(`animation (id:${cur}) iteration finished`);
-        if(cur - 3 >= 0) deleteMessage(cur - 3);
+        if (cur - 3 >= 0) deleteMessage(cur - 3);
     });
 
     return [board.appendChild(temp.body.firstChild), cur];

@@ -20,8 +20,9 @@ html, body{
 }
 
 .container{
-    top:0;
-    height: calc(100% - 20vh);
+    top: 0;
+    /* height: calc(100% - 20vh); */
+    height: 100%;
     width: calc(100% - 3vh);
     margin: 1.5vh;
     
@@ -40,4 +41,14 @@ html, body{
     font-size: 6vh; 
     color: white; 
     text-align: center; 
+}
+.bottom {
+    position:absolute; 
+    bottom: 11vh; 
+    margin-left: auto; 
+    margin-right: auto; 
+    left: 0; 
+    right: 3vw; 
+    text-align: right; 
+    
 }
