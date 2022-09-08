@@ -215,6 +215,21 @@
                                     </ul>
                                 </li>
                                 <li>
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#textSubmenu"
+                                        class="dropdown-toggle btn-toggle">Text</a>
+                                    <ul class="list-unstyled collapse" id="textSubmenu">
+                                        <li>
+                                            <a href="#">
+                                                <div class="form-group">
+                                                    <input type="text" name="text_color" id="textColor"
+                                                        class="form-control color-picker" data-format="rgb"
+                                                        data-opacity=".5" value="<%= board[0].text_color %>">
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
                                     <a href="#" data-bs-toggle="collapse" data-bs-target="#postColorSubmenu"
                                         class="dropdown-toggle btn-toggle">Background</a>
                                     <ul class="list-unstyled collapse" id="postColorSubmenu">
@@ -407,7 +422,8 @@
                     }
 
                     document.getElementById("board-title").style.color = "<%= board[0].title_color %>";
-                    document.getElementById("board-title").innerHTML = "<%= board[0].title %>";
+                    document.getElementById("board-title").style.color = "<%= board[0].title_color %>";
+                    document.documentElement.style.setProperty('--msg-text', "<%= board[0].text_color %>");
                     var event = new Event('input', { checked: true });
                     if ("<%= board[0].background_color %>" == 'undefined' || "<%= board[0].background_color %>" == '') {
                         document.getElementById("bgRadio2").checked = true;

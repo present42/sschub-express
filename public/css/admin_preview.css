@@ -13,6 +13,7 @@
   --msg3: white;
   --msg4: white;
   --msg5: white;
+  --msg-text: black;
 }
 
 /* Preview Window */
@@ -30,6 +31,7 @@
 /* Message Body */
 
 .card-text {
+  color: var(--msg-text);
   margin-right: 3%;
   margin-top: 3%;
   width: 97%;
@@ -45,7 +47,7 @@
 }
 
 .card-footer {
-  color: #999;
+  color: var(--msg-text);;
   font-size: 9px;
   padding: 0;
   padding-left: 5%;

@@ -1,6 +1,6 @@
 var btn_delete = document.querySelector("#delete");
 var btn_cancel = document.querySelector("#cancel");
-var board = document.querySelectorAll('.board');
+var board = document.querySelectorAll('.selectable');
 
 /* OnClick event handler for every board */
 
@@ -17,7 +17,9 @@ function deleteBoards(){
     /* Collect selected boards */
     board.forEach(function(i){
         if(i.classList.contains("is-active")){
-            board_id.push(i.id);
+            if (i.children[0].childElementCount == 0) {
+                board_id.push(i.id);
+            }  
         }
     });
 
@@ -46,13 +48,20 @@ function activateDelete(){
     });
     /* Activates/Deactivates selection for each boards */
     board.forEach(function(i){
+        
         i.classList.toggle("select");
         if (i.classList.contains("is-active")){
             i.classList.toggle("is-active");
         }
         i.addEventListener("click", function(e) {
             i.classList.toggle("is-active");
-        });  
+        });
+        if (i.children[0].childElementCount != 0) {
+            i.classList.toggle("select");
+            if (i.classList.contains("is-active")){
+                i.classList.toggle("is-active");
+            }
+        }  
    });
 };
 
