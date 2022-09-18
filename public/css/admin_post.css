@@ -83,7 +83,6 @@ a:focus {
     border: none;
     border-radius: 0;
     height: 10vh;
-    margin-bottom: 10px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -105,9 +104,11 @@ a:focus {
 ----------------------------------------------------- */
 
 .wrapper {
+    margin-top: 10px;
     display: flex;
-    width: 100%;
-    align-items: stretch;
+    overflow: hidden;
+    width: 100vw;
+    align-items:flex-start;
 }
 
 .whiteTextOverride {
@@ -116,8 +117,9 @@ a:focus {
 
 #sidebar {
     margin-top: 0px;
+    width: 20vw;
     min-width: 300px;
-    max-width: 30vw;
+    max-width: 20vw;
     background: #ffffff;
     color: rgb(161, 161, 161);
     transition: all 0.3s;
@@ -217,9 +219,23 @@ button.reset {
     border-color: #999;
 }
 
+.btn-status{
+    width: 7vw;
+    margin: 5px;
+}
+
+.dropdown{
+    display: flex;
+    justify-content: flex-end;
+}
+
 .form-check{
     margin-left: 20px;
   }
+
+.tableHeader{
+    max-width: 80vw;
+}
 
 .dropdown-toggle:after {
     content: none;
@@ -254,12 +270,16 @@ a.article:hover {
 ----------------------------------------------------- */
 
 #content {
-    width: 100%;
-    display: flex;
-    padding: 20px;
+    min-width: 80vw;
     height: 80vh;
     transition: all 0.3s;
+    align-items: left;
     overflow-y: scroll;
+}
+
+.container {
+    width: 70vw;
+    padding: 10px;
 }
 
 /* ---------------------------------------------------
@@ -278,4 +298,56 @@ a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+}
+
+/* ---------------------------------------------------
+    CARD STYLES
+----------------------------------------------------- */
+.card-md {
+    background-color: rgba(255, 255, 255, 0.856);
+    height: 20vh;
+    width: 20vw;
+    padding: 1.5vh;
+    border-radius: 0.5vw;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    animation-name: animation-md;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.vertical-center{
+    display: flex;
+    align-items:center;
+}
+
+.card-img {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    object-fit: contain;
+    margin-left: 1vh;
+    margin: auto;
+    /* border: 0.1vh grey solid; */
+}
+
+.card-body {
+    font-size: 1.5vh;
+    height: 100%;
+}
+
+.card-footer {
+    height: 20%;
+    font-size: 1.5vh;
+    text-align: left;
+    background-color: transparent;
+}
+
+.upper-part {
+    height: 85%;
+}
+
+.lower-part {
+    height: 15%;
 }
