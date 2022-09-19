@@ -1,0 +1,353 @@
+/*
+    DEMO STYLE
+*/
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    font-weight: lighter;
+    background: #fafafa;
+}
+
+#page_title {
+    color: rgb(85, 85, 85);
+    font-weight: lighter;
+    font-family: sans-serif;
+}
+
+#signout {
+    margin-right: 20px;
+    padding: 12px;
+    background-color: #afafaf;
+    color: #ffffff;
+    border-style: initial;
+    text-decoration: none;
+}
+
+.btn-primary{
+    text-align: center;
+    align-self: center;
+    display: inline-block;
+}
+
+.form-control {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+.form-check{
+    padding-left:5px;
+    text-align: left;
+}
+
+.form-control::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+#sidebarCollapse {
+    background-color: white;
+    color: #afafaf;
+    border-color: #afafaf;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    height: 10vh;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    margin-top: 10px;
+    display: flex;
+    overflow: hidden;
+    width: 100vw;
+    align-items:flex-start;
+}
+
+.whiteTextOverride {
+    color: white !important;
+}
+
+#sidebar {
+    margin-top: 0px;
+    width: 20vw;
+    min-width: 300px;
+    max-width: 20vw;
+    background: #ffffff;
+    color: rgb(161, 161, 161);
+    transition: all 0.3s;
+    overflow: scroll !important;
+    height: 90vh;
+}
+
+#sidebar.active {
+    margin-left: -300px;
+}
+
+#sidebar .sidebar-header {
+    padding-left: 20px;
+    padding-top: 20px;
+    background: rgb(255, 255, 255);
+    color: rgb(82, 82, 82);
+    font-weight: lighter;
+}
+
+#sidebar ul.components {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    border-bottom: 1px rgb(161, 161, 161);
+}
+
+#sidebar ul p {
+    color: rgb(255, 255, 255);
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    padding-right: 20px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: rgb(255, 255, 255);
+    background: #c3c3c3;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: rgb(255, 255, 255);
+    background: #c3c3c3;
+}
+
+a.btn-toggle {
+    display: inline-flex!important;
+    align-items: center;
+    width: 100%;
+}
+
+a.btn-toggle::before {
+    width: 1.25em;
+    line-height: 0;
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+    display: block;
+}
+
+a.btn-toggle[aria-expanded="true"]::before {
+    transform: rotate(90deg);
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: rgb(255, 255, 255);
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs li {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+button.reset {
+    width: 70%;
+    background: #fff;
+    color: #afafaf;
+    border-color: #999;
+}
+
+.btn-status{
+    width: 7vw;
+    margin: 5px;
+}
+
+.dropdown{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-check{
+    margin-left: 20px;
+  }
+
+.tableHeader{
+    max-width: 80vw;
+}
+
+.dropdown-toggle:after {
+    content: none;
+ }
+
+button.btn-primary{
+    width: 70%;
+}
+
+a.article,
+a.article:hover {
+    background: #c3c3c3 !important;
+    color: #fff !important;
+}
+
+.category{
+    color: rgb(101, 101, 101);
+    padding: 7px;
+    font-size:1.3em;
+    border-bottom-style: dotted;
+    border-color: #999;
+    margin-right:20px;
+}
+
+.select-main{
+    padding: 0vw 2vw;
+}
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    min-width: 80vw;
+    height: 80vh;
+    transition: all 0.3s;
+    align-items: left;
+    overflow-y: scroll;
+}
+
+.container {
+    width: 70vw;
+    padding: 10px;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+
+    #sidebar.active {
+        margin-left: 0;
+    }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+/* ---------------------------------------------------
+    CARD STYLES
+----------------------------------------------------- */
+.card-md {
+    background-color: rgba(255, 255, 255, 0.856);
+    height: 20vh;
+    width: 20vw;
+    padding: 1.5vh;
+    border-radius: 0.5vw;
+    box-shadow: 5px 5px 5px 5px #0000006a, 0 0 0 1px #ffffff00;
+    animation-name: animation-md;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.vertical-center{
+    display: flex;
+    align-items:center;
+}
+
+.card-img {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    object-fit: contain;
+    margin-left: 1vh;
+    margin: auto;
+    /* border: 0.1vh grey solid; */
+}
+
+.card-body {
+    font-size: 1.5vh;
+    height: 100%;
+}
+
+.card-footer {
+    height: 20%;
+    font-size: 1.5vh;
+    text-align: left;
+    background-color: transparent;
+}
+
+.upper-part {
+    height: 85%;
+}
+
+.lower-part {
+    height: 15%;
+}
