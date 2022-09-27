@@ -66,7 +66,7 @@
   --paper-dark: #3de459be;
   --shadow-size: 3px;
   --transparent: rgba(213, 224, 249, 0);
-  width: 40vw;
+  width: 20vw;
   height: 30vh;
 }
 
@@ -105,8 +105,8 @@
   font-family: "Caveat", cursive;
   font-size: 2rem;
   box-shadow: var(--shadow-size) var(--shadow-size) 3px rgba(0, 0, 0, 0.427);
-  margin-top: 5vh;
-  margin-left: 5vh;
+  /* margin-top: 5vh;
+  margin-left: 5vh; */
   animation: fade-in 2s;
   animation-fill-mode: forwards;
 }
@@ -204,6 +204,8 @@
 .message-content{
   overflow: hidden;
   font-family: 'Verdana';
+  width: 100%;
+  height: 100%;
 }
 
 .card-img {
@@ -259,6 +261,17 @@
   padding-top:2%
 }
 
+.entire {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+  padding-top:2%
+}
+
 .message-img{
   max-width: 90%;
   max-height: 90%;
@@ -271,7 +284,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 25vh;
+  height: calc(100% - 5vh);
 }
 
 .lower-part {
@@ -282,12 +295,18 @@
 }
 
 .card-text {
-  margin-right: 3%;
-  margin-top: 3%;
-  width: 97%;
-  height: 97%;
+  padding: 3%;
+  height: 100%;
+  width: 100%;
   font-size: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
+  text-align: center;
+  display: table;
+}
+
+span.textFitted {
+  display: table-cell!important;
+  vertical-align: middle;
 }

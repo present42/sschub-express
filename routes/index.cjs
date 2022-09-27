@@ -4,7 +4,7 @@ var db = require('../database.cjs');
 
 /* GET home page. */
 app.get('/', function(req, res, next) {
-  if (req.session.loggedin) {
+  // if (req.session.loggedin) {
     var sql = 'SELECT * from current_main_board inner join boards on current_main_board.board_id = boards.board_id';
     db.query(sql, function(err, data) {
       if(err) throw err;
@@ -24,9 +24,9 @@ app.get('/', function(req, res, next) {
         res.render('mainboard_postit_tape', { data: data[0] } );
       }
     });
-  } else {
-    res.render('login.ejs');
-  }
+  // } else {
+  //   res.render('login.ejs');
+  // }
 });
 
 app.get('/form', function(req, res, next) {
