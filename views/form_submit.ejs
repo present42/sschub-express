@@ -20,6 +20,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
   <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/css/form.css" rel="stylesheet" type="text/css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"
     integrity="sha512-ooSWpxJsiXe6t4+PPjCgYmVfr1NS5QXJACcR/FPpsdm6kqG1FmQ2SVyg2RXeVuCRBLr0lWHnWJP6Zs1Efvxzww=="
@@ -117,6 +118,31 @@
       </div>
       <hr />
       <div class="row mb-4">
+        <label for="background-color" class="col-sm-2 col-form-label">Background Color</label>
+        <div class="col-sm-8">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <div class = "box" style = "background-color: rebeccapurple"></div>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+            <label class="form-check-label" for="inlineRadio3">3</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+            <label class="form-check-label" for="inlineRadio4">4</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
+            <label class="form-check-label" for="inlineRadio5">5</label>
+          </div>
+      </div>
+      </div>
+      <hr />
+      <div class="row mb-4">
         <label for="nickname" class="col-sm-2 col-form-label">Nickname</label>
         <div class="col-sm-4">
           <input type="text" class="form-control" id="nickname" name="nickname" />
@@ -127,6 +153,7 @@
         </div>
       </div>
       <hr />
+      
       <input type="hidden" name="parent_board_id" value="<%= data.board_id %>">
       <div class="mt-5">
         <button type="button" class="btn btn-secondary">Preview</button>
@@ -134,6 +161,7 @@
       </div>
     </form>
   </div>
+  
   <!-- <div class="container p-5 my-5 bg-primary text-white">
       <h1><small>My</small> First Boostrap Page</h1>
       <p class="h6">This part is inside a .container class.</p>
