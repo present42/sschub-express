@@ -64,17 +64,19 @@ app.post('/:board_id/edit', filefields, function (req, res, next) {
   const boardDetails = req.body;
   const fileDetails = req.files;
   var temp = '';
+  var title = boardDetails.title;
+  title = title.replaceAll("'","''");
   
   if (boardDetails.bgRadioOptions == 'option1') {
     console.log("fileDetails is undefined");
-    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.background_color}', board_type = '${boardDetails.type_check}' `;
+    temp = `UPDATE boards SET title = '${title}', title_color = '${boardDetails.title_color}', background_color = '${boardDetails.background_color}', board_type = '${boardDetails.type_check}' `;
   } else if (fileDetails['background_img'] != undefined && boardDetails.bgRadioOptions == 'option2') {
     console.log("fileDetails is defined");
-    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '', background_img = '${fileDetails['background_img'][0]['filename']}', background_video = '', board_type = '${boardDetails.type_check}' `;
+    temp = `UPDATE boards SET title = '${title}', title_color = '${boardDetails.title_color}', background_color = '', background_img = '${fileDetails['background_img'][0]['filename']}', background_video = '', board_type = '${boardDetails.type_check}' `;
   } else if (fileDetails['background_video'] != undefined && boardDetails.bgRadioOptions == 'option3') {
-    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '', background_img = '', background_video = '${fileDetails['background_video'][0]['filename']}', board_type = '${boardDetails.type_check}' `;
+    temp = `UPDATE boards SET title = '${title}', title_color = '${boardDetails.title_color}', background_color = '', background_img = '', background_video = '${fileDetails['background_video'][0]['filename']}', board_type = '${boardDetails.type_check}' `;
   } else {
-    temp = `UPDATE boards SET title = '${boardDetails.title}', board_type = '${boardDetails.type_check}' `;
+    temp = `UPDATE boards SET title = '${title}', board_type = '${boardDetails.type_check}' `;
   }
 
   if (fileDetails['bg_music'] != undefined) {
