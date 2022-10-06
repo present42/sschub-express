@@ -30,6 +30,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
   <script src="javascripts/form.js"></script>
 
@@ -43,26 +45,13 @@
 </head>
 
 <body>
-  <div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="https://hkust.edu.hk" class="d-flex align-items-center mb-3 mb-md-0 p-2 text-dark text-decoration-none">
-        <img src="/images/ust.svg" alt="HKUST" width="160" height="50" />
-      </a>
+    <nav class="navbar fixed-top bg-light">
       <a href="https://ssc.hkust.edu.hk/"
-        class="d-flex align-items-center mb-3 mb-md-0 p-2 text-dark text-decoration-none">
-        <img src="/images/SSC Logo.png" alt="SSC Hub" width="177.5" height="50" />
+        class="d-flex align-items-center  p-2 text-dark text-decoration-none" style="margin-left: 10px;">
+        <img src="/images/SSC Logo.png" alt="SSC Hub" width="177.5" height="100%" />
       </a>
-
-      <ul class="ms-auto p-2 nav nav-pills">
-        <li class="nav-item">
-          <a href="#" class="nav-link active" aria-current="page">About</a>
-        </li>
-        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-      </ul>
-    </header>
-  </div>
-  <div class="container p-5 my-5 border">
+  </nav>
+  <div class="container border" id="intro">
     <h1 class="display-5">Post your message to SSC Hub</h1>
     <hr />
     <p>
@@ -184,12 +173,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body">
-        Congrat! Your message is well received. We'll process your message as soon as possible.
+        Congratulations! Your message is well received. We'll process your message as soon as possible.
       </div>
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- Modal for Image Crop-->
   <div class="modal fade" id="cropImageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -216,6 +205,60 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal for Guidelines-->
+  <div class="modal fade" id="guidelines" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="guidelines-title">Message Board Guidlines</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="guidelines-body">
+          
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Agree</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      let msg_placeholder = `Content shall not include profanity, personal or defamatory attacks, obscenity, or any other inappropriate subject matter. The SSC has the right to reject any application or request for the revision of content.
+* We appreciate your sensibility and respect for any message submitted to the Hub.`;
+      let guideline = `<b>(I) Eligibility</b>
+The SSC Hub digital wall is available to all HKUST students and staff
+ 
+<b>(II) Usage</b>
+The message wall is designed as a public display for collective sharing of thoughts. We hope to encourage the university community to participate, interact and create. This is a platform to celebrate positivity and inclusiveness, promote a sense of community, and advocate a more sustainable way of thinking and acting.
+ 
+<b>(III) Content</b>
+Anything you want to share with other campus members in both texts and images.
+Content shall not include profanity, personal or defamatory attacks, obscenity, or any other inappropriate subject matter. The SSC has the right to reject any application or request for the revision of content.
+*We appreciate your sensibility and respect for any message submitted to the Hub. 
+ 
+<b>(IV) Notice prior to Publishing of messages </b>
+Messages will not be posted instantly as it requires admin’s approval
+ 
+<b>(V) Submission </b>
+Scan the QR code on the wall to enter the submission website.
+Posting can be in the form of a text, image or both (See VI for format).   
+ 
+<b>(VI) Format</b>
+Word limit for each message is 100 words. Different languages are supported.
+Emoji is supported
+Images have to be in the format of .jpg or .png. The size of the image to be shown is fixed and you may crop the image.`;
+        console.log($('#message'));
+        $('#message').attr("placeholder", msg_placeholder);
+        $('#guidelines').modal('show');
+        $('#guidelines-body').html(guideline);
+    });
+</script>
 </body>
 
 </html>
