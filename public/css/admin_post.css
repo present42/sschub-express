@@ -322,9 +322,9 @@ a.article:hover {
 }
 
 .card-img {
-    height: 90%;
+    height: 95%;
     position: relative;
-    top: 40%;
+    top: 41%;
     transform: translateY(-50%);
     object-fit: contain;
     margin-left: 1vh;

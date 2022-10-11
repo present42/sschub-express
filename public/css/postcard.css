@@ -195,10 +195,9 @@ body {
 }
 
 .card-img {
-    height: 90%;
+    height: 102%;
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-3%);
     object-fit: contain;
     margin-left: 1vh;
     margin: auto;
