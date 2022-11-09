@@ -33,13 +33,9 @@ app.get('/form', function(req, res, next) {
   var sql = 'SELECT * from current_main_board';
   db.query(sql, function(err, data) {
     if(err) throw err;
-    let id = data[0]["board_id"];
-    sql = "SELECT * from boards WHERE board_id = " + id;
-    db.query(sql, function(err, data) {
-      console.log("Read data (board list) is successful");
-      console.log(data[0]);
-      res.render('form_submit', { title: "Message Submission Form", data: data[0]});
-    });
+    console.log("Read data (board list) is successful");
+    console.log(data[0]);
+    res.render('form_submit', { title: "Message Submission Form", data: data[0] });
   });
 });
 
