@@ -1,13 +1,3 @@
-
-function setcolor(list){
-  console.log(list[0]);
-  document.getElementById("color1").style.background = list[0];
-  document.getElementById("color2").style.background = list[1];
-  document.getElementById("color3").style.background = list[2];
-  document.getElementById("color4").style.background = list[3];
-  document.getElementById("color5").style.background = list[4];
-}
-
 window.onload = (event) => {
   let area = document.querySelector("#message");
   let word_count = document.querySelector("#word-count");
@@ -25,26 +15,6 @@ window.onload = (event) => {
   const myModal = new bootstrap.Modal(document.getElementById('cropImageModal'));
   var cropper;
   const form_data = new FormData();
-  var color_list;
-  let pid;
-  console.log("new Obj");
-  //var webSocket = new WebSocket('ws://localhost:3000/websockets');
-  var webSocket = new WebSocket('ws://143.89.6.61/websockets');
-  webSocket.onopen = function (event) {
-      pid = webSocket.send(JSON.stringify({ msg: "give me new message" }));
-      console.log(pid);
-  };
-
-  webSocket.onmessage = function(event) {
-    
-    data = JSON.parse(event.data);
-    board_details = data[1][0];
-    color_list = board_details.post_colors.split('  ');
-    console.log(color_list);
-    setcolor(color_list);
-    data = data[0];
-  }
-  
 
   area.addEventListener(
     "input",
