@@ -5,15 +5,7 @@ var db = require('../database.cjs');
 /* GET home page. */
 app.get('/', function(req, res, next) {
   // if (req.session.loggedin) {
-    var sql = 'ALTER TABLE posts ADD color_index int DEFAULT 0;'
-    db.query(sql,function(err,data){
-      if (err) throw err;
-    });
-    sql = 'ALTER TABLE posts ADD CHECK(color_index<5);'
-    db.query(sql,function(err,data){
-      if (err) throw err;
-    });
-    sql = 'SELECT * from current_main_board inner join boards on current_main_board.board_id = boards.board_id';
+    var sql = 'SELECT * from current_main_board inner join boards on current_main_board.board_id = boards.board_id';
     db.query(sql, function(err, data) {
       if(err) throw err;
       console.log("Read data (board list) is successful");
