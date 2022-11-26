@@ -36,7 +36,7 @@ webSocket.onmessage = function (event) {
   console.log(JSON.parse(event.data));
   l = ['bg', 'md'];
   createNewMessage(0, 0, l[getRandomInt(0, 1)], data.message, data.nickname, data.email, data.image_path, data.approved_time, data.color_index);
-  textFit(document.getElementsByClassName('card-text'));
+  textFit(document.getElementsByClassName('msg'));
   
   if(background_img == undefined && background_video == undefined) {
     background_img = board_details.background_img;
@@ -99,14 +99,11 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   color = color_list[index];
 
 
-  const monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
   var date = undefined;
   if (time) date = new Date(time);
-
-  console.log(time);
-  console.log(size);
   var height = 16,
     width = 16,
     top = 2;
@@ -137,65 +134,62 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   }
 
   console.log(pos_y);
-  var str = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vh">
-        <div class="row g-0">
-          <div class="col-md-6 full-height" style="padding: 0.5vh">
-            <img src="/images/posts/${filename}" class="card-img" alt="..." />
+  var str = `<div id="${cur}" class="position-absolute card ${size}" style="background: ${color};top: ${top}%; left: -30%;">
+        <div class="msg-body">
+          <div class="msg-half">
+            <img src="/images/posts/${filename}" class="msg-img rounded" alt="..." />
           </div>
-          <div class="col-md-6 full-height">
-            <div class="card-body">
-              <p class="card-text">${message}</p>
-            </div>
+          <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle;">
+              ${message}
+              </div>
           </div>
         </div>
-        <div class="card-footer lower-part" style="clear: both">
-          <div style="float: left; font-size: 1.8vh"> 
-          ${nickname ? `<i class="material-icons" style="font-size: 1.5vh">
-          account_circle</i
-        > ${nickname}` : ""}
+        <div style="height:4.5%;border-bottom: 0.5px rgba(76, 76, 76, 0.492) solid; box-shadow: 0 1.2px 1px -1px rgba(104, 104, 104, 0.444);"></div>
+        <div style="height:2.5%"></div>
+        <div class="msg-footer">
+          <div style="float: left; height: 100%"> 
+          ${nickname ? `<i class="material-icons">account_circle</i><span style="vertical-align:middle;">   ${nickname}</span>` : ""}
           </div>
-          <div style="float: right; font-size: 1.8vh">
-          ${date ? `<i class="material-icons" style="font-size: 1.5vh"> access_time</i> ${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}` : ""}
+          <div style="float: right; height: 100%">
+          ${date ? `<i class="material-icons"> access_time</i><span style="vertical-align:middle">   ${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}</span>` : ""}
           </div>
         </div>
       </div>`;
 
-  var str_without_img = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vh">
-    <div class="row g-0 upper-part">
-      <div class="col-md-12 full-height">
-        <div class="card-body">
-          <p class="card-text">${message}</p>
+  var str_without_img = `<div id="${cur}" class="card position-absolute ${size}" style="background: ${color};top: ${top}%; left: -30%">
+    <div class="msg-body">
+      <div class="msg-text" style="padding: 0 0 0 0">
+        <div class="msg" style="text-align: middle;">
+          ${message}
         </div>
       </div>
     </div>
-    <div class="card-footer lower-part" style="clear: both">
-          <div style="float: left"> 
-          ${nickname ? `<i class="material-icons" style="font-size: 1.5vh">
-          account_circle</i
-        > ${nickname}` : ""}
-          </div>
-          <div style="float: right">
-          ${date ? `<i class="material-icons" style="font-size: 1.5vh"> mail</i> ${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}` : ""}
-          </div>
-        </div>
+    <div style="height:4.5%;border-bottom: 0.5px rgba(76, 76, 76, 0.492) solid; box-shadow: 0 1.2px 1px -1px rgba(104, 104, 104, 0.444);"></div>
+    <div style="height:2.5%"></div>
+    <div class="msg-footer">
+      <div style="float: left; height: 100%;"> 
+      ${nickname ? `<i class="material-icons">account_circle</i><span style="vertical-align:middle">${nickname}</span>` : ""}
+      </div>
+      <div style="float: right; height: 100%">
+      ${date ? `<i class="material-icons"> access_time</i><span style="vertical-align:middle">${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}</span>` : ""}
+    </div>
   </div>`;
 
-  var str_without_text = `<div id="${cur}" class="card position-absolute card-${size}" style="background: ${color};top: ${top}%; left: -30%; height: ${height}vh; width: ${width}vh">
-  <div class="row g-0">
-    <div class="col-md-12 full-height">
-      <img src="/images/posts/${filename}" class="card-img" alt="..." />
+  var str_without_text = `<div id="${cur}" class="card position-absolute ${size}" style="background: ${color};top: ${top}%; left: -30%;">
+  <div class="msg-body">
+    <div class="msg-image">
+      <img src="/images/posts/${filename}" class="msg-img" alt="..." />
     </div>
   </div>
-  <div class="card-footer lower-part" style="clear: both">
-          <div style="float: left"> 
-          ${nickname ? `<i class="material-icons" style="font-size: 1.5vh">
-          account_circle</i
-        > ${nickname}` : ""}
-          </div>
-          <div style="float: right">
-          ${date ? `<i class="material-icons" style="font-size: 1.5vh"> mail</i> ${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}` : ""}
-          </div>
-        </div>
+  <div style="height:4.5%;border-bottom: 0.5px rgba(76, 76, 76, 0.492) solid; box-shadow: 0 1.2px 1px -1px rgba(104, 104, 104, 0.444);"></div>
+    <div style="height:2.5%"></div>
+    <div class="msg-footer">
+      <div style="float: left; height: 100%"> 
+      ${nickname ? `<i class="material-icons">account_circle</i><span style="vertical-align:middle;">${nickname}</span>` : ""}
+      </div>
+      <div style="float: right; height: 100%">
+      ${date ? `<i class="material-icons"> access_time</i><span style="vertical-align:middle">${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}</span>` : ""}
+    </div>
 </div>`;
   var parser = new DOMParser();
   var container = document.getElementById("container");
