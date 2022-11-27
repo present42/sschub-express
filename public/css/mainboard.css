@@ -204,6 +204,16 @@ body {
     font-weight: 700; 
     font-style:bold; 
 }
+
+.qr {
+    display: inline-block; 
+    margin-top: 1vw;
+    margin-left: 1vw;
+    height: 25vh; 
+    z-index: 10; 
+    position: relative;
+}
+
 .bottom {
     position:absolute; 
     bottom: 68vh; 
