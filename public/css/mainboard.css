@@ -9,6 +9,8 @@
     border-radius: 0.5vw;
     padding: min(2vw, 4vh, 15px); 
     padding-bottom: min(1.5vw, 3vh, 8px);  
+    min-width: 150px !important;
+    min-height: 97.5px !important;
     animation-name: animation-md;
     animation-duration: 120s;
     animation-timing-function: linear;
