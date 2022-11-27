@@ -1,7 +1,11 @@
 /* Card Layout */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+/* Fonts for Body */
+/* Sans Serif */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300&display=swap');
+/* Handwritten */
+@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap');
 
 .card {
     background-color: rgba(255, 202, 202, 0.907);
