@@ -34,8 +34,8 @@ webSocket.onmessage = function (event) {
   data = data[0];
 
   console.log(JSON.parse(event.data));
-  l = ['bg', 'md'];
-  createNewMessage(0, 0, l[getRandomInt(0, 1)], data.message, data.nickname, data.email, data.image_path, data.approved_time, data.color_index);
+  l = ['bg', 'md','sm'];
+  createNewMessage(0, 0, l[getRandomInt(0, 2)], data.message, data.nickname, data.email, data.image_path, data.approved_time, data.color_index);
   textFit(document.getElementsByClassName('msg'));
   
   if(background_img == undefined && background_video == undefined) {
@@ -91,6 +91,15 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+// distribute evenly across viewport (avoid too much overlapping)
+function getRandomPos(cur, min, max){
+  if (cur%2 == 0){
+    max =max/2+20;
+  } else {
+    min = max/2-20;
+  }
+  return getRandomInt(min,max);
+}
 
 function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This content is a little bit longer.", nickname = "hyunju", email = "hyunju@connect.abc.com", filename, time, index) {
   console.log(board_details);
@@ -115,26 +124,25 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
     console.log(cur);
     return;
   }
-
+  
 
   if (size == 'bg') {
     height = 25;
     width = 25 * 2.25;
     // top: 2 - 73
-    top = getRandomInt(2, 73);
+    top = getRandomPos(cur, 2, 70);
   } else if (size == 'md') {
     height = 20;
     width = 45;
     // top: 2 - 79
-    top = getRandomInt(2, 79);
+    top = getRandomPos(cur, 2, 75);
   } else {
     size = "sm";
     // top: 2 - 82
-    top = getRandomInt(2, 82);
+    top = getRandomPos(cur, 2, 80);
   }
-
-  console.log(pos_y);
-  var str = `<div id="${cur}" class="position-absolute card ${size}" style="background: ${color};top: ${top}%; left: -30%;">
+  let duration = [110,140,170]
+  var str = `<div id="${cur}" class="position-absolute card ${size}" style="background: ${color};top: ${top}%; left: -30%; animation-duration: ${duration[getRandomInt(0,2)]}s;">
         <div class="msg-body">
           <div class="msg-half">
             <img src="/images/posts/${filename}" class="msg-img rounded" alt="..." />
@@ -156,10 +164,10 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
         </div>
       </div>`;
 
-  var str_without_img = `<div id="${cur}" class="card position-absolute ${size}" style="background: ${color};top: ${top}%; left: -30%">
+  var str_without_img = `<div id="${cur}" class="card position-absolute ${size}" style="background: ${color};top: ${top}%; left: -30%;animation-duration: ${duration[getRandomInt(0,2)]}s;">
     <div class="msg-body">
       <div class="msg-text" style="padding: 0 0 0 0">
-        <div class="msg" style="text-align: middle;">
+        <div class="msg" style="vertical-align: middle;">
           ${message}
         </div>
       </div>
@@ -175,7 +183,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
     </div>
   </div>`;
 
-  var str_without_text = `<div id="${cur}" class="card position-absolute ${size}" style="background: ${color};top: ${top}%; left: -30%;">
+  var str_without_text = `<div id="${cur}" class="card position-absolute ${size}" style="background: ${color};top: ${top}%; left: -30%;animation-duration: ${duration[getRandomInt(0,2)]}s;">
   <div class="msg-body">
     <div class="msg-image">
       <img src="/images/posts/${filename}" class="msg-img" alt="..." />
@@ -216,8 +224,3 @@ function deleteMessage(id) {
     messages[id].remove();
   }
 }
-
-l = ['bg', 'md']
-// })();
-
-// setInterval(() => createNewMessage(0, 0, l[getRandomInt(0, 1)]), 6000)

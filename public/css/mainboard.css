@@ -1,7 +1,11 @@
 /* Card Layout */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+/* Fonts for Body */
+/* Sans Serif */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300&display=swap');
+/* Handwritten */
+@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap');
 
 .card {
     background-color: rgba(255, 202, 202, 0.907);
@@ -9,6 +13,8 @@
     border-radius: 0.5vw;
     padding: min(2vw, 4vh, 15px); 
     padding-bottom: min(1.5vw, 3vh, 8px);  
+    min-width: 150px !important;
+    min-height: 97.5px !important;
     animation-name: animation-md;
     animation-duration: 120s;
     animation-timing-function: linear;
@@ -16,8 +22,8 @@
 }
 
 .bg {
-    width: 24vw;
-    height: 15.6vw;
+    width: 22vw;
+    height: 14.3vw;
 }
 
 .md {
@@ -43,18 +49,32 @@
     height: 13%;
     padding:0;
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: min(14px, 1vw, 4vh) !important;
+    font-size: min(13px, 1vw, 4vh) !important;
+    color: rgba(123, 123, 123, 0.642);
+    text-shadow: 0.5px 0.5px 0.7px rgba(104, 104, 104, 0.286);
+}
+
+.sm .msg-footer {
+    height: 13%;
+    padding:0;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: min(10px, 1vw, 4vh) !important;
     color: rgba(123, 123, 123, 0.642);
     text-shadow: 0.5px 0.5px 0.7px rgba(104, 104, 104, 0.286);
 }
 
 .msg-half {
-    width: 50%;
+    width: 50% !important;
     object-fit: contain;
 }
 
 .material-icons {
-    font-size: min(15px, 2.3vw, 10vh);
+    font-size: min(13px, 2vw, 5vh);
+    vertical-align: middle;
+}
+
+.sm .material-icons {
+    font-size: min(10px, 2vw, 5vh) !important;
     vertical-align: middle;
 }
 
@@ -67,7 +87,9 @@
 
 .msg-text {
     max-height: 100%;
+    width:100%;
     padding-left: min(0.7vw, 3vh, 10px);
+    object-fit: contain;
     overflow: hidden;
     word-wrap: break-word;
 }
@@ -188,6 +210,16 @@ body {
     font-weight: 700; 
     font-style:bold; 
 }
+
+.qr {
+    display: inline-block; 
+    margin-top: 1vw;
+    margin-left: 1vw;
+    height: 25vh; 
+    z-index: 10; 
+    position: relative;
+}
+
 .bottom {
     position:absolute; 
     bottom: 68vh; 
