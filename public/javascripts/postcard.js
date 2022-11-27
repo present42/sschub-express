@@ -34,8 +34,8 @@ webSocket.onmessage = function (event) {
   data = data[0];
 
   console.log(JSON.parse(event.data));
-  l = ['bg', 'md'];
-  createNewMessage(0, 0, l[getRandomInt(0, 1)], data.message, data.nickname, data.email, data.image_path, data.approved_time, data.color_index);
+  l = ['bg', 'md','sm'];
+  createNewMessage(0, 0, l[getRandomInt(0, 2)], data.message, data.nickname, data.email, data.image_path, data.approved_time, data.color_index);
   textFit(document.getElementsByClassName('msg'));
   
   if(background_img == undefined && background_video == undefined) {
@@ -159,7 +159,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   var str_without_img = `<div id="${cur}" class="card position-absolute ${size}" style="background: ${color};top: ${top}%; left: -30%">
     <div class="msg-body">
       <div class="msg-text" style="padding: 0 0 0 0">
-        <div class="msg" style="text-align: middle;">
+        <div class="msg" style="vertical-align: middle;">
           ${message}
         </div>
       </div>
@@ -216,8 +216,3 @@ function deleteMessage(id) {
     messages[id].remove();
   }
 }
-
-l = ['bg', 'md']
-// })();
-
-// setInterval(() => createNewMessage(0, 0, l[getRandomInt(0, 1)]), 6000)
