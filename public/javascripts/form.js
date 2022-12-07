@@ -1,6 +1,6 @@
 
-function setcolor(list){
-  console.log(list[0]);
+function setcolor(list) {
+  // console.log(list[0]);
   document.getElementById("color1").style.background = list[0];
   document.getElementById("color2").style.background = list[1];
   document.getElementById("color3").style.background = list[2];
@@ -10,7 +10,10 @@ function setcolor(list){
 
 window.onload = (event) => {
   let area = document.querySelector("#message");
+  let nickname = document.querySelector("#nickname");
   let word_count = document.querySelector("#word-count");
+  const word_limit = 30;
+
 
   let imgInp = document.querySelector("#formFile");
 
@@ -30,27 +33,65 @@ window.onload = (event) => {
   //var webSocket = new WebSocket('ws://localhost:3000/websockets');
   var webSocket = new WebSocket('ws://143.89.6.61/websockets');
   webSocket.onopen = function (event) {
-      pid = webSocket.send(JSON.stringify({ msg: "give me new message" }));
-      console.log(pid);
+    pid = webSocket.send(JSON.stringify({ msg: "give me new message" }));
+    // console.log(pid);
   };
 
-  webSocket.onmessage = function(event) {
-    
+  webSocket.onmessage = function (event) {
+
     data = JSON.parse(event.data);
     board_details = data[1][0];
     color_list = board_details.post_colors.split('  ');
-    console.log(color_list);
+    // console.log(color_list);
     setcolor(color_list);
     data = data[0];
   }
-  
+
+  area.addEventListener(
+    'keydown', 
+    function (e) {
+      // console.log()
+      const temp = area.value.trim();
+      // console.log((temp.match(/ /g) || []).length + 1);
+      if ((temp.match(/ /g) || []).length + 2 > word_limit
+        && e.keyCode !== 46 // keycode for delete
+        && e.keyCode !== 8 // keycode for backspace
+        && e.keyCode !== 37 // keycode for arrows
+        && e.keyCode !== 38
+        && e.keyCode !== 39
+        && e.keyCode !== 40
+      ) {
+        e.preventDefault();
+      }
+      // console.log("hi");
+    },
+    false
+  );
 
   area.addEventListener(
     "input",
     function () {
-      temp = area.value.trim();
+      let temp = area.value.trim();
       word_count.textContent =
         temp != "" ? (temp.match(/ /g) || []).length + 1 : 0;
+
+      if ((temp.match(/ /g) || []).length + 2 > word_limit) {
+        area.value = temp.split(" ").slice(0, word_limit).join(" ");
+        temp = area.value.trim();
+        word_count.textContent =
+          temp != "" ? (temp.match(/ /g) || []).length + 1 : 0;
+      }
+    },
+    false
+  );
+
+  nickname.addEventListener(
+    "keydown",
+    function() {
+      let temp = nickname.value;
+      if (temp.length > 10) {
+        nickname.value = temp.substring(0, 10);
+      }
     },
     false
   );
@@ -58,7 +99,7 @@ window.onload = (event) => {
   imgInp.onchange = (evt) => {
     myModal.show();
   };
-  
+
   document.querySelectorAll('textarea[data-max-words]').forEach(input => {
     // Remember the word limit for the current input
     let maxWords = parseInt(input.getAttribute('data-max-words') || 0)
@@ -91,19 +132,19 @@ window.onload = (event) => {
     cropper = new Cropper(thumbnail_crop, {
       aspectRatio: 1 / 1,
       crop(event) {
-        console.log(event.detail.x);
-        console.log(event.detail.y);
-        console.log(event.detail.width);
-        console.log(event.detail.height);
-        console.log(event.detail.rotate);
-        console.log(event.detail.scaleX);
-        console.log(event.detail.scaleY);
+        // console.log(event.detail.x);
+        // console.log(event.detail.y);
+        // console.log(event.detail.width);
+        // console.log(event.detail.height);
+        // console.log(event.detail.rotate);
+        // console.log(event.detail.scaleX);
+        // console.log(event.detail.scaleY);
       }
     });
   });
 
   const toastLiveExample = document.getElementById('liveToast')
-  console.log(location.href.split('/')[3] == 'form?success');
+  // console.log(location.href.split('/')[3] == 'form?success');
   if (location.href.split('/')[3] == 'form?success') {
     const toast = new bootstrap.Toast(toastLiveExample);
     toast.show();
@@ -117,7 +158,7 @@ window.onload = (event) => {
       cropper.getCroppedCanvas().toBlob((blob) => {
         thumbnail.src = URL.createObjectURL(blob);
         // crop_input.value = blob;
-        let cropped_file = new File([blob], "cropped_file", {type:"image/png", lastModified: new Date().getTime()});
+        let cropped_file = new File([blob], "cropped_file", { type: "image/png", lastModified: new Date().getTime() });
         let container = new DataTransfer();
         container.items.add(cropped_file);
         imgInp.files = container.files;
@@ -130,11 +171,11 @@ window.onload = (event) => {
   };
 
   crop_cancel_button.onclick = (evt) => {
-    if(cropper) cropper.destroy();
+    if (cropper) cropper.destroy();
     myModal.hide();
     thumbnail_crop.src = '';
     document.getElementById("spinner").style.display = '';
   }
 
-  
+
 };

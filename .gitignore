@@ -2,3 +2,5 @@ database.js
 .env
 node_modules/*
 database.cjs
+public/images/*
+!public/images/*.*
