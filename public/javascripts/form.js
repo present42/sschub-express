@@ -12,7 +12,7 @@ window.onload = (event) => {
   let area = document.querySelector("#message");
   let nickname = document.querySelector("#nickname");
   let word_count = document.querySelector("#word-count");
-  const word_limit = 30;
+  const word_limit = 100;
 
 
   let imgInp = document.querySelector("#formFile");
