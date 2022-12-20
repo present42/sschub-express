@@ -32,9 +32,12 @@ webSocket.onmessage = function (event) {
   board_title.innerHTML = board_details.title;
   board_title.style.color = board_details.title_color;
   data = data[0];
-
   l = ['bg', 'md','sm'];
-  createNewMessage(0, 0, l[getRandomInt(0, 2)], data.message, data.nickname, data.email, data.image_path, data.approved_time, data.color_index);
+  
+  if(data.message.length > 100) s = l[getRandomInt(0, 1)];
+  else s = l[getRandomInt(0, 2)];
+
+  createNewMessage(0, 0, s, data.message, data.nickname, data.email, data.image_path, data.approved_time, data.color_index);
   textFit(document.getElementsByClassName('msg'));
   
   if(background_img == undefined && background_video == undefined) {
