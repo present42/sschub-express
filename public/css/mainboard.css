@@ -14,7 +14,7 @@
 .card {
     background-color: rgba(255, 202, 202, 0.907);
     box-shadow: 7px 7px 5px -3px #0000005d;
-    border-radius: 0.5vw;
+    border-radius: 2vh;
     padding: 3vh;
     padding-bottom: 1.5vh; 
     min-width: 150px !important;
@@ -27,17 +27,17 @@
 
 .bg {
     width: 60vh;
-    height: 36vh;
+    height: 39vh;
 }
 
 .md {
-    width: 40vh;
-    height: 26vh;
+    width: 50vh;
+    height: 32.5vh;
 }
 
 .sm {
-    width: 30vh;
-    height: 19.5vh;
+    width: 40vh;
+    height: 26vh;
 }
 
 .msg-body {
