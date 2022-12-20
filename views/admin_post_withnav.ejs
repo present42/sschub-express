@@ -84,15 +84,15 @@
                         </div>
                     </div>
                     <hr class="bg-secondary border-2 border-top border-secondary    ">
-                    <table class="table" id="post_table" style="overflow-y: scroll;">
+                    <table class="table" id="post_table" style="overflow-y: scroll;" data-sort-name="time" data-sort-order="desc">
                         <thead>
                             <tr>
-                                <th style="width: 7vw" scope="col">#</th>
+                                <th style="width: 7vw" scope="col" data-field="id" data-sortable="true">#</th>
                                 <th style="width: 62vw" scope="col">Message</th>
                                 <th style="width: 10vw" scope="col">Nickname</th>
-                                <th style="width: 7vw" scope="col">Submitted Time</th>
+                                <th style="width: 7vw; text-align: center;" scope="col" data-field="time" data-sortable="true">Time<br>(MM-dd)</th>
                                 <th style="width: 7vw" scope="col">Preview</th>
-                                <th style="width: 7vw" scope="col">Reject/Accept</th>
+                                <th style="width: 7vw" scope="col">Accept/Reject</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,11 +107,14 @@
                                     <td>
                                         <%= data[i].nickname %>
                                     </td>
-                                    <td>
-                                        <%= data[i].submitted_time.toLocaleString() %>
+                                    <td style="vertical-align: middle; text-align: center;">
+                                        <%= data[i].submitted_time.toLocaleString('en-US', {
+                                            year: "numeric",
+                                            month: "2-digit",
+                                        day: "2-digit", hour: '2-digit', minute:'2-digit'}) %>
                                     </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                    <td style="vertical-align: middle;">
+                                        <button type="button" style = "margin: auto" class="btn btn-outline-info" data-toggle="modal"
                                             data-target="#post" value="<%= data[i].post_id %>">Preview</button>
                                     </td>
                                     <td>
@@ -154,7 +157,7 @@
     <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-labelledby="MyModel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-body post-body" id="modal-content" align="center">
+                <div class="modal-body post-body" id="modal-content">
                     <!-- <img src="/images/admin/post_sample.jpeg"> -->
                 </div>
                 <div class="modal-footer">
@@ -184,29 +187,26 @@
             opener.location.href = "signout.html";
         });
     </script>
-
-    <script type="text/javascript">
-        $('#close_post').click(function () {
-            // handle redirect here
-            window.parent.close();
-            $('#post').modal('hide');
-            opener.location.href = "signout.html";
-        });
-    </script>
+     <script src="/javascripts/textFit.js"></script>
     <script src="/javascripts/admin_post.js"></script>
     <script>
         $('.btn-outline-info').on('click', function () {
-            console.log(this.value);
+            
             $.get(`/post/${this.value}`, function (data) {
                 createNewMessage(
+                    this.value,
                     size = 'md',
                     message = data[0].message,
                     nickname = data[0].nickname,
-                    email = data[0].email,
-                    image_path = data[0].image_path
+                    time = data[0].time,
+                    filename = data[0].image_path
                 );
-                alert("Data Loaded: " + data[0]);
             });
+            
+        });
+
+        $("#post").on('shown.bs.modal', function () {
+            textFit(document.getElementById(this.value));
         });
 
         $('.btn-outline-success').on('click', function () {
