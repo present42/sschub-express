@@ -1,0 +1,61 @@
+
+@font-face {
+    font-family: 'DosisLight';
+    src: url('Dosis-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Page */
+
+html, body {
+    overflow: hidden;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-size:     cover;           
+    background-repeat:   no-repeat;
+    background-position: center center; 
+    padding: top 1vw;
+    margin: 0;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+.container {
+    min-height: 100%;
+    min-width: 100%;
+}
+
+/* Title */
+.board-title {
+    font-size: 10vh; 
+    color:rgba(255, 255, 255, 0.856); 
+    font-family: 'DosisLight';
+    font-weight: 700; 
+    font-style:bold; 
+}
+
+.bottom {
+    position:absolute; 
+    bottom: 68vh; 
+    margin-left: auto; 
+    margin-right: auto; 
+    left: 0; 
+    right: 3vw; 
+    text-align: right; 
+}
+
+/* QR */
+.qr {
+    display: inline-block; 
+    margin-top: 1vw;
+    margin-left: 1vw;
+    height: 25vh; 
+    z-index: 10; 
+    position: relative;
+}

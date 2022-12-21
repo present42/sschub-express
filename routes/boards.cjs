@@ -76,7 +76,9 @@ app.post('/:board_id/edit', filefields, function (req, res, next) {
   } else {
     temp = `UPDATE boards SET title = '${boardDetails.title}', board_type = '${boardDetails.type_check}' `;
   }
-
+  if(boardDetails.text_color != ""){
+    temp += `, text_color = '${boardDetails.text_color}'`;
+  }
   if (fileDetails['bg_music'] != undefined) {
     console.log(fileDetails['bg_music']);
     temp += `, bg_music = '${fileDetails['bg_music'][0]['filename']}', bg_music_extension = '${fileDetails['bg_music'][0]['mimetype']}', bg_music_volume = ${Number(boardDetails.bg_music_volume)} `;

@@ -8,7 +8,7 @@
 
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="/css/admin_post.css">
-    <link rel="stylesheet" href="/css/admin_preview.css">
+    <link rel="stylesheet" href="/css/preview-card.css">
 
     <link rel="icon" href="/images/admin/logo.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -157,7 +157,7 @@
     <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-labelledby="MyModel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-body post-body" id="modal-content">
+                <div class="modal-body post-body" id="modal-content" style="margin: auto;">
                     <!-- <img src="/images/admin/post_sample.jpeg"> -->
                 </div>
                 <div class="modal-footer">
@@ -193,12 +193,12 @@
         $('.btn-outline-info').on('click', function () {
             
             $.get(`/post/${this.value}`, function (data) {
+                console.log(data[0].submitted_time);
                 createNewMessage(
                     this.value,
-                    size = 'md',
                     message = data[0].message,
                     nickname = data[0].nickname,
-                    time = data[0].time,
+                    time = data[0].submitted_time.toLocaleString(),
                     filename = data[0].image_path
                 );
             });

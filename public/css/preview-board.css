@@ -1,6 +1,6 @@
-/*
-    DEMO STYLE
-*/
+/* ---------------------------------------------------
+    PAGE STYLE
+----------------------------------------------------- */
 html, body {
     margin: 0;
     height: 100%;
@@ -13,71 +13,21 @@ body {
     overflow-y: hidden;
 }
 
-#page_title {
-    color: rgb(85, 85, 85);
-    font-weight: lighter;
-    font-family: sans-serif;
-}
 
-#signout {
-    margin-right: 20px;
-    padding: 12px;
-    background-color: #afafaf;
-    color: #ffffff;
-    border-style: initial;
-    text-decoration: none;
-}
-
-.btn-primary{
-    text-align: center;
-    align-self: center;
-    display: inline-block;
-}
-
-.form-control {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}
-
-.form-check{
-    padding-left:5px;
-    text-align: left;
-}
-
-.form-control::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}
-
-p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}
-
-#sidebarCollapse {
-    background-color: white;
-    color: #afafaf;
-    border-color: #afafaf;
-}
-
-a,
-a:hover,
-a:focus {
-    color: inherit;
-    text-decoration: none;
+.preview {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
     transition: all 0.3s;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:relative;
 }
 
+/* ---------------------------------------------------
+    HEADER STYLE
+----------------------------------------------------- */
 .navbar {
     padding: 15px 10px;
     background: #fff;
@@ -101,9 +51,31 @@ a:focus {
     margin: 40px 0;
 }
 
+#page_title {
+    color: rgb(85, 85, 85);
+    font-weight: lighter;
+    font-family: sans-serif;
+}
+
+#signout {
+    margin-right: 20px;
+    padding: 12px;
+    background-color: #afafaf;
+    color: #ffffff;
+    border-style: initial;
+    text-decoration: none;
+}
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
 
 .wrapper {
     display: flex;
@@ -117,8 +89,8 @@ a:focus {
 
 #sidebar {
     margin-top: 0px;
+    width: 30vw;
     min-width: 300px;
-    max-width: 30vw;
     background: #ffffff;
     color: rgb(161, 161, 161);
     transition: all 0.3s;
@@ -127,7 +99,7 @@ a:focus {
 }
 
 #sidebar.active {
-    margin-left: -300px;
+    margin-left: min(-300px,-30vw); /* Should be same as sidebar width */
 }
 
 #sidebar .sidebar-header {
@@ -192,7 +164,6 @@ a[data-toggle="collapse"] {
     position: relative;
 }
 
-
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
@@ -218,17 +189,23 @@ button.reset {
     border-color: #999;
 }
 
-.form-check{
-    margin-left: 20px;
-  }
+#sidebarCollapse {
+    background-color: white;
+    color: #afafaf;
+    border-color: #afafaf;
+}
+
+.btn-primary{
+    width: 70%;
+    text-align: center;
+    align-self: center;
+    display: inline-block;
+}
+
 
 .dropdown-toggle:after {
     content: none;
  }
-
-button.btn-primary{
-    width: 70%;
-}
 
 a.article,
 a.article:hover {
@@ -249,29 +226,110 @@ a.article:hover {
     padding: 0vw 2vw;
 }
 
-
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
-#content {
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
+/* Color Picker */
+.form-control {  
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
 }
 
+.form-control::placeholder {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+/* Radio button */
+.form-check{
+    padding-left:5px;
+    text-align: left;
+    margin-left: 20px;
+}
+/* ---------------------------------------------------
+    PREVIEW STYLES
+----------------------------------------------------- */
+.title {
+    font-size: 5vh; 
+    color:rgba(255, 255, 255, 0.856); 
+    font-family: 'DosisLight';
+    font-weight: 700; 
+    font-style:bold; 
+}
+
+.bottom {
+    position:absolute; 
+    bottom: 15vh; 
+    margin-left: auto; 
+    margin-right: auto; 
+    left: 0; 
+    right: 2vw; 
+    text-align: right; 
+}
+
+:root{
+    --msg1: white;
+    --msg2: white;
+    --msg3: white;
+    --msg4: white;
+    --msg5: white;
+    --msg-text: black;
+}
+
+.card1{
+    --paper-color: var(--msg1);
+    --paper-dark: var(--msg1);
+    background-color: var(--msg1) !important; 
+    top: 45vh;
+    left: 5vw;
+}
+
+.card2{
+    --paper-color: var(--msg2);
+    --paper-dark: var(--msg2);
+    background-color: var(--msg2) !important; 
+    top: 15vh;
+    left: 12vw;
+}
+  
+.card3{
+    --paper-color: var(--msg3);
+    --paper-dark: var(--msg3);
+    background-color: var(--msg3) !important; 
+    top: 32vh;
+    left: 25vw;
+}
+
+.card4{
+    --paper-color: var(--msg4);
+    --paper-dark: var(--msg4);
+    background-color: var(--msg4) !important; 
+    top: 19vh;
+    left: 40vw;
+}
+
+.card5{
+    --paper-color: var(--msg5);
+    --paper-dark: var(--msg5);
+    background-color: var(--msg5) !important; 
+    top: 50vh;
+    left: 45vw;
+}
+  
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
     #sidebar {
-        margin-left: -250px;
+        margin-left: -300px;
     }
 
     #sidebar.active {
-        margin-left: 0;
+        margin-left: 0px;
     }
 
     #sidebarCollapse span {

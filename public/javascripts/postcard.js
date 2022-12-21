@@ -1,8 +1,4 @@
-// var row = document.getElementsByClassName('row1')[0];
-// console.log(row);
-// row.classList.addClass('horizTranslate');
-// console.log(row.ClassList);
-// (() => {
+
 var count = 0;
 var messages = {};
 let pid;
@@ -157,7 +153,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
         <div style="height:2.5%"></div>
         <div class="msg-footer">
           <div style="float: left; height: 100%"> 
-          ${nickname ? `<i class="material-icons">account_circle</i><span style="vertical-align:middle;">   ${nickname}</span>` : ""}
+          <i class="material-icons">account_circle</i><span style="vertical-align:middle;">   ${nickname ? `${nickname}` : "Anon"}</span>
           </div>
           <div style="float: right; height: 100%">
           ${date ? `<i class="material-icons"> access_time</i><span style="vertical-align:middle">   ${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}</span>` : ""}
@@ -177,7 +173,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
     <div style="height:2.5%"></div>
     <div class="msg-footer">
       <div style="float: left; height: 100%;"> 
-      ${nickname ? `<i class="material-icons">account_circle</i><span style="vertical-align:middle">${nickname}</span>` : ""}
+      <i class="material-icons">account_circle</i><span style="vertical-align:middle;">   ${nickname ? `${nickname}` : "Anon"}</span>
       </div>
       <div style="float: right; height: 100%">
       ${date ? `<i class="material-icons"> access_time</i><span style="vertical-align:middle">${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}</span>` : ""}
@@ -194,7 +190,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
     <div style="height:2.5%"></div>
     <div class="msg-footer">
       <div style="float: left; height: 100%"> 
-      ${nickname ? `<i class="material-icons">account_circle</i><span style="vertical-align:middle;">${nickname}</span>` : ""}
+      <i class="material-icons">account_circle</i><span style="vertical-align:middle;">   ${nickname ? `${nickname}` : "Anon"}</span>
       </div>
       <div style="float: right; height: 100%">
       ${date ? `<i class="material-icons"> access_time</i><span style="vertical-align:middle">${monthNames[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()}</span>` : ""}

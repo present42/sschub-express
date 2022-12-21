@@ -12,11 +12,11 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <script src="/js/bootstrap.bundle.min.js"></script>
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="/css/admin_styles.css">
-    <link rel="stylesheet" href="/css/admin_preview.css">
-    <link rel="stylesheet" href="/css/style_postit.css" id="cardtype">
+    <link rel="stylesheet" href="/css/preview-board.css">
+    <link rel="stylesheet" href="/css/preview-card.css">
+    <link rel="stylesheet" href="/css/preview-postit.css" id="cardtype">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
         integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
@@ -320,10 +320,9 @@
                 <button class="btn d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <i class="fas fa-align-justify"></i>
                 </button>
             </div>
-            <div id="board-title" class="title">
+            <div id="board-title" class="title bottom">
                 <%= board[0].title %>
             </div>
             <div id="messages">
