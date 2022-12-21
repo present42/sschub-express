@@ -135,88 +135,116 @@ $(document).ready(function () {
 function setMessageType(type) {
     console.log("Initializing message type");
     document.getElementById("messages").innerHTML = "";
-    document.getElementById('cardtype').href='/css/style_postit.css';
+    document.getElementById('cardtype').href='/css/preview-postit.css';
     var str = '';
     if (type == 0) {
-        document.getElementById('cardtype').href='/css/style_card.css';
+        document.getElementById('cardtype').href='/css/preview-card.css';
         str = `
-        <div class="card position-absolute flying-md card1">
-            <div class="row g-0">
-                <div class="col-md-6 full-height" style="padding: 0.5vh">
-                    <img src="/images/posts/cat.jpg" class="flying-img" alt="..." />
+            <div class="card board-preview card1 fly">
+                <div class="msg-body">
+                    <div class="msg-half">
+                        <img src="/images/posts/flower-sqr.png" class="msg-img rounded" alt="..." />
+                    </div>
+                    <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle; ">
+                        This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.
+                    </div>
                 </div>
-                <div class="col-md-6 full-height">
-                    <div class="card-body">
-                        <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+                </div>
+                <div style="height:4.5%;border-bottom: 0.5px rgba(76, 76, 76, 0.492) solid; box-shadow: 0 1.2px 1px -1px rgba(104, 104, 104, 0.444);"></div>
+                <div style="height:2.5%"></div>
+                <div class="msg-footer">
+                    <div style="float: left; height: 100%"> 
+                        <i class="material-icons">account_circle</i><span style="vertical-align:middle;">   Anon</span>
+                    </div>
+                    <div style="float: right; height: 100%">
+                        <i class="material-icons"> access_time</i><span style="vertical-align:middle">   December 25, 2022</span>
                     </div>
                 </div>
             </div>
-            <div class="card-footer lower-flying">
-                <i class="fa-solid fa-circle-user icon"></i>username
-            </div>
-        </div>
-        <div class="card position-absolute flying-md card2">
-            <div class="row g-0">
-                <div class="col-md-6 full-height" style="padding: 0.5vh">
-                    <img src="/images/posts/cat.jpg" class="flying-img" alt="..." />
+            <div class="card board-preview card2 fly">
+                <div class="msg-body">
+                    <div class="msg-half">
+                        <img src="/images/posts/flower-sqr.png" class="msg-img rounded" alt="..." />
+                    </div>
+                    <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle; ">
+                        This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.
+                    </div>
                 </div>
-                <div class="col-md-6 full-height">
-                    <div class="card-body">
-                        <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+                </div>
+                <div style="height:4.5%;border-bottom: 0.5px rgba(76, 76, 76, 0.492) solid; box-shadow: 0 1.2px 1px -1px rgba(104, 104, 104, 0.444);"></div>
+                <div style="height:2.5%"></div>
+                <div class="msg-footer">
+                    <div style="float: left; height: 100%"> 
+                        <i class="material-icons">account_circle</i><span style="vertical-align:middle;">   Anon</span>
+                    </div>
+                    <div style="float: right; height: 100%">
+                    <i class="material-icons"> access_time</i><span style="vertical-align:middle">   December 25, 2022</span>
                     </div>
                 </div>
             </div>
-            <div class="card-footer lower-flying" style="clear: both">
-                <i class="fa-solid fa-circle-user icon"></i>username
-            </div>
-        </div>
-        <div class="card position-absolute flying-md card3">
-            <div class="row g-0">
-                <div class="col-md-6 full-height" style="padding: 0.5vh">
-                    <img src="/images/posts/cat.jpg" class="flying-img" alt="..." />
+            <div class="card board-preview card3 fly">
+                <div class="msg-body">
+                    <div class="msg-half">
+                        <img src="/images/posts/flower-sqr.png" class="msg-img rounded" alt="..." />
+                    </div>
+                    <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle; ">
+                        This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.
+                    </div>
                 </div>
-                <div class="col-md-6 full-height">
-                    <div class="card-body">
-                        <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+                </div>
+                <div style="height:4.5%;border-bottom: 0.5px rgba(76, 76, 76, 0.492) solid; box-shadow: 0 1.2px 1px -1px rgba(104, 104, 104, 0.444);"></div>
+                <div style="height:2.5%"></div>
+                <div class="msg-footer">
+                    <div style="float: left; height: 100%"> 
+                        <i class="material-icons">account_circle</i><span style="vertical-align:middle;">   Anon</span>
+                    </div>
+                    <div style="float: right; height: 100%">
+                    <i class="material-icons"> access_time</i><span style="vertical-align:middle">   December 25, 2022</span>
                     </div>
                 </div>
             </div>
-            <div class="card-footer lower-flying">
-                <i class="fa-solid fa-circle-user icon"></i>username
-            </div>
-        </div>
-        <div class="card position-absolute flying-md card4">
-            <div class="row g-0">
-                <div class="col-md-6 full-height" style="padding: 0.5vh">
-                    <img src="/images/posts/flower-sqr.png" class="flying-img" alt="..." />
+            <div class="card board-preview card4 fly">
+                <div class="msg-body">
+                    <div class="msg-half">
+                        <img src="/images/posts/flower-sqr.png" class="msg-img rounded" alt="..." />
+                    </div>
+                    <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle; ">
+                        This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.
+                    </div>
                 </div>
-                <div class="col-md-6 full-height">
-                    <div class="card-body">
-                        <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+                </div>
+                <div style="height:4.5%;border-bottom: 0.5px rgba(76, 76, 76, 0.492) solid; box-shadow: 0 1.2px 1px -1px rgba(104, 104, 104, 0.444);"></div>
+                <div style="height:2.5%"></div>
+                <div class="msg-footer">
+                    <div style="float: left; height: 100%"> 
+                        <i class="material-icons">account_circle</i><span style="vertical-align:middle;">   Anon</span>
+                    </div>
+                    <div style="float: right; height: 100%">
+                    <i class="material-icons"> access_time</i><span style="vertical-align:middle">   December 25, 2022</span>
                     </div>
                 </div>
             </div>
-            <div class="card-footer lower-flying" style="clear: both">
-            <i class="fa-solid fa-circle-user icon"></i>username
-            </div>
-        </div>
-        <div class="card position-absolute flying-md card5">
-        <div class = "message-content">
-            <div class="row g-0">
-                <div class="col-md-6 full-height" style="padding: 0.5vh">
-                    <img src="/images/posts/wave.jpg" class="flying-img" alt="..." />
+            <div class="card board-preview card5 fly">
+                <div class="msg-body">
+                    <div class="msg-half">
+                        <img src="/images/posts/flower-sqr.png" class="msg-img rounded" alt="..." />
+                    </div>
+                    <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle; ">
+                        A sample message for a flying type message. Users are allowed to enter up to 100 words per post. Background colors are also available as an option.
+                    </div>
                 </div>
-                <div class="col-md-6 full-height">
-                    <div class="card-body">
-                        <p class="card-text">This is a sample message for a flying type post-it. The user is allowed to enter up to nnn words per post. The users are able to choose the background colors from the five pre-picked colors.</p>
+                </div>
+                <div style="height:4.5%;border-bottom: 0.5px rgba(76, 76, 76, 0.492) solid; box-shadow: 0 1.2px 1px -1px rgba(104, 104, 104, 0.444);"></div>
+                <div style="height:2.5%"></div>
+                <div class="msg-footer">
+                    <div style="float: left; height: 100%"> 
+                        <i class="material-icons">account_circle</i><span style="vertical-align:middle;">   Anon</span>
+                    </div>
+                    <div style="float: right; height: 100%">
+                    <i class="material-icons"> access_time</i><span style="vertical-align:middle">   December 25, 2022</span>
                     </div>
                 </div>
             </div>
-            <div class="card-footer lower-flying" style="clear: both">
-                <i class="fa-solid fa-circle-user icon"></i>username
-            </div>
-            </div>
-        </div>
       `;
     } else if (type == 1) {
         str = `<div class="paper green card1"> 

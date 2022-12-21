@@ -5,16 +5,17 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function createNewMessage(id, size = 'md', message = "This content is a little bit longer.", nickname = "hyunju", filename, time) {
+function createNewMessage(id, message = "This content is a little bit longer.", nickname = "hyunju", time, filename) {
   // color_list = ["rgba(255, 255, 255, 0.856)", "rgba(238, 228, 218, 0.87)", "rgba(237, 194, 46, 0.87)"];
   // color = getRandomInt(0, 2);
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
   var date = undefined;
+  console.log(time);
   if (time) date = new Date(time);
   
-  var str = `<div class="card ${size}" style="background: white; ">
+  var str = `<div class="card post-preview" style="background: white; position: inherit">
         <div class="msg-body">
           <div class="msg-half">
             <img src="/images/posts/${filename}" class="msg-img rounded" alt="..." />
@@ -36,10 +37,10 @@ function createNewMessage(id, size = 'md', message = "This content is a little b
         </div>
       </div>`;
 
-  var str_without_img = `<div class="card ${size}" style="background: white;">
+  var str_without_img = `<div class="card post-preview" style="background: white; position:inherit">
     <div class="msg-body">
       <div class="msg-text" style="padding: 0 0 0 0">
-        <div class="msg" id=${id} style="vertical-align: middle;">
+        <div class="msg" id=${id} style="vertical-align: middle; font-size:12vh">
           ${message}
         </div>
       </div>
@@ -55,7 +56,7 @@ function createNewMessage(id, size = 'md', message = "This content is a little b
     </div>
   </div>`;
 
-  var str_without_text = `<div class="card ${size}" style="background: white;">
+  var str_without_text = `<div class="card post-preview" style="background: white; position:inherit; font-size:12vh">
   <div class="msg-body">
     <div class="msg-image">
       <img src="/images/posts/${filename}" class="msg-img" alt="..." />
@@ -75,6 +76,7 @@ var parser = new DOMParser();
 var container = document.getElementById("modal-content");
 container.innerHTML = '';
 if(filename) {
+  console.log("Filename: " + filename);
   var temp = parser.parseFromString(str, "text/html");
 } else {
   var temp = parser.parseFromString(str_without_img, "text/html");  

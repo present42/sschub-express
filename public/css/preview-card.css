@@ -6,72 +6,6 @@
     font-style: normal;
   
 }
-
-:root{
-  --msg1: white;
-  --msg2: white;
-  --msg3: white;
-  --msg4: white;
-  --msg5: white;
-  --msg-text: black;
-}
-
-/* Preview Window */
-
-.body{
-    overflow:-moz-hidden-unscrollable;
-}
-
-.preview{
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position:relative;
-}
-
-/* Message Previews */
-
-.card1{
-  --paper-color: var(--msg1);
-  --paper-dark: var(--msg1);
-  background-color: var(--msg1) !important; 
-  top: 50vh;
-  left: 5vw;
-}
-.card2{
-  --paper-color: var(--msg2);
-  --paper-dark: var(--msg2);
-  background-color: var(--msg2) !important; 
-  top: 20vh;
-  left: 12vw;
-}
-
-.card3{
-  --paper-color: var(--msg3);
-  --paper-dark: var(--msg3);
-  background-color: var(--msg3) !important; 
-  top: 37vh;
-  left: 25vw;
-}
-
-.card4{
-  --paper-color: var(--msg4);
-  --paper-dark: var(--msg4);
-  background-color: var(--msg4) !important; 
-  top: 24vh;
-  left: 40vw;
-}
-
-.card5{
-  --paper-color: var(--msg5);
-  --paper-dark: var(--msg5);
-  background-color: var(--msg5) !important; 
-  top: 55vh;
-  left: 45vw;
-}
-
-
-
 /* Card Layout */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
@@ -94,10 +28,19 @@
     padding-bottom: 1.5vh; 
     min-width: 150px !important;
     min-height: 97.5px !important;
-    animation: animation-md 10s infinite linear;
+    
 }
 
-.sm {
+.fly{
+    animation: animation-preview 10s infinite linear;
+}
+
+.post-preview {
+    width: 60vh;
+    height: 34vh;
+}
+
+.board-preview {
     width: 40vh;
     height: 26vh;
 }
@@ -120,7 +63,7 @@
     text-shadow: 0.5px 0.5px 0.7px rgba(104, 104, 104, 0.286);
 }
 
-.sm .msg-footer {
+.board-preview .msg-footer {
     height: 13%;
     padding:0;
     font-family: 'Roboto Condensed', sans-serif;
@@ -139,7 +82,7 @@
     vertical-align: middle;
 }
 
-.sm .material-icons {
+.board-preview .material-icons {
     font-size: 2vh !important;
     vertical-align: middle;
 }
@@ -169,9 +112,9 @@
 
 /* End card layout */
 
-@keyframes animation-md {
+@keyframes animation-preview {
   0% {
-      transform: translateX(0%);
+      transform: translateX(0);
       opacity: 0;
   }
   10%, 85% {
@@ -184,6 +127,6 @@
 
   100% {
     opacity:0;
-    transform: translateX(70%);
+    transform: translateX(10vw);
   }
 }
