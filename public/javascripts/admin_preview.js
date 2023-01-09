@@ -130,6 +130,10 @@ $(document).ready(function () {
     document.getElementById("tape-check").addEventListener('input', function (evt) {
         setMessageType(3);
     });
+    // NEW YEAR EVENT
+    document.getElementById("newyear-check").addEventListener('input', function (evt) {
+        setMessageType(4);
+    });
 });
 
 function setMessageType(type) {
@@ -419,7 +423,7 @@ function setMessageType(type) {
                 </div>
             </div>
         </div>`;
-    } else {
+    } else if (type ==3) {
         str = `<div class="paper green card1"> 
         <div class="top-tape"></div>
         <div class = "message-content">
@@ -495,6 +499,56 @@ function setMessageType(type) {
             <i class="fa-solid fa-circle-user icon"></i>User_2
             </div>
         </div>`;
+    // NEW YEAR EVENT
+    } else {
+        document.getElementById('cardtype').href='/css/preview-newyear.css';
+        str = `
+            <div class="card board-preview card1 fly" style="background-image:url(/images/mainboard/newyear_half.png)">
+                <div class="msg-body">
+                    <div class="msg-half">
+                    </div>
+                    <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle; ">
+                        This is a sample message for a new year card with text below 190 characters. The user is allowed to enter up to nnn words per post. The users are not able to choose the background colors.
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="card board-preview card2 fly" style="background-image:url(/images/mainboard/newyear_full.png)">
+                <div class="msg-body">
+                    <div class="msg-full">
+                        This is a sample message for a new year card with text over 190 characters. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </div>
+                </div>
+            </div>
+            <div class="card board-preview card3 fly" style="background-image:url(/images/mainboard/newyear_half.png)">
+                <div class="msg-body">
+                    <div class="msg-half">
+                    </div>
+                    <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle; ">
+                        This is a sample message for a new year card with text below 190 characters. The user is allowed to enter up to nnn words per post. The users are not able to choose the background colors.
+                    </div>
+                </div>
+                </div>
+
+            </div>
+            <div class="card board-preview card4 fly" style="background-image:url(/images/mainboard/newyear_half.png)">
+                <div class="msg-body">
+                    <div class="msg-half">
+                    </div>
+                    <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle; ">
+                        This is a sample message for a new year card with text below 190 characters. The user is allowed to enter up to nnn words per post. The users are not able to choose the background colors.
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="card board-preview card5 fly" style="background-image:url(/images/mainboard/newyear_full.png)">
+                <div class="msg-body">
+                    <div class="msg-full" style="vertical-align: middle; ">
+                        This is a sample message for a new year card with text over 190 characters. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </div>
+                </div>
+            </div>
+      `;
     }
     var parser = new DOMParser();
     var board = document.getElementById("messages");

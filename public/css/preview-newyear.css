@@ -1,0 +1,134 @@
+
+@font-face {
+    font-family: 'DosisLight';
+    src: url('Dosis-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  
+}
+/* Card Layout */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+/* Fonts for Body */
+/* Sans Serif */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300&display=swap');
+/* Handwritten */
+@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap');
+@font-face {
+    font-family: memo2self;
+    src: url(/fonts/memo2self.ttf);
+}
+
+.card {
+    background-color: rgba(255, 202, 202, 0.907);
+    background-size: contain;
+    box-shadow: 7px 7px 5px -3px #0000005d;
+    border-radius: 0.5vh;
+    padding: 3vh;
+    position:absolute;
+    min-width: 150px !important;
+    min-height: 97.5px !important;
+    
+}
+
+.fly{
+    animation: animation-preview 10s infinite linear;
+}
+
+.post-preview {
+    width: 60vh;
+    height: 34vh;
+}
+
+.board-preview {
+    width: 40vh;
+    height: 26vh;
+}
+
+.msg-body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-family: 'memo2self';
+
+}
+
+.board-preview .msg-footer {
+    height: 13%;
+    padding:0;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.8vh !important;
+    color: var(--msg-text);
+    text-shadow: 0.5px 0.5px 0.7px rgba(104, 104, 104, 0.286);
+}
+
+.msg-half {
+    width: 50% !important;
+    object-fit: contain;
+}
+
+.material-icons {
+    font-size: 3vh;
+    vertical-align: middle;
+}
+
+.board-preview .material-icons {
+    font-size: 2vh !important;
+    vertical-align: middle;
+}
+
+.msg-img {
+    display: block;
+    box-shadow: 0.5vh 1vh 1vh -0.7vh #00000060;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.msg-text {
+    max-height: 100%;
+    width:100%;
+    padding-left: min(0.7vw, 3vh, 10px);
+    object-fit: contain;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.msg{
+    padding-left : min(1.0vw, 5vh, 6px);
+    object-fit: contain;
+    overflow: hidden;
+    color: var(--msg-text);
+    max-height:100%;
+    font-size: 1.5vh;
+}
+
+.msg-full{
+    padding : min(1.0vw, 5vh, 6px);
+    object-fit: contain;
+    overflow: hidden;
+    color: var(--msg-text);
+    max-height:100%;
+    font-size: 1.5vh;
+}
+
+/* End card layout */
+
+@keyframes animation-preview {
+  0% {
+      transform: translateX(0);
+      opacity: 0;
+  }
+  10%, 85% {
+    opacity:1;
+  }
+
+  95%{
+    opacity: 0;
+  }
+
+  100% {
+    opacity:0;
+    transform: translateX(10vw);
+  }
+}
