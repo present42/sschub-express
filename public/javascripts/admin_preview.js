@@ -116,22 +116,34 @@ $(document).ready(function () {
     });
 
     document.getElementById("flying-check").addEventListener('input', function (evt) {
+        document.getElementById("postColorDrop").setAttribute('data-bs-toggle', 'collapse');
+        document.getElementById("postColorDrop").style.color = '';
         setMessageType(0);
     });
 
     document.getElementById("card-check").addEventListener('input', function (evt) {
+        document.getElementById("postColorDrop").setAttribute('data-bs-toggle', 'collapse');
+        document.getElementById("postColorDrop").style.color = '';
         setMessageType(1);
     });
 
     document.getElementById("pin-check").addEventListener('input', function (evt) {
+        document.getElementById("postColorDrop").setAttribute('data-bs-toggle', 'collapse');
+        document.getElementById("postColorDrop").style.color = '';
         setMessageType(2);
     });
 
     document.getElementById("tape-check").addEventListener('input', function (evt) {
+        document.getElementById("postColorDrop").setAttribute('data-bs-toggle', 'collapse');
+        document.getElementById("postColorDrop").style.color = '';
         setMessageType(3);
     });
     // NEW YEAR EVENT
     document.getElementById("newyear-check").addEventListener('input', function (evt) {
+        document.getElementById("postColorDrop").setAttribute('data-bs-toggle', '');
+        document.getElementById("postColorDrop").setAttribute('aria-expanded','false');
+        document.getElementById("postColorSubmenu").classList.remove('show');
+        document.getElementById("postColorDrop").style.color = 'rgb(201, 201, 201)';
         setMessageType(4);
     });
 });
