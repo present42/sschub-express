@@ -22,6 +22,8 @@ app.get('/', function(req, res, next) {
       } else if(data[0].board_type == 3) {
         // layout -- post-it messages
         res.render('mainboard_postit_tape', { data: data[0] } );
+      } else if(data[0].board_type == 4) {
+        res.render('mainboard_newyear',{data:data[0]});
       }
     });
   // } else {

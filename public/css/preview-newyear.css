@@ -54,28 +54,9 @@
 
 }
 
-.board-preview .msg-footer {
-    height: 13%;
-    padding:0;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 1.8vh !important;
-    color: var(--msg-text);
-    text-shadow: 0.5px 0.5px 0.7px rgba(104, 104, 104, 0.286);
-}
-
 .msg-half {
     width: 50% !important;
     object-fit: contain;
-}
-
-.material-icons {
-    font-size: 3vh;
-    vertical-align: middle;
-}
-
-.board-preview .material-icons {
-    font-size: 2vh !important;
-    vertical-align: middle;
 }
 
 .msg-img {
