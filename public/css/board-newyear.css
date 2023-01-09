@@ -6,9 +6,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300&display=swap');
 /* Handwritten */
 @import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap');
+
+@font-face {
+    font-family: memo2self;
+    src: url(/fonts/nanum_slow.ttf);
+
+}
+
 @font-face {
     font-family: memo2self;
     src: url(/fonts/memo2self.ttf);
+    unicode-range: U+000-5FF;
 }
 
 .card {
