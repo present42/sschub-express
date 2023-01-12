@@ -18,8 +18,19 @@
     src: url(/fonts/memo2self.ttf);
 }
 
+.bg-img {
+    background-color: transparent;
+    background-size: contain;
+    box-shadow: none;
+    border-radius: 0.5vh;
+    padding: 3vh;
+    position: absolute;
+    width: 40vh;
+    height: 44vh;
+}
+/*
 .card {
-    background-color: rgba(255, 202, 202, 0.907);
+    background-color: transparent;
     background-size: contain;
     box-shadow: 7px 7px 5px -3px #0000005d;
     border-radius: 0.5vh;
@@ -27,7 +38,66 @@
     position:absolute;
     min-width: 150px !important;
     min-height: 97.5px !important;
-    
+}
+
+.card1{
+    background-color: transparent !important; 
+    top: 30vh;
+    left: 5vw;
+  }
+.card2{
+    background-color: transparent !important; 
+    top: 20vh;
+    left: 12vw;
+}
+
+.card3{
+    background-color: transparent !important; 
+    top: 37vh;
+    left: 25vw;
+}
+
+.card4{
+    background-color: transparent !important; 
+    top: 24vh;
+    left: 40vw;
+}
+
+.card5{
+    background-color: transparent !important; 
+    top: 55vh;
+    left: 45vw;
+}
+  
+*/
+.bg-img1{
+    top: 30vh;
+    left: 5vw;
+}
+.bg-img2{
+    top: 0vh;
+    left: 12vw;
+}
+.bg-img3{
+    top: 17vh;
+    left: 25vw;
+}
+.bg-img4{
+    top: 4vh;
+    left: 40vw;
+}
+.bg-img5{
+    top: 35vh;
+    left: 45vw;
+}
+  
+
+.bg-img-rabbit{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: bottom; 
+    background-size: 100%; 
+    background-image:url(/images/mainboard/newyear_rabbit.png); 
 }
 
 .fly{
@@ -45,19 +115,17 @@
 }
 
 .msg-body {
-    height: 100%;
+    height: 38%;
     width: 100%;
     display: flex;
     flex-direction: row;
     font-family: 'memo2self';
-
 }
 
-.msg-half {
-    width: 50% !important;
-    object-fit: contain;
+.msg-top {
+    height: 62%; 
 }
-
+/*
 .msg-img {
     display: block;
     box-shadow: 0.5vh 1vh 1vh -0.7vh #00000060;
@@ -73,7 +141,7 @@
     overflow: hidden;
     word-wrap: break-word;
 }
-
+*/
 .msg{
     padding-left : min(1.0vw, 5vh, 6px);
     object-fit: contain;
