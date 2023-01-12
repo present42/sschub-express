@@ -146,13 +146,14 @@ $(document).ready(function () {
         document.getElementById("postColorDrop").style.color = 'rgb(201, 201, 201)';
         setMessageType(4);
     });
+    /*
     document.getElementById("rabbit-check").addEventListener('input', function (evt) {
         document.getElementById("postColorDrop").setAttribute('data-bs-toggle', '');
         document.getElementById("postColorDrop").setAttribute('aria-expanded','false');
         document.getElementById("postColorSubmenu").classList.remove('show');
         document.getElementById("postColorDrop").style.color = 'rgb(201, 201, 201)';
         setMessageType(5);
-    });
+    });*/
 });
 
 function setMessageType(type) {
@@ -520,7 +521,9 @@ function setMessageType(type) {
         </div>`;
     // NEW YEAR EVENT
     } else if (type == 4) {
-        document.getElementById('cardtype').href='/css/preview-newyear.css';
+        /*
+        document.getElementById('cardtype').href='/css/preview-newyear-rabbit.css';*/
+        document.getElementById('cardtype').href='/css/preview-newyear-rabbit.css';
         str = `
             <div class="card board-preview card1 fly" style="background-image:url(/images/mainboard/newyear_half.png)">
                 <div class="msg-body">
@@ -532,23 +535,25 @@ function setMessageType(type) {
                 </div>
                 </div>
             </div>
-            <div class="card board-preview card2 fly" style="background-image:url(/images/mainboard/newyear_full.png)">
+            <div class="bg-img bg-img2 bg-img-rabbit fly">
+                <div class="msg-top">
+                </div>
                 <div class="msg-body">
-                    <div class="msg-full">
-                        This is a sample message for a new year card with text over 190 characters. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    <div class="msg-full msg-text msg-rabbit">
+                    This is a sample message for a new year card with text over 190 characters. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                     </div>
                 </div>
             </div>
-            <div class="card board-preview card3 fly" style="background-image:url(/images/mainboard/newyear_half.png)">
+            <div class="bg-img bg-img3 bg-img-rabbit fly">
+                <div class="msg-top">
+                </div>
                 <div class="msg-body">
-                    <div class="msg-half">
-                    </div>
-                    <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle; ">
+                    <div class="msg-full msg-text msg-rabbit">
+                        <div class="msg" style="vertical-align: middle;">
                         This is a sample message for a new year card with text below 190 characters. The user is allowed to enter up to nnn words per post. The users are not able to choose the background colors.
+                        </div>
                     </div>
                 </div>
-                </div>
-
             </div>
             <div class="card board-preview card4 fly" style="background-image:url(/images/mainboard/newyear_half.png)">
                 <div class="msg-body">
@@ -567,9 +572,12 @@ function setMessageType(type) {
                     </div>
                 </div>
             </div>
+
+            
       `;
     }
     // NEW YEAR EVENT - RABBIT
+    /*
     else {
         document.getElementById('cardtype').href='/css/preview-newyear-rabbit.css';
         str = 
@@ -577,7 +585,7 @@ function setMessageType(type) {
                 <div class="msg-top">
                 </div>
                 <div class="msg-body">
-                    <div class="msg-full">
+                    <div class="msg">
                         This is a sample message for a new year card with text below 190 characters. The user is allowed to enter up to nnn words per post. The users are not able to choose the background colors.
                     </div>
                 </div>
@@ -620,7 +628,7 @@ function setMessageType(type) {
                 </div>
             </div>
       `;
-    }
+    }*/
     var parser = new DOMParser();
     var board = document.getElementById("messages");
     var temp = parser.parseFromString(str, "text/html");

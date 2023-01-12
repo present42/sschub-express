@@ -19,16 +19,26 @@
 }
 
 .bg-img {
-    background-color: transparent;
+    /*background-color: transparent;*/
     background-size: contain;
-    box-shadow: none;
+    /*box-shadow: 0px 7px 5px -3px #0000005d;*/
     border-radius: 0.5vh;
     padding: 3vh;
     position: absolute;
     width: 40vh;
     height: 44vh;
 }
-/*
+
+.transbox {
+    background-color: #ffffff;
+    border-radius: 0.5vh;
+    opacity: 0.5; 
+    width: 40vh;
+    height: 18.5vh;
+    transform: translateX(-3vh) translateY(-1vh);
+}
+
+
 .card {
     background-color: transparent;
     background-size: contain;
@@ -40,46 +50,16 @@
     min-height: 97.5px !important;
 }
 
-.card1{
-    background-color: transparent !important; 
-    top: 30vh;
-    left: 5vw;
-  }
-.card2{
-    background-color: transparent !important; 
-    top: 20vh;
-    left: 12vw;
-}
-
-.card3{
-    background-color: transparent !important; 
-    top: 37vh;
-    left: 25vw;
-}
-
-.card4{
-    background-color: transparent !important; 
-    top: 24vh;
-    left: 40vw;
-}
-
-.card5{
-    background-color: transparent !important; 
-    top: 55vh;
-    left: 45vw;
-}
-  
-*/
 .bg-img1{
     top: 30vh;
     left: 5vw;
 }
 .bg-img2{
-    top: 0vh;
+    top: -1vh;
     left: 12vw;
 }
 .bg-img3{
-    top: 17vh;
+    top: 18vh;
     left: 25vw;
 }
 .bg-img4{
@@ -90,14 +70,12 @@
     top: 35vh;
     left: 45vw;
 }
-  
 
 .bg-img-rabbit{
-    background-color: transparent;
     background-repeat: no-repeat;
     background-position: bottom; 
     background-size: 100%; 
-    background-image:url(/images/mainboard/newyear_rabbit.png); 
+    background-image:url(/images/mainboard/newyear_rabbit.png);
 }
 
 .fly{
@@ -114,18 +92,29 @@
     height: 26vh;
 }
 
-.msg-body {
+.msg-top {
+    height: 62%; 
+}
+
+.msg-rabbit {
     height: 38%;
+    overflow: hidden; 
+}
+
+.msg-body {
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
     font-family: 'memo2self';
+
 }
 
-.msg-top {
-    height: 62%; 
+.msg-half {
+    width: 50% !important;
+    object-fit: contain;
 }
-/*
+
 .msg-img {
     display: block;
     box-shadow: 0.5vh 1vh 1vh -0.7vh #00000060;
@@ -141,7 +130,7 @@
     overflow: hidden;
     word-wrap: break-word;
 }
-*/
+
 .msg{
     padding-left : min(1.0vw, 5vh, 6px);
     object-fit: contain;
