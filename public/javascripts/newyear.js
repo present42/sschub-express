@@ -26,11 +26,12 @@ webSocket.onmessage = function (event) {
   board_title.style.color = board_details.title_color;
   data = data[0];
   l = ['bg', 'md','sm']; r = ['bg-rabbit', 'md-rabbit', 'sm-rabbit']
-  if (data.color_index == 1)
+  if (data.color_index == 0)
   {
     if(data.message.length > 100) s = l[getRandomInt(0, 1)];
     else s = l[getRandomInt(0, 2)];
-  } else if (data.color_index == 0)
+  } 
+  else if (data.color_index == 1)
   {
     if(data.message.length > 100) s = r[getRandomInt(0, 1)];
     else s = r[getRandomInt(0, 2)];
@@ -171,10 +172,10 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   </div>`;
   var parser = new DOMParser();
   var container = document.getElementById("container");
-    if (data.color_index == 0) {var temp = parser.parseFromString(rabbit, "text/html");
+    if (data.color_index == 1) {var temp = parser.parseFromString(rabbit, "text/html");
     console.log("RABBIT")
     }
-    else {
+    else if (data.color_index == 0){
         console.log("CARD");
         if (message.length < 100) {
             var temp = parser.parseFromString(short, "text/html");
