@@ -172,10 +172,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   </div>`;
   var parser = new DOMParser();
   var container = document.getElementById("container");
-    if (data.card_index == 1) {var temp = parser.parseFromString(rabbit, "text/html");
-    console.log("RABBIT")
-    }
-    else if (data.card_index == 0){
+    if (data.card_index == 0){
         console.log("CARD");
         if (message.length < 100) {
             var temp = parser.parseFromString(short, "text/html");
@@ -183,6 +180,9 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
             var temp = parser.parseFromString(long, "text/html");
         }
     }
+    else {var temp = parser.parseFromString(rabbit, "text/html");
+    console.log("RABBIT")
+    };
     console.log(temp.body.firstChild);
   messages[cur] = temp.body.firstChild;
   temp.body.firstChild.addEventListener('animationiteration', () => {
