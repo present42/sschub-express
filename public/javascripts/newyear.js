@@ -31,7 +31,7 @@ webSocket.onmessage = function (event) {
     if(data.message.length > 100) s = l[getRandomInt(0, 1)];
     else s = l[getRandomInt(0, 2)];
   } 
-  else if (data.card_index == 1)
+  else
   {
     if(data.message.length > 100) s = r[getRandomInt(0, 1)];
     else s = r[getRandomInt(0, 2)];
@@ -172,18 +172,18 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   </div>`;
   var parser = new DOMParser();
   var container = document.getElementById("container");
-    if (data.card_index == 0){
-        console.log("CARD");
-        if (message.length < 100) {
-            var temp = parser.parseFromString(short, "text/html");
-        } else {
-            var temp = parser.parseFromString(long, "text/html");
-        }
-    }
-    else {var temp = parser.parseFromString(rabbit, "text/html");
-    console.log("RABBIT")
-    };
-    console.log(temp.body.firstChild);
+  if (data.card_index == 0){
+      console.log("CARD");
+      if (message.length < 100) {
+          var temp = parser.parseFromString(short, "text/html");
+      } else {
+          var temp = parser.parseFromString(long, "text/html");
+      }
+  }
+  else {var temp = parser.parseFromString(rabbit, "text/html");
+  console.log("RABBIT")
+  };
+  console.log(temp.body.firstChild);
   messages[cur] = temp.body.firstChild;
   temp.body.firstChild.addEventListener('animationiteration', () => {
     console.log(`animation (id:${cur}) iteration finished`);
