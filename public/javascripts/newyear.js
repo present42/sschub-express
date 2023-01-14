@@ -36,7 +36,7 @@ webSocket.onmessage = function (event) {
     if(data.message.length > 100) s = r[getRandomInt(0, 1)];
     else s = r[getRandomInt(0, 2)];
   }
-  createNewMessage(0, 0, s, data.message, data.card_index);
+  createNewMessage(0, 0, s, data.message, data.color_index);
   textFit(document.getElementsByClassName('msg'));
   
   if(background_img == undefined && background_video == undefined) {
