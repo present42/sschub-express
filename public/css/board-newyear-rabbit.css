@@ -33,6 +33,29 @@
     animation-iteration-count: infinite;
 }
 
+.bg-img {
+    background-color: transparent;
+    background-size: contain;
+    box-shadow: none;
+    border-radius: 0.5vh;
+    padding: 3vh;
+    position: absolute;
+    animation-name: animation-board;
+    animation-duration: 120s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+   /* width: 40vh;
+    height: 44vh;*/
+}
+
+.bg-img-rabbit{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: bottom; 
+    background-size: 100%; 
+    background-image:url(/images/mainboard/newyear_rabbit.png); 
+}
+
 .bg {
     width: 60vh;
     height: 39vh;
@@ -48,13 +71,35 @@
     height: 26vh;
 }
 
+.bg-rabbit {
+    width: 60vh;
+    height: 66vh;
+}
+
+.md-rabbit {
+    width: 50vh;
+    height: 55vh;
+}
+
+.sm-rabbit {
+    width: 40vh;
+    height: 44vh;
+}
+
+.msg-top {
+    height: 62%; 
+}
+
+.msg-rabbit {
+    height: 38%;
+}
+
 .msg-body {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
     font-family: 'memo2self';
-
 }
 
 .msg-half {
@@ -80,19 +125,22 @@
 
 .msg{
     padding-left : min(1.0vw, 5vh, 6px);
-    height: 100%;
+    object-fit: contain;
+    overflow: hidden;
+    color: var(--msg-text);
     max-height:100%;
-    font-size: 12vh;
+    font-size: 1.5vh;
 }
 
 .msg-full{
-    padding : min(1.5vw, 8vh, 12px);
+    padding : min(1.0vw, 5vh, 6px);
     object-fit: contain;
     overflow: hidden;
-    max-height: 100%;
-    width:100%;
-    word-wrap: break-word;
+    color: var(--msg-text);
+    max-height:100%;
+    font-size: 1.5vh;
 }
+
 
 @keyframes animation-board {
     0% {

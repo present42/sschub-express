@@ -2,14 +2,14 @@ require('dotenv').config();
 
 var mysql = require('mysql');
 var conn = mysql.createConnection({
-    host: process.env.DB_HOST,
+    /*host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PW,
-    database: process.env.DB_NAME,
-    // host: 'localhost',
-    // user: 'root',
-    // password: 'password',
-    // database: 'hello',
+    database: process.env.DB_NAME,*/
+    host: 'localhost',
+    user: 'root',
+    password: '@@Khj0706',
+    database: 'sschubapp',
     charset: 'utf8mb4'
 });
 

@@ -1,4 +1,3 @@
-
 var count = 0;
 var messages = {};
 let pid;
@@ -26,12 +25,17 @@ webSocket.onmessage = function (event) {
   board_title.innerHTML = board_details.title;
   board_title.style.color = board_details.title_color;
   data = data[0];
-  l = ['bg', 'md','sm'];
-  
-  if(data.message.length > 100) s = l[getRandomInt(0, 1)];
-  else s = l[getRandomInt(0, 2)];
-
-  createNewMessage(0, 0, s, data.message);
+  l = ['bg', 'md','sm']; r = ['bg-rabbit', 'md-rabbit', 'sm-rabbit']
+  if (data.color_index == 1)
+  {
+    if(data.message.length > 100) s = l[getRandomInt(0, 1)];
+    else s = l[getRandomInt(0, 2)];
+  } else if (data.color_index == 0)
+  {
+    if(data.message.length > 100) s = r[getRandomInt(0, 1)];
+    else s = r[getRandomInt(0, 2)];
+  }
+  createNewMessage(0, 0, s, data.message, data.card_index);
   textFit(document.getElementsByClassName('msg'));
   
   if(background_img == undefined && background_video == undefined) {
@@ -66,9 +70,9 @@ webSocket.onmessage = function (event) {
     document.querySelector('#bg_music').volume = volume / 100;
   }
 
-  if(document.querySelector('#bg_music').paused) {
+  /*if(document.querySelector('#bg_music').paused) {
     document.querySelector('#bg_music').play();
-  } 
+  } */
 }
 
 webSocket.onclose = function (event) {
@@ -120,11 +124,30 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
     top = getRandomPos(cur, 2, 70);
   } else if (size == 'md') {
     top = getRandomPos(cur, 2, 75);
-  } else {
+  } else if (size == 'sm'){
     size = "sm";
     top = getRandomPos(cur, 2, 80);
   }
+  if (size == 'bg-rabbit') {
+    top = (getRandomPos(cur, 2, 70)-25);
+  } else if (size == 'md-rabbit') {
+    top = (getRandomPos(cur, 2, 75)-25);
+  } else if (size == 'sm-rabbit') {
+    size = "sm-rabbit";
+    top = (getRandomPos(cur, 2, 80)-25);
+  }
   let duration = [110,130,160];
+  var rabbit =`<div id="${cur}" class="bg-img bg-img-rabbit fly ${size}" style="top: ${top}%; left: -30%; animation-duration: ${duration[getRandomInt(0,2)]}s;">
+        <div class="msg-top">
+        </div>
+        <div class="msg-body">
+          <div class="msg-text" style = "height:38%"> 
+            <div class="msg" style="vertical-align: middle;">
+              ${message}
+            </div>
+          </div>
+        </div>
+      </div>`;
   var short = `<div id="${cur}" class="position-absolute card ${size}" style="background-image: url(/images/mainboard/newyear_half.png);top: ${top}%; left: -30%; animation-duration: ${duration[getRandomInt(0,2)]}s;">
         <div class="msg-body">
           <div class="msg-half">
@@ -148,11 +171,18 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
   </div>`;
   var parser = new DOMParser();
   var container = document.getElementById("container");
-    if (message.length < 100) {
-        var temp = parser.parseFromString(short, "text/html");
-    } else {
-        var temp = parser.parseFromString(long, "text/html");
+    if (data.color_index == 0) {var temp = parser.parseFromString(rabbit, "text/html");
+    console.log("RABBIT")
     }
+    else {
+        console.log("CARD");
+        if (message.length < 100) {
+            var temp = parser.parseFromString(short, "text/html");
+        } else {
+            var temp = parser.parseFromString(long, "text/html");
+        }
+    }
+    console.log(temp.body.firstChild);
   messages[cur] = temp.body.firstChild;
   temp.body.firstChild.addEventListener('animationiteration', () => {
     console.log(`animation (id:${cur}) iteration finished`);
