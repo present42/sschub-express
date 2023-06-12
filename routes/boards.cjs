@@ -64,6 +64,7 @@ app.post('/:board_id/edit', filefields, function (req, res, next) {
   const boardDetails = req.body;
   const fileDetails = req.files;
   var temp = '';
+  console.log(boardDetails);
   
   if (boardDetails.bgRadioOptions == 'option1') {
     console.log("fileDetails is undefined");
@@ -74,7 +75,7 @@ app.post('/:board_id/edit', filefields, function (req, res, next) {
   } else if (fileDetails['background_video'] != undefined && boardDetails.bgRadioOptions == 'option3') {
     temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', background_color = '', background_img = '', background_video = '${fileDetails['background_video'][0]['filename']}', board_type = '${boardDetails.type_check}' `;
   } else {
-    temp = `UPDATE boards SET title = '${boardDetails.title}', board_type = '${boardDetails.type_check}' `;
+    temp = `UPDATE boards SET title = '${boardDetails.title}', title_color = '${boardDetails.title_color}', board_type = '${boardDetails.type_check}' `;
   }
   if(boardDetails.text_color != ""){
     temp += `, text_color = '${boardDetails.text_color}'`;

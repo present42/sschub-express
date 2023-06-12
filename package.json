@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npm run build && nodemon ./bin/www.js",
+    "build": "npm run build",
     "start": "node ./bin/www.js"
   },
   "dependencies": {
@@ -36,7 +36,7 @@
     "@babel/preset-env": "^7.16.11"
   },
   "description": "## Initial Set up 1. `git pull` <br> 2. `npm install` <br> 3. `npm start` <br>",
-  "main": "index.js",
+  "main": "bin/www.js",
   "bin": {
     "sschubapp": "bin/www.js"
   },

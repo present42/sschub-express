@@ -11,6 +11,7 @@ var volume = undefined;
 var bg_music = undefined;
 var background_img = undefined;
 var background_video = undefined;
+var text_color = undefined;
 
 webSocket.onopen = function (event) {
   pid = setInterval(() => { webSocket.send(JSON.stringify({ msg: "give me new message" })); }, 1000);
@@ -18,6 +19,7 @@ webSocket.onopen = function (event) {
 
 webSocket.onmessage = function (event) {
   data = JSON.parse(event.data);
+  console.log(data);
   board_details = data[1][0];
   color_list = board_details.post_colors.split('  ');
 
@@ -31,7 +33,7 @@ webSocket.onmessage = function (event) {
   if(data.message.length > 100) s = l[getRandomInt(0, 1)];
   else s = l[getRandomInt(0, 2)];
 
-  createNewMessage(0, 0, s, data.message, data.nickname, data.email, data.image_path, data.approved_time, data.color_index);
+  createNewMessage(0, 0, s, data.message, data.nickname, data.email, board_details.text_color, data.image_path, data.approved_time, data.color_index);
   textFit(document.getElementsByClassName('msg'));
   
   if(background_img == undefined && background_video == undefined) {
@@ -97,7 +99,7 @@ function getRandomPos(cur, min, max){
   return getRandomInt(min,max);
 }
 
-function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This content is a little bit longer.", nickname = "hyunju", email = "hyunju@connect.abc.com", filename, time, index) {
+function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This content is a little bit longer.", nickname = "hyunju", email = "hyunju@connect.abc.com", text_color="black", filename, time, index) {
   // color_list = ["rgba(255, 255, 255, 0.856)", "rgba(238, 228, 218, 0.87)", "rgba(237, 194, 46, 0.87)"];
   // color = getRandomInt(0, 2);
   color = color_list[index];
@@ -144,7 +146,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
           <div class="msg-half">
             <img src="/images/posts/${filename}" class="msg-img rounded" alt="..." />
           </div>
-          <div class="msg-half msg-text"><div class="msg" style="vertical-align: middle;">
+          <div class="msg-half msg-text" style="color: ${text_color}"><div class="msg" style="vertical-align: middle;">
               ${message}
               </div>
           </div>
@@ -163,7 +165,7 @@ function createNewMessage(pos_x = 0, pos_y = 0, size = 'md', message = ". This c
 
   var str_without_img = `<div id="${cur}" class="card position-absolute ${size}" style="background: ${color};top: ${top}%; left: -30%;animation-duration: ${duration[getRandomInt(0,2)]}s;">
     <div class="msg-body">
-      <div class="msg-text" style="padding: 0 0 0 0">
+      <div class="msg-text" style="padding: 0 0 0 0; color: ${text_color}">
         <div class="msg" style="vertical-align: middle;">
           ${message}
         </div>
